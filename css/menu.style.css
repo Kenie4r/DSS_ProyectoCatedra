@@ -10,7 +10,6 @@ nav{
     margin: 1.2em auto;
     font-family: 'Josefin Sans', sans-serif;
     width: 90%;
-    height: 750px;
     display: grid;
     overflow: hidden;
     grid-template-columns: 20% 80%;
@@ -29,7 +28,6 @@ a{
     align-items: center;
     text-align: center;
     padding: 1.2em;
-
 }
 
 #menu{
@@ -56,6 +54,9 @@ a{
 }
 .menu-item:hover{
     color: white;
+    font-weight: bolder;
+    transition: bolder 0.2s;
+
 }
 
 #line{
@@ -69,6 +70,15 @@ a{
 .start-menu{
     left: 0;
 }
+.start-eventos{
+    left: 25%;
+}
+.start-mis{
+    left: 50%;
+}
+.start-login{
+    left: 75%;
+}
 .menu-item:hover ~#line{
     height: 100%;
  
@@ -77,16 +87,19 @@ a{
     left: 0;
 }
 #item-2:hover~#line{
-    left: 20%;
+    left: 25%;
 }
 #item-3:hover~#line{
-    left: 40%;
+    left: 50%;
 }
 #item-4:hover~#line{
-    left: 60%;
+    left: 75%;
 }
 #item-5:hover~#line{
-    left: 80%;
+    left: 100%;
+}
+.icon-star{
+    font-size: 1.2em;
 }
 @media (max-width:  900px) {
    nav{
@@ -101,8 +114,4 @@ a{
    #line{
         width: 20%;
     }
-    .start-menu{
-        left: 0;
-    }
-
 }
