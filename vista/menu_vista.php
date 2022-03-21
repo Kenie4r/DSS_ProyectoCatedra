@@ -21,7 +21,7 @@
                 }
         }
         public function createMenu(){
-            $header = "<header><nav><div class='titulo'>   ALL STAR <span class='icon-star'></span></div><div id='menu'><a href='' class='menu-item' id='item-1'>INICIO</a> <a href='' class='menu-item' id='item-2'>EVENTOS</a><a href='' class='menu-item' id='item-3'>MIS EVENTOS</a><a href='' class='menu-item' id='item-4'>LOGIN</a>  <div id='line' class='{$this->menuClass}'></div></div></nav>
+            $header = "<header><nav><div class='titulo'>   ALL STAR <span class='icon-star'></span></div><div id='menu'><a href='' class='menu-item' id='item-1'>INICIO</a> <a href='' class='menu-item' id='item-2'>CATEGORIAS</a><a href='' class='menu-item' id='item-3'>MIS EVENTOS</a><a href='' class='menu-item' id='item-4'>LOGIN</a>  <div id='line' class='{$this->menuClass}'></div></div></nav>
           </header><script src='../js/menuscript.js'></script>";
             
             echo $header; 
