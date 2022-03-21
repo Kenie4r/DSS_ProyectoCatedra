@@ -36,7 +36,6 @@ a{
     position: relative;
     display: flex;
     list-style: none;
-    gap: 3%;
     width: 100%;
     flex-direction: row;
     align-items: center;
