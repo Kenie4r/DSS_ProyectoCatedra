@@ -11,7 +11,7 @@ class Table{
         }
 
         //Tbody
-        if(is_null($body)){
+        if(count($body) <= 0){
             $tbody .= "<tr>";
             $tbody .= "<td colspan='$cols'>No existen registros.</td>";
             $tbody .= "</tr>";
@@ -32,7 +32,7 @@ class Table{
         </tr>
     </thead>
     <tbody>
-        $tbody;
+        $tbody
     </tbody>
 </table>\n
 DFM;
