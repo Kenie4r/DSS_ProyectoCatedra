@@ -28,12 +28,11 @@ $opciones = array(
     </div>
     <div class="div-contenido">
         <form action="" method="post">
-            <?php echo $form->textbox('nombre'); ?>
-            <?php echo $form->number('Personas'); ?>
-            <?php echo $form->textarea('Descripcion'); ?>
+            <?php echo $form->textbox('Nombre', "Escribe tu nombre...", 1, 1); ?>
+            <?php echo $form->number('Personas', "Digite la cantidad de personas.."); ?>
+            <?php echo $form->textarea('Descripcion', "Descripcion por defecto..."); ?>
             <?php echo $form->date('Date'); ?>
-            <?php echo $form->select('Tipos', $opciones); ?>
-
+            <?php echo $form->select('Tipos', $opciones, "Seleccione un tipo de evento"); ?>
         </form>
     </div>
 </body>
