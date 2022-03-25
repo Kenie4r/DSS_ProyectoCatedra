@@ -1,9 +1,11 @@
 <?php
 
+require_once('../controlador/query.php');
 require_once('../vista/menu_vista.php');
 require_once('../modelo/form.class.php');
 require_once('../modelo/table.class.php');
 
+$query = new Query();
 $menu = new HTMLMENU(2);
 $form = new Formulario();
 $tabla = new Table();
@@ -14,7 +16,8 @@ $opciones = array(
 );
 
 $headers = array("ID", "Titulo", "Descripcion", "Fecha Inicio", "Fecha Fin", "Tipo Evento", "Maximo Personas", "Banner");
-$body = null;
+$body = $query->getEventos();
+echo count($body);
 
 ?>
 <!DOCTYPE html>
@@ -32,13 +35,13 @@ $body = null;
         <?php $menu->createMenu(); ?>
     </div>
     <div class="div-contenido">
-        <form action="" method="post">
+        <!--<form action="" method="post">
             <?php echo $form->textbox('Nombre', "Escribe tu nombre...", 1, 1); ?>
             <?php echo $form->number('Personas', "Digite la cantidad de personas.."); ?>
             <?php echo $form->textarea('Descripcion', "Descripcion por defecto..."); ?>
             <?php echo $form->date('Date'); ?>
             <?php echo $form->select('Tipos', $opciones, "Seleccione un tipo de evento"); ?>
-        </form>
+        </form>-->
         <?php $tabla->createTable($headers, $body, count($headers)); ?>
     </div>
 </body>
