@@ -2,14 +2,19 @@
 
 require_once('../vista/menu_vista.php');
 require_once('../modelo/form.class.php');
+require_once('../modelo/table.class.php');
 
 $menu = new HTMLMENU(2);
 $form = new Formulario();
+$tabla = new Table();
 
 $opciones = array(
     0 => "Publico",
     1 => "Privado"
-)
+);
+
+$headers = array("ID", "Titulo", "Descripcion", "Fecha Inicio", "Fecha Fin", "Tipo Evento", "Maximo Personas", "Banner");
+$body = null;
 
 ?>
 <!DOCTYPE html>
@@ -34,6 +39,7 @@ $opciones = array(
             <?php echo $form->date('Date'); ?>
             <?php echo $form->select('Tipos', $opciones, "Seleccione un tipo de evento"); ?>
         </form>
+        <?php $tabla->createTable($headers, $body, count($headers)); ?>
     </div>
 </body>
 </html>
