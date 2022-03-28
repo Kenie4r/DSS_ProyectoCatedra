@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $(".chosen-select").chosen();
+    $(".chosen-select").chosen({no_results_text: "No hay categorías con el nombre: ", max_selected_options: 10});
 
     $("#frmNewCategory").hide();
 
@@ -20,9 +20,21 @@ $(document).ready(function () {
                 },
                 function(respuesta){
                     alert(respuesta);
+                    actualizarSelectCategory();
                 },
                 "html"
             );
         }
+        
     });
 });
+
+function actualizarSelectCategory() {
+    $.post("../modelo/getCategory.rapid.php",
+        function(respuesta){
+                $("#sltCategorias").html(respuesta);
+                $(".chosen-select").chosen().trigger("chosen:updated");
+            },
+            "html"
+    );
+}
