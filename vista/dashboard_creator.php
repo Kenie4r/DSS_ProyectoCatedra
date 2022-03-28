@@ -66,7 +66,13 @@
                    AOD; 
                    echo $mas; 
                 }else{
-                    echo "AÚN NO HAY EVENTOS, SE EL PRIMERO EN CREAR UN EVENTOS";
+                    echo "   <div class='no-events'>
+                    <a href="">
+                        <h2>Aún no hay eventos, puedes ser el primero en crear uno <span class='icon-arrow-right'></span></h2>
+    
+                    </a>
+                   
+                </div>";
                 }
                 echo "     </article>
                 </section>";
