@@ -91,7 +91,7 @@ class Formulario{
 
         //Input
         $input =<<<DFM
-        <div class="contenedor-textarea">
+        <div class="contenedor-input-vertical">
             <div class="contenedor-label">
                 <label for="$name">$label</label>
             </div>
@@ -160,8 +160,8 @@ class Formulario{
 
         //Options
         $options = "";
-        foreach($opciones as $opcion => $opcioncita){
-            $options .= "<option value='$opcion'>$opcioncita</option>";
+        foreach($opciones as $fila => $columna){
+            $options .= "<option value='" . $columna['clave'] . "'>" . $columna['valor'] . "</option>";
         }
 
         //Input
@@ -172,7 +172,7 @@ class Formulario{
             </div>
             <select name="$name" id="$name" title="$placeholder" $required $autofocus>
                 <option value="">$placeholder</option>
-                $options;
+                $options
             </select>
         </div>\n
         DFM;
@@ -198,6 +198,49 @@ class Formulario{
         $input =<<<DFM
         <div class="form-header-titulo">
             <input type="text" name="$name" id="$name" title="$tooltip" value="$value" $required $autofocus>
+            <div class="state-title-input">
+                <span class="icon-check"></span>
+            </div>
+        </div>\n
+        DFM;
+
+        return $input;
+    }
+
+    //Select Personalizado: Chosen -------------------------------------------------------------------------
+    //Propiedades: Nombre e ID, $label, Opciones, Placeholder
+    //Propiedades opcionales(Colocar 1 para activarlo): Required, Autofocus
+    public function selectPersonalizado_Chosen($name, $label, $opciones, $placeholder, $required = "", $autofocus = ""){
+        //Required
+        if($required == 1){
+            $required = "required";
+        }
+
+        //Autofocus
+        if($autofocus == 1){
+            $autofocus = "autofocus";
+        }
+
+        //Options
+        $options = "";
+        if(count($opciones) > 0){
+            foreach($opciones as $fila => $columna){
+                $options .= "<option value=\"" . $columna['clave'] . "\">" . $columna['valor'] . "</option>";
+            }
+        }else{
+            $options .= "<option value=\"0\">No existen categorías</option>";
+        }
+
+        //Input
+        $input =<<<DFM
+        <div class="contenedor-input-vertical">
+            <div class="contenedor-label">
+                <label for="$name">$label</label>
+            </div>
+            <select id="$name" name="$name" multiple class="chosen-select" $required $autofocus> 
+                <option value=""></option>    
+                $options
+            </select>
         </div>\n
         DFM;
 
@@ -210,7 +253,7 @@ class Formulario{
     public function buttonSubmit($name){
         //Input
         $input =<<<DFM
-        <button type="submit" name="$name" id="$name" value="Enviado">+ Guardar</button>\n
+        <button type="submit" name="$name" id="$name" value="Enviado" class="btn btn-green"><span class="icon-save"></span> Guardar</button>\n
         DFM;
 
         return $input;
@@ -222,7 +265,7 @@ class Formulario{
     public function buttonCancel($link){
         //Input
         $input =<<<DFM
-        <a href="$link">X Cancelar</a>\n
+        <a href="$link" class="btn btn-red"><span class="icon-x"></span> Cancelar</a>\n
         DFM;
 
         return $input;

@@ -10,11 +10,6 @@ $menu = new HTMLMENU(2);
 $form = new Formulario();
 $tabla = new Table();
 
-$opciones = array(
-    0 => "Publico",
-    1 => "Privado"
-);
-
 $headers = array("ID", "Titulo", "Descripcion", "Fecha Inicio", "Fecha Fin", "Tipo Evento", "Maximo Personas", "Banner");
 $body = $query->getEventos();
 ?>

@@ -8,16 +8,9 @@ require_once('../modelo/table.class.php');
 $query = new QueryEvento();
 $menu = new HTMLMENU(2);
 $form = new Formulario();
-$tabla = new Table();
 
-$tiposEventos = array(
-    0 => "Público",
-    1 => "Privado"
-);
-
-$headers = array("ID", "Titulo", "Descripcion", "Fecha Inicio", "Fecha Fin", "Tipo Evento", "Maximo Personas", "Banner");
-$body = $query->getEventos();
-echo count($body);
+$tiposEventos = $query->getTipoEventos();
+$categorias = $query->getCategorias();
 
 ?>
 <!DOCTYPE html>
@@ -28,6 +21,7 @@ echo count($body);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuevo evento</title>
     <link rel="stylesheet" href="../css/menu.style.css">
+    <link rel="stylesheet" href="../css/icomoon/style.css">
     <link rel="stylesheet" href="css/style.evento.css">
 </head>
 <body>
@@ -48,9 +42,15 @@ echo count($body);
                 <?php echo $form->date("dtFechaFin", "Fecha de fin:", "¿Cuándo terminará tu evento?", 1); ?>
                 <?php echo $form->select("sltTipo", "Tipo de evento:", $tiposEventos, "¿Qué tipo de evento es?", 1); ?>
                 <?php echo $form->number("nmbCantidadPersonas", "Cantidad de personas:", "¿Cuántas personas asistirán al evento?", 1, 0, 1, "", 1); ?>
+                <?php echo $form->selectPersonalizado_Chosen("sltCategorias", "Categorías del evento:", $tiposEventos, "¿Cómo es tu evento?"); ?>
                 <?php echo $form->textarea("txtDescripcion", "Describe tu evento:", "¡Describe tu evento!"); ?>
             </div>
         </form>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.proto.min.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

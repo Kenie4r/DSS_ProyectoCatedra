@@ -37,6 +37,44 @@ class QueryEvento{
             return true;
         }
     }
+
+    /*----------------------------------------------------------------------------------------------
+    ---------------------------------------- TIPO EVENTOS ------------------------------------------
+    -----------------------------------------------------------------------------------------------*/
+    public function getTipoEventos(){
+        $model = new Conection();
+        $connection  = $model->_getConection();
+        $sql = "SELECT IdTipo AS 'clave', Titulo AS 'valor' FROM tipoevento";
+        $sentencia= $connection->prepare($sql);
+
+        if(!$sentencia){
+            return null;
+        }else{
+            $sentencia->execute();
+            $resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+            return $resultado;
+            
+        }
+    }
+
+    /*----------------------------------------------------------------------------------------------
+    ----------------------------------------- CATEGORIAS ------------------------------------------
+    -----------------------------------------------------------------------------------------------*/
+    public function getCategorias(){
+        $model = new Conection();
+        $connection  = $model->_getConection();
+        $sql = "SELECT idCategoria AS 'clave', Titulo AS 'valor' FROM categoria";
+        $sentencia= $connection->prepare($sql);
+
+        if(!$sentencia){
+            return null;
+        }else{
+            $sentencia->execute();
+            $resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+            return $resultado;
+            
+        }
+    }
 }
 
 ?>
