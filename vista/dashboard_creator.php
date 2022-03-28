@@ -44,11 +44,11 @@
             }
             public function allEvents(){
 
-                echo "    <section class='events-div'>
+                echo "    <section class='events-div'><h2 class='h2T'>Eventos recientes</h2>
                 <article class='newEvents'>";
                 //creación de las tarjetas de html para los eventos 
-                $eventoTabla = new QueryEvento(); 
-                $eventosR = $eventoTabla->getEventos(); 
+                $eventoTabla = new Query(); 
+                $eventosR = $eventoTabla->get3RecentEventos(); 
                 $cardG = new eventCard(); 
                 if(!($eventosR == null)){
                     foreach($eventosR as $fila => $evento){
@@ -79,7 +79,36 @@
             }
     
             public function createAllCategories(){
-                
+                echo"<section class='category-div'>
+                <h2 class='h2T'>CATEGORIAS</h2>
+                <article class='categorys'>"; 
+               $querys = new Query(); 
+               $tablaCat = $querys->get3Categories(); 
+               foreach($tablaCat as $campo =>$categoria){
+                $card2 = <<<CAR
+                <div class="category">
+                    <a href="">   
+                        <div>
+                            <span class="icon-"></span>
+                        </div>
+                        <div class="title-cat">
+                            <h2>{$categoria['Titulo']}</h2>
+                        </div>
+                    </a>
+                </div>
+                CAR;
+                    echo $card2; 
+               }
+               echo "   <div class='category'>
+               <a href=''>
+                   <div>
+                       <span class='icon-plus'></span>
+                   </div>
+                   <div class='title-cat'>
+                       <h2>Ver más categoria</h2>
+                   </div>
+               </a>
+           </div></article></section>"; 
             }
     
             public function endOfFile(){
