@@ -1,5 +1,4 @@
 <?php
-
 require_once('../controlador/queryEvent.php');
 require_once('../vista/menu_vista.php');
 require_once('../modelo/form.class.php');
@@ -7,16 +6,26 @@ require_once('../modelo/table.class.php');
 
 $query = new QueryEvento();
 $menu = new HTMLMENU(2);
-$form = new Formulario();
-$tabla = new Table();
 
-$opciones = array(
-    0 => "Publico",
-    1 => "Privado"
-);
+echo $_POST["txtName"];
+echo $_POST["dtFechaInicio"];
+echo $_POST["dtFechaFin"];
+echo $_POST["sltTipo"];
+echo $_POST["nmbCantidadPersonas"];
+echo $_POST["txtDescripcion"];
+echo "Categoria";
+echo "Imagen";
 
-$headers = array("ID", "Titulo", "Descripcion", "Fecha Inicio", "Fecha Fin", "Tipo Evento", "Maximo Personas", "Banner");
-$body = $query->getEventos();
+$titulo = $_POST["txtName"];
+$descripcion = $_POST["txtDescripcion"];
+$fechaInicio = $_POST["dtFechaInicio"];
+$fechaFin = $_POST["dtFechaFin"];
+$tipoEvento = $_POST["sltTipo"];
+$maximoPersonas = $_POST["nmbCantidadPersonas"];
+$banner = "imagen";
+
+$resultado = $query->insertEvento($titulo, $descripcion, $fechaInicio, $fechaFin, $tipoEvento, $maximoPersonas, $banner);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,15 +43,14 @@ $body = $query->getEventos();
     </div>
     <div class="div-contenido">
         <div class="contenedor-abuelo">
-            <div class="contenedor-header">
-                <div class="contenedor-titulo">
-                    <h1>Mis eventos</h1>
-                </div>
-                <div class="contenedor-botones">
-                    <a href="newEvent.php">+ Nuevo</a>
-                </div>
-            </div>
-            <?php $tabla->createTable($headers, $body, count($headers)); ?>
+<?php
+
+if($resultado){
+    echo "bien";
+}
+
+?>
+            <a href="index.php">Listo</a>
         </div>
     </div>
 </body>

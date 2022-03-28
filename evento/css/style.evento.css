@@ -1,3 +1,84 @@
+.div-contenido *{
+    margin: 0%;
+    padding: 0%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .div-contenido{
     margin-top: 20vh;
+}
+
+.form{
+    margin: 2em;
+    border: black 2px solid;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.form-header{
+    display: flex;
+    flex-direction: row;
+}
+
+.form-header-titulo{
+    width: 70%;
+}
+
+.form-header-titulo input{
+    font-size: 1.5em;
+}
+
+.form-header-button{
+    width: 30%;
+}
+
+.form-input{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+}
+
+.contenedor-input{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    align-items: center;
+}
+
+.contenedor-textarea{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.contenedor-input input, .contenedor-input select{
+    padding: 1em;
+}
+
+.contenedor-textarea textarea{
+    padding: 1em;
+}
+
+.contenedor-abuelo{
+    margin: 2em;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    border: black solid 2px;
+}
+
+.contenedor-header{
+    display: flex;
+    flex-direction: row;
+}
+
+.contenedor-titulo{
+    width: 70%;
+}
+
+.contenedor-botones{
+    width: 30%;
 }
