@@ -7,6 +7,8 @@
     <title>All Star | Dashboard</title>
     <link rel="stylesheet" href="../css/menu.style.css">
     <link rel="stylesheet" href="../css/icomoon/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+
 </head>
 <body>
   <?php
@@ -15,8 +17,30 @@
         $header->createMenu(); 
   
   ?>  
+  <section class="webface">
+        <div class="bg">
+        </div>
+        <div class="textos-face">
+            <h1>ALL STAR <span class="icon-star"></span></h1>
+            <h3><small>
+                Brilla en tu eventos
+            </small></h3>
+        </div>
+
+    </section>
+    <section class="events-div">
+        <article class="newEvents">
+          <?php
+          
+          
+          
+          
+          
+          ?>
 
 
+        </article>
+    </section>
 
 
 </body>

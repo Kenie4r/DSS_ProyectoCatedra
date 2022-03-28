@@ -49,8 +49,8 @@ body{
 }
 .evento{
     position: relative;
-    height: 350px;
-    width: 300px;
+    height: 400px;
+    width: 320px;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
         margin: 0 auto;
@@ -93,6 +93,13 @@ body{
     font-size: 1.3em;
     color: white;
 }
+
+.titulo-e .info ul{
+    list-style: none;
+    color: gray;
+    font-size: 0.8em;
+}
+
 .icon{
     font-size: 4em;
     background-color: white;
@@ -116,7 +123,7 @@ body{
 }
 
 .custom-shape-divider-bottom-1647922209 {
-   
+    z-index: 1;
     position: absolute;
     bottom: 100px;
     left: 0;
@@ -131,8 +138,30 @@ body{
     display: block;
     width: calc(100% + 1.3px);
     height: 67px;
+    
 }
 
 .custom-shape-divider-bottom-1647922209 .shape-fill {
     fill: #FFFFFF;
+}
+.custom-shape-divider-bottom-1648437843 {
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1648437843 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 150px;
+    transform: rotateY(180deg);
+}
+
+.custom-shape-divider-bottom-1648437843 .shape-fill {
+    fill:  rgb(15, 21, 24);
 }
