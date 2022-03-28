@@ -210,7 +210,7 @@ class Formulario{
     //Select Personalizado: Chosen -------------------------------------------------------------------------
     //Propiedades: Nombre e ID, $label, Opciones, Placeholder
     //Propiedades opcionales(Colocar 1 para activarlo): Required, Autofocus
-    public function selectPersonalizado_Chosen($name, $label, $opciones, $placeholder, $required = "", $autofocus = ""){
+    public function selectPersonalizado_Categoria($name, $label, $opciones, $placeholder, $required = "", $autofocus = ""){
         //Required
         if($required == 1){
             $required = "required";
@@ -239,6 +239,14 @@ class Formulario{
                 <option value=""></option>    
                 $options
             </select>
+            <div>
+                <button type="button" id="btnNewCategory" name="btnNewCategory">Crea una categoría</button>
+            </div>
+            <div id="frmNewCategory" class="contenedor-input">
+                <input type="text" name="txtNewCategory" id="txtNewCategory" placeholder="Nueva Categoría">
+                <span id="saveNewCategory" class="icon-plus-square"></span>
+                <span id="cancelNewCategory" class="icon-x-square"></span>
+            </div>
         </div>\n
         DFM;
 

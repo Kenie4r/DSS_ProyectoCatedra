@@ -25,6 +25,7 @@ $eventos = $query->getEventos();
     <title>Mis eventos</title>
     <link rel="stylesheet" href="../css/menu.style.css">
     <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/icomoon/style.css">
     <link rel="stylesheet" href="css/style.evento.css">
 </head>
 <body>
@@ -38,11 +39,17 @@ $eventos = $query->getEventos();
                     <h1>Mis eventos</h1>
                 </div>
                 <div class="contenedor-botones">
-                    <a href="newEvent.php">+ Nuevo</a>
+                    <a href="newEvent.php" class="btn btn-azul"><span class="icon-plus"></span> Nuevo</a>
                 </div>
             </div>
-            <?php $tabla->createTable($headers, $body, count($headers)); ?>
-            <div>
+            <div class="contenedor-card">
+                <div class="evento">
+                    <a href="newEvent.php">
+                        <div class="titulo-mas">
+                            <div class="icon"><span class="icon-plus"></span></div> 
+                            <p class="mas-button">CREAR UN NUEVO EVENTO</p></div>
+                    </a>
+                </div>
 <?php
                 
 if(!($eventos == null)){

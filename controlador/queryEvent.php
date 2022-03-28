@@ -75,6 +75,20 @@ class QueryEvento{
             
         }
     }
+
+    public function insertCategory($titulo){
+        $model = new Conection();
+        $connection  = $model->_getConection();
+        $sql = "INSERT INTO categoria (Titulo, Descripcion) VALUES (:titulo, '...')";
+        $sentencia= $connection->prepare($sql);
+        $sentencia->bindParam(":titulo", $titulo);
+        if(!$sentencia){
+            return false;
+        }else{
+            $sentencia->execute();
+            return true;
+        }
+    }
 }
 
 ?>
