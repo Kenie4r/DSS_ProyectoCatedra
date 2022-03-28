@@ -189,3 +189,29 @@
 #btnNewCategory:hover{
     text-decoration: underline;
 }
+
+.resultado-titulo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.resultado-titulo-error{
+    font-size: 2em;
+    color: var(--rojo);
+}
+
+.resultado-titulo-success{
+    font-size: 2em;
+    color: var(--verde);
+}
+
+.resultado-boton{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.bold{
+    font-weight: bold;
+}

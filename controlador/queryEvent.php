@@ -18,6 +18,23 @@ class QueryEvento{
         }
     }
 
+    public function getEventoByName($nameTitulo){
+        $model = new Conection();
+        $connection  = $model->_getConection();
+        $sql = "SELECT IdEvento FROM evento WHERE Titulo = :nameE";
+        $sentencia= $connection->prepare($sql);
+        $sentencia->bindParam(":nameE", $nameTitulo);
+
+        if(!$sentencia){
+            return null;
+        }else{
+            $sentencia->execute();
+            $resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+            return $resultado;
+            
+        }
+    }
+
     public function insertEvento($titulo, $descripcion, $fechaInicio, $fechaFin, $tipoEvento, $maximoPersonas, $banner){
         $model = new Conection();
         $connection  = $model->_getConection();
@@ -87,6 +104,23 @@ class QueryEvento{
         }else{
             $sentencia->execute();
             return true;
+        }
+    }
+
+    public function insertEventoAndCategoria($idEvento, $idCategoria){
+        $model = new Conection();
+        $connection  = $model->_getConection();
+        $sql = "INSERT INTO detalle_eventocategoria (idEvento, idCategoria) VALUES (:evento, :categoria)";
+        $sentencia= $connection->prepare($sql);
+        $sentencia->bindParam(":evento", $idEvento);
+        $sentencia->bindParam(":categoria", $idCategoria);
+
+        if(!$sentencia){
+            return false;
+        }else{
+            $sentencia->execute();
+            return true;
+            
         }
     }
 }
