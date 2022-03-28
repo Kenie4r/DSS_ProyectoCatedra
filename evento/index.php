@@ -4,14 +4,17 @@ require_once('../controlador/queryEvent.php');
 require_once('../vista/menu_vista.php');
 require_once('../modelo/form.class.php');
 require_once('../modelo/table.class.php');
+require_once('../modelo/eventCard_generator.php');
 
 $query = new QueryEvento();
 $menu = new HTMLMENU(2);
 $form = new Formulario();
 $tabla = new Table();
+$cardG = new eventCard(); 
 
 $headers = array("ID", "Titulo", "Descripcion", "Fecha Inicio", "Fecha Fin", "Tipo Evento", "Maximo Personas", "Banner");
 $body = $query->getEventos();
+$eventos = $query->getEventos();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +24,7 @@ $body = $query->getEventos();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis eventos</title>
     <link rel="stylesheet" href="../css/menu.style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="css/style.evento.css">
 </head>
 <body>
@@ -38,6 +42,16 @@ $body = $query->getEventos();
                 </div>
             </div>
             <?php $tabla->createTable($headers, $body, count($headers)); ?>
+            <div>
+<?php
+                
+if(!($eventos == null)){
+    foreach($eventos as $fila => $evento){
+        $cardG->CreateCard($evento['Titulo'], $evento['FechaInicio'], $evento['FechaFin'], $evento['MaximoPersonas'], $evento["Banner"]); 
+    }
+}
+?>
+            </div>
         </div>
     </div>
 </body>

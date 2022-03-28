@@ -1,11 +1,11 @@
 <?php
     class eventCard{
-        public function CreateCard($nombre, $fechaIncio, $fechaf, $cantidadM){
+        public function CreateCard($nombre, $fechaIncio, $fechaf, $cantidadM, $banner){
             $card = <<<AOD
             <div class="evento">
                 <a href="">
                     <div class="imagen_event">
-                        <img src="https://www.esneca.com/wp-content/uploads/eventos-sociales-1200x720.jpg" alt="">
+                        <img src="$banner" alt="">
                     </div>
                     <div class="custom-shape-divider-bottom-1647922209">
                         <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -19,8 +19,7 @@
                     </div>
                     <div class="titulo-e">
                         <div class="t">
-                            {$nombre} <span class="icon-arrow-right"></span>
-
+                            $nombre <span class="icon-arrow-right"></span>
                         </div>
                         <div class="info">
                             <ul>

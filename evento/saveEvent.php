@@ -22,7 +22,7 @@ $fechaInicio = $_POST["dtFechaInicio"];
 $fechaFin = $_POST["dtFechaFin"];
 $tipoEvento = $_POST["sltTipo"];
 $maximoPersonas = $_POST["nmbCantidadPersonas"];
-$banner = "imagen";
+$banner = "https://www.esneca.com/wp-content/uploads/eventos-sociales-1200x720.jpg";
 
 $resultado = $query->insertEvento($titulo, $descripcion, $fechaInicio, $fechaFin, $tipoEvento, $maximoPersonas, $banner);
 

@@ -25,7 +25,7 @@
             public function createWebView(){
                 $menu = new HTMLMENU(0);
 
-                $view  = <<<EOD
+                $view  =<<<EOD
                 <body>
                 {$menu->createMenu()}
                 <section class="webface">
@@ -37,7 +37,6 @@
                               Brilla en tu eventos
                           </small></h3>
                       </div>
-              
                   </section>
                 EOD; 
 
@@ -53,7 +52,7 @@
                 $cardG = new eventCard(); 
                 if(!($eventosR == null)){
                     foreach($eventosR as $fila => $evento){
-                        $cardG->CreateCard($evento['Titulo'], $evento['FechaInicio'], $evento['FechaFin'], $evento['MaximoPersonas']); 
+                        $cardG->CreateCard($evento['Titulo'], $evento['FechaInicio'], $evento['FechaFin'], $evento['MaximoPersonas'], $evento["Banner"]); 
                     }
 
                     $mas = <<<AOD
