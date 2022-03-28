@@ -227,8 +227,6 @@ class Formulario{
             foreach($opciones as $fila => $columna){
                 $options .= "<option value=\"" . $columna['clave'] . "\">" . $columna['valor'] . "</option>";
             }
-        }else{
-            $options .= "<option value=\"0\">No existen categorías</option>";
         }
 
         //Input
@@ -237,7 +235,7 @@ class Formulario{
             <div class="contenedor-label">
                 <label for="$name">$label</label>
             </div>
-            <select id="$name" name="$name" multiple class="chosen-select" $required $autofocus> 
+            <select id="$name" name="$name" data-placeholder="$placeholder" title="$placeholder" multiple class="chosen-select" $required $autofocus> 
                 <option value=""></option>    
                 $options
             </select>

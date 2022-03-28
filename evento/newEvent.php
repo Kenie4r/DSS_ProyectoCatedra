@@ -42,7 +42,7 @@ $categorias = $query->getCategorias();
                 <?php echo $form->date("dtFechaFin", "Fecha de fin:", "¿Cuándo terminará tu evento?", 1); ?>
                 <?php echo $form->select("sltTipo", "Tipo de evento:", $tiposEventos, "¿Qué tipo de evento es?", 1); ?>
                 <?php echo $form->number("nmbCantidadPersonas", "Cantidad de personas:", "¿Cuántas personas asistirán al evento?", 1, 0, 1, "", 1); ?>
-                <?php echo $form->selectPersonalizado_Chosen("sltCategorias", "Categorías del evento:", $tiposEventos, "¿Cómo es tu evento?"); ?>
+                <?php echo $form->selectPersonalizado_Chosen("sltCategorias", "Categorías del evento:", $categorias, "¿Cómo es tu evento?", 1); ?>
                 <?php echo $form->textarea("txtDescripcion", "Describe tu evento:", "¡Describe tu evento!"); ?>
             </div>
         </form>
@@ -50,7 +50,7 @@ $categorias = $query->getCategorias();
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.proto.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" integrity="sha512-yVvxUQV0QESBt1SyZbNJMAwyKvFTLMyXSyBHDO4BG5t7k/Lw34tyqlSDlKIrIENIzCl+RVUNjmCPG+V/GMesRw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="js/script.js"></script>
 </body>
 </html>
