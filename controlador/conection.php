@@ -10,7 +10,7 @@ class Conection{
         $db = "b1k1eq92tfle9dvefsn9";
         try{
             $conectar = new PDO("mysql:host=$host;dbname=$db",$user,$pass);
-            echo "Conexion lograda"; 
+           // echo "Conexion lograda"; 
         }catch(PDOException $e){
             echo $e->getMessage(); 
         }
