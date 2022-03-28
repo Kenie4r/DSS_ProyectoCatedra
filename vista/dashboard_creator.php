@@ -67,17 +67,20 @@
                    echo $mas; 
                 }else{
                     echo "   <div class='no-events'>
-                    <a href="">
+                    <a href=''>
                         <h2>Aún no hay eventos, puedes ser el primero en crear uno <span class='icon-arrow-right'></span></h2>
     
                     </a>
                    
-                </div>";
+            </div>";
                 }
                 echo "     </article>
                 </section>";
             }
     
+            public function createAllCategories(){
+                
+            }
     
             public function endOfFile(){
                 $end = <<<EOD
