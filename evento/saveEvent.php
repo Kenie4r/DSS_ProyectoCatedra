@@ -1,24 +1,48 @@
 <?php
-require_once('../controlador/queryEvent.php');
 require_once('../vista/menu_vista.php');
-require_once('../modelo/form.class.php');
-require_once('../modelo/table.class.php');
+require_once('../modelo/evento.class.php');
 
-$query = new QueryEvento();
 $menu = new HTMLMENU(2);
 
-$titulo = $_POST["txtName"];
-$descripcion = $_POST["txtDescripcion"];
-$fechaInicio = $_POST["dtFechaInicio"];
-$fechaFin = $_POST["dtFechaFin"];
-$tipoEvento = $_POST["sltTipo"];
-$maximoPersonas = $_POST["nmbCantidadPersonas"];
-$categorias = $_POST["sltCategorias"];
-$banner = "https://www.esneca.com/wp-content/uploads/eventos-sociales-1200x720.jpg";
+if(isset($_POST["btnSubmit"])){
+    //Operacion
+    $operacion = $_POST["btnSubmit"];
+    //Id evento
+    if(isset($_POST["idEvento"])){
+        $id = $_POST["idEvento"];
+    }else{
+        $id = "";
+    }
+    //Propiedades
+    $titulo = $_POST["txtName"];
+    $descripcion = $_POST["txtDescripcion"];
+    $fechaInicio = $_POST["dtFechaInicio"];
+    $fechaFin = $_POST["dtFechaFin"];
+    $tipoEvento = $_POST["sltTipo"];
+    $maximoPersonas = $_POST["nmbCantidadPersonas"];
+    $banner = "https://www.esneca.com/wp-content/uploads/eventos-sociales-1200x720.jpg";
+    $categorias = $_POST["sltCategorias"];
+    //Evento
+    $evento = new Evento($id, $titulo, $descripcion, $fechaInicio, $fechaFin, $tipoEvento, $maximoPersonas, $banner, $categorias);
 
-$resultado = $query->insertEvento($titulo, $descripcion, $fechaInicio, $fechaFin, $tipoEvento, $maximoPersonas, $banner);
-$lastEvento = $query->getEventoByName($titulo);
-$idLast = $lastEvento[0]["IdEvento"];
+    //Operaciones
+    switch($operacion){
+        case "crear":
+            //$resultado1 = $evento->insert(); //Guardamos el evento
+            //$evento->recuperarID(); //Recuperamos el id del evento ingresado
+            //$resultado2 = $evento->insertCategory();
+            //
+            if($resultado1 && $resultado2){
+                $mensaje = "<p class=\"resultado-titulo-success\"><span class=\"icon-thumbs-up\"></span> Se creo el evento.</p>";
+            }else{
+                $mensaje = "<p class=\"resultado-titulo-error\"><span class=\"icon-alert-circle\"></span> <span class=\"bold\">ERROR:</span> No se pudo crear el evento.</p>";
+            }
+            break;
+    }
+}else{
+    //Redirect
+    $mensaje = "<p class=\"resultado-titulo-error\"><span class=\"icon-alert-circle\"></span> <span class=\"bold\">ERROR:</span> Algo salio muy mal.</p>";
+}
 
 ?>
 <!DOCTYPE html>
@@ -38,42 +62,9 @@ $idLast = $lastEvento[0]["IdEvento"];
     </div>
     <div class="div-contenido">
         <div class="contenedor-abuelo">
-<?php
-$resultado = true;
-//Se comprueba que se guardara el evento
-if($resultado){
-    //Se ingresan las relaciones evento-categoria
-    $errorresCategoria = 0;
-    foreach($categorias as $key => $value){
-        $resultC = $query->insertEventoAndCategoria($idLast, $value);
-        //Se verifica si se guardaron
-        if(!$resultC){
-            $errorresCategoria++;
-        }
-    }
-
-    if($errorresCategoria > 0){
-?>
-        <div class="resultado-titulo">
-            <p class="resultado-titulo-error"><span class="icon-alert-circle"></span> <span class="bold">ERROR:</span> No se pudo crear el evento.</p>
-        </div>
-<?php
-    }else{
-?>
-        <div class="resultado-titulo">
-            <p class="resultado-titulo-success"><span class="icon-thumbs-up"></span> Se creo el evento.</p>
-        </div>
-<?php
-    }
-}else{
-?>
-        <div class="resultado-titulo">
-            <p class="resultado-titulo-error"><span class="icon-alert-circle"></span> <span class="bold">ERROR:</span> No se pudo crear el evento.</p>
-        </div>
-<?php
-}
-
-?>
+            <div class="resultado-titulo">
+                <?php echo $mensaje; ?>
+            </div>
             <div class="resultado-boton">
                 <a href="index.php" class="btn btn-azul"><span class="icon-arrow-left-circle"></span> Inicio</a>
             </div>

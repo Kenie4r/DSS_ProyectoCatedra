@@ -33,7 +33,7 @@ $categorias = $query->getCategorias();
             <div class="form-header">
                 <?php echo $form->textboxPersonalizado_Titulo("txtName", "¿Cómo se llama tu evento?", "Nuevo evento", 1); ?>
                 <div class="form-header-button">
-                    <?php echo $form->buttonSubmit("btnSubmit"); ?>
+                    <?php echo $form->buttonSubmit("btnSubmit", "crear"); ?>
                     <?php echo $form->buttonCancel("index.php"); ?>
                 </div>
             </div>

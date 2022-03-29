@@ -256,10 +256,10 @@ class Formulario{
     //Button submit --------------------------------------------------------------------------------
     //Propiedades: Nombre e ID, Placeholder
     //Propiedades opcionales(Para usarlas, colocar 1 en su parametro): Required, Autofocus 
-    public function buttonSubmit($name){
+    public function buttonSubmit($name, $value){
         //Input
         $input =<<<DFM
-        <button type="submit" name="$name" id="$name" value="Enviado" class="btn btn-green"><span class="icon-save"></span> Guardar</button>\n
+        <button type="submit" name="$name" id="$name" value="$value" class="btn btn-green"><span class="icon-save"></span> Guardar</button>\n
         DFM;
 
         return $input;

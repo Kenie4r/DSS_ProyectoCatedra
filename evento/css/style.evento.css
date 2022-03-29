@@ -3,8 +3,14 @@
     --rojo: #BF2604;
     --azul: #5E44FC;
     --titulo: #D9043D;
+    --grisOscuro: #212126;
+    --gris: #96A4A7;
+    --grisClaro: #C6D0D9;
 }
 
+/*----------------------------------------------------------------------------------------------
+---------------------------------------- CONTENEDOR BASE ---------------------------------------
+-----------------------------------------------------------------------------------------------*/
 .div-contenido *{
     margin: 0%;
     padding: 0%;
@@ -52,6 +58,51 @@
 
 .state-title-input{
     font-size: 2em;
+}
+
+#btnNewCategory{
+    display: block;
+    background-color: white;
+    border: none;
+    color: var(--azul);
+    cursor: pointer;
+}
+
+#btnNewCategory:hover{
+    text-decoration: underline;
+}
+
+#frmNewCategory{
+    display: flex;
+    gap: 0;
+}
+
+#txtNewCategory{
+    border: var(--grisOscuro) solid 2px;
+}
+
+#saveNewCategory, #cancelNewCategory{
+    height: 100%;
+    padding: 0 0.5em 0 0.5em;
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: var(--grisClaro);
+    border: var(--grisOscuro) solid 2px;
+}
+
+#saveNewCategory:hover, #cancelNewCategory:hover{
+    background-color: var(--gris);
+}
+
+#saveNewCategory{
+    color: var(--verde);
+}
+
+#cancelNewCategory{
+    color: var(--rojo);
 }
 
 /*Botones*/
@@ -122,6 +173,9 @@
     width: 30%;
 }
 
+/*----------------------------------------------------------------------------------------------
+------------------------------------------- BOTONES --------------------------------------------
+-----------------------------------------------------------------------------------------------*/
 .btn{
     display: block;
     padding: 1em;
@@ -167,29 +221,9 @@
     border: var(--azul) solid 2px;
 }
 
-.contenedor-card{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 2em;
-}
-
-.evento:hover{
-    transform: scale(1.03);
-    transition: 500ms;
-}
-
-#btnNewCategory{
-    display: block;
-    background-color: white;
-    border: none;
-    color: var(--azul);
-    cursor: pointer;
-}
-
-#btnNewCategory:hover{
-    text-decoration: underline;
-}
-
+/*----------------------------------------------------------------------------------------------
+----------------------------------------- RESULTADO ------------------------------------------
+-----------------------------------------------------------------------------------------------*/
 .resultado-titulo{
     display: flex;
     flex-direction: row;
@@ -210,6 +244,20 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+
+/*----------------------------------------------------------------------------------------------
+----------------------------------------- COMPLEMENTO ------------------------------------------
+-----------------------------------------------------------------------------------------------*/
+.contenedor-card{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2em;
+}
+
+.evento:hover{
+    transform: scale(1.03);
+    transition: 500ms;
 }
 
 .bold{
