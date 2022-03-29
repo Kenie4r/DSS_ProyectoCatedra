@@ -28,9 +28,9 @@ if(isset($_POST["btnSubmit"])){
     //Operaciones
     switch($operacion){
         case "crear":
-            //$resultado1 = $evento->insert(); //Guardamos el evento
-            //$evento->recuperarID(); //Recuperamos el id del evento ingresado
-            //$resultado2 = $evento->insertCategory();
+            $resultado1 = $evento->insert(); //Guardamos el evento
+            $evento->recuperarID(); //Recuperamos el id del evento ingresado
+            $resultado2 = $evento->insertCategory();
             //
             if($resultado1 && $resultado2){
                 $mensaje = "<p class=\"resultado-titulo-success\"><span class=\"icon-thumbs-up\"></span> Se creo el evento.</p>";

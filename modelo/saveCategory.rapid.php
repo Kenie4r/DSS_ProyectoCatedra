@@ -8,9 +8,19 @@ $tituloCategoria = $_POST["titulo"];
 $resultado = $query->insertCategory($tituloCategoria);
 
 if($resultado){
-    echo "Se agrego la categoría correctamente";
+    $categorias = $query->getCategorias();
+
+    //Options
+    $options = "<option value=\"\"></option> ";
+    if(count($categorias) > 0){
+        foreach($categorias as $fila => $columna){
+            $options .= "<option value=\"" . $columna['clave'] . "\">" . $columna['valor'] . "</option>";
+        }
+    }
+
+    echo $options;
 }else{
-    echo "ERROR: No se agrego la categoria.";
+    echo null;
 }
 
 ?>

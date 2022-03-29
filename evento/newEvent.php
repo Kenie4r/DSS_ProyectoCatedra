@@ -42,7 +42,7 @@ $categorias = $query->getCategorias();
                 <?php echo $form->date("dtFechaFin", "Fecha de fin:", "¿Cuándo terminará tu evento?", 1); ?>
                 <?php echo $form->select("sltTipo", "Tipo de evento:", $tiposEventos, "¿Qué tipo de evento es?", 1); ?>
                 <?php echo $form->number("nmbCantidadPersonas", "Cantidad de personas:", "¿Cuántas personas asistirán al evento?", 1, 0, 1, "", 1); ?>
-                <?php echo $form->selectPersonalizado_Categoria("sltCategorias[]", "Categorías del evento:", $categorias, "¿Cómo es tu evento?", 1); ?>
+                <?php echo $form->selectPersonalizado_Categoria("sltCategorias", "sltCategorias[]", "Categorías del evento:", $categorias, "¿Cómo es tu evento?", 1); ?>
                 <?php echo $form->textarea("txtDescripcion", "Describe tu evento:", "¡Describe tu evento!"); ?>
             </div>
         </form>

@@ -199,8 +199,8 @@ class Formulario{
         <div class="form-header-titulo">
             <input type="text" class="input-titulo-verde" name="$name" id="$name" title="$tooltip" value="$value" $required $autofocus>
             <div class="state-title-input">
-                <span class="icon-check color-verde"></span>
-                <span class="icon-x color-rojo"></span>
+                <span id="goodTitulo" class="icon-check color-verde"></span>
+                <span id="badTitulo" class="icon-x color-rojo"></span>
             </div>
         </div>\n
         DFM;
@@ -211,7 +211,7 @@ class Formulario{
     //Select Personalizado: Chosen -------------------------------------------------------------------------
     //Propiedades: Nombre e ID, $label, Opciones, Placeholder
     //Propiedades opcionales(Colocar 1 para activarlo): Required, Autofocus
-    public function selectPersonalizado_Categoria($name, $label, $opciones, $placeholder, $required = "", $autofocus = ""){
+    public function selectPersonalizado_Categoria($id, $name, $label, $opciones, $placeholder, $required = "", $autofocus = ""){
         //Required
         if($required == 1){
             $required = "required";
@@ -236,7 +236,7 @@ class Formulario{
             <div class="contenedor-label">
                 <label for="$name">$label</label>
             </div>
-            <select id="$name" name="$name" data-placeholder="$placeholder" title="$placeholder" multiple class="chosen-select" $required $autofocus> 
+            <select id="$id" name="$name" data-placeholder="$placeholder" title="$placeholder" multiple class="chosen-select" $required $autofocus> 
                 <option value=""></option>    
                 $options
             </select>

@@ -78,10 +78,8 @@ class EventsPage{
                                 </a>
                             </div>
                             <div class="tag">
-
                             </div>
                             <div class="tag">
-
                             </div>
                         </div>
                     </div>

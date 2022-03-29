@@ -12,6 +12,7 @@ class Evento{
     private $maximoPersona;
     private $banner;
     private $categorias;
+    private $query;
 
     //Construct
     public function __construct($newId, $newTitulo, $newDescripcion, $newFechaInicio, $newFechaFin, $newTipoEvento, $newMaxPersonas, $newBanner, $newCategory){
@@ -24,6 +25,7 @@ class Evento{
         $this->maximoPersona = $newMaxPersonas;
         $this->banner = $newBanner;
         $this->categorias = $newCategory;
+        $this->query = new QueryEvento();
     }
 
     //Setters
@@ -52,7 +54,7 @@ class Evento{
     }
 
     public function setMaxPersonas($newMaxPersonas){
-        $this->maxPersonas = $newMaxPersonas;
+        $this->maximoPersona = $newMaxPersonas;
     }
 
     public function setBanner($newBanner){
@@ -89,7 +91,7 @@ class Evento{
     }
 
     public function getMaxPersonas(){
-        return $this->maxPersonas;
+        return $this->maximoPersona;
     }
 
     public function getBanner(){
@@ -102,34 +104,37 @@ class Evento{
 
     /* Insert */
     public function insert(){
-        $resultado = $query->insertEvento($this->titulo, $this->descripcion, $this->fechaInicio, $this->fechaFin, $this->tipoEvento, $this->maximoPersonas, $this->banner);
+        $resultado = $this->query->insertEvento($this->titulo, $this->descripcion, $this->fechaInicio, $this->fechaFin, $this->tipoEvento, $this->maximoPersona, $this->banner);
 
         return $resultado;
     }
 
     /* Calcular id */
     public function recuperarID(){
-        $lastEvento = $query->getEventoByName($this->titulo);
+        $lastEvento = $this->query->getEventoByName($this->titulo);
+        $this->id = null;
         foreach($lastEvento as $key => $value){
-            $this->id = $lastEvento["IdEvento"];
+            $this->id = $value["IdEvento"];
         }
     }
 
     /* Guardar categorias */
     public function insertCategory(){
-        $errorresCategoria = 0; //Errores por cada categoria no ingresada
-        //Recorremos las categorias
-        foreach($this->categorias as $key => $value){
-            $resultC = $query->insertEventoAndCategoria($this->id, $value); //Guardamos la relacion
-            //Se verifica si se guardaron
-            if(!$resultC){
-                $errorresCategoria++;
+        if($this->id != null){
+            $errorresCategoria = 0; //Errores por cada categoria no ingresada
+            //Recorremos las categorias
+            foreach($this->categorias as $key => $value){
+                $resultC = $this->query->insertEventoAndCategoria($this->id, $value); //Guardamos la relacion
+                //Se verifica si se guardaron
+                if(!$resultC){
+                    $errorresCategoria++;
+                }
             }
-        }
-        if($errorresCategoria > 0){
-            return false;
-        }else{
-            return true;
+            if($errorresCategoria > 0){
+                return false;
+            }else{
+                return true;
+            }
         }
     }
 }
