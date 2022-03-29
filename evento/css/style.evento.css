@@ -52,8 +52,15 @@
 .form-header-titulo input{
     font-size: 2em;
     border: none;
-    border-bottom: black solid 2px;
     outline: none;
+}
+
+input.input-titulo-verde{
+    border-bottom: 2px solid var(--verde);
+}
+
+input.input-titulo-rojo{
+    border-bottom: 2px solid var(--rojo);
 }
 
 .state-title-input{
@@ -79,6 +86,7 @@
 
 #txtNewCategory{
     border: var(--grisOscuro) solid 2px;
+    border-radius: 0%;
 }
 
 #saveNewCategory, #cancelNewCategory{
@@ -139,6 +147,7 @@
 
 .contenedor-input-vertical textarea{
     padding: 1em;
+    resize: none;
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -262,4 +271,12 @@
 
 .bold{
     font-weight: bold;
+}
+
+.color-verde{
+    color: var(--verde);
+}
+
+.color-rojo{
+    color: var(--rojo);
 }

@@ -197,9 +197,10 @@ class Formulario{
         //Input
         $input =<<<DFM
         <div class="form-header-titulo">
-            <input type="text" name="$name" id="$name" title="$tooltip" value="$value" $required $autofocus>
+            <input type="text" class="input-titulo-verde" name="$name" id="$name" title="$tooltip" value="$value" $required $autofocus>
             <div class="state-title-input">
-                <span class="icon-check"></span>
+                <span class="icon-check color-verde"></span>
+                <span class="icon-x color-rojo"></span>
             </div>
         </div>\n
         DFM;
