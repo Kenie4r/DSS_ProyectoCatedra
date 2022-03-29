@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+
+.sect-d{
+    margin-top: 20vh;
+    margin-bottom: 2em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Josefin Sans', sans-serif;
+
+}
+.form{
+
+    width: 85%;
+    border-radius: 4px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    overflow: hidden;
+}
+.form .event-name{
+    background-color: rgb(34, 34, 53);
+    padding: 3em;
+    color: white;
+    text-align: center;
+    font-size: 1.5em;
+    
+}
+.form .grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+   /* grid-template-rows: repeat(2, 1fr);
+*/
+}
+.grid div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    grid-row: span 2;
+}
+.cantidad{
+    color: gray;
+}
+.cantidad small{
+    font-size: 1.4em;
+    text-transform: uppercase;
+}
+.cantidad h2{
+    font-size: 4em;
+}
+.form .info{ 
+    display: grid;
+    grid-template-rows: repeat(3,1fr);
+}
+.form .info .descr{
+    padding: 1.5em ;
+    gap: 1.2em;
+}
+.form .info .fechas{
+    display: flex;
+    flex-direction: row;
+    gap: 0  2em ;
+    padding: 1.2em;
+}
+.form .info .tags{
+    display: flex;
+    flex-direction: row;
+    padding: 1.2em;
+}
+.btn-unir input[type='submit']{
+    margin: 1.2em 0 0;
+    outline: none;
+    border: none;
+    padding: 1em;
+    background-color: rgb(34, 34, 53);
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+}

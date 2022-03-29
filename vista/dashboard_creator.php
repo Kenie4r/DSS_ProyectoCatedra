@@ -52,7 +52,8 @@
                 $cardG = new eventCard(); 
                 if(!($eventosR == null)){
                     foreach($eventosR as $fila => $evento){
-                        $cardG->CreateCard($evento['Titulo'], $evento['FechaInicio'], $evento['FechaFin'], $evento['MaximoPersonas'], $evento["Banner"]); 
+
+                        $cardG->CreateCard($evento['Titulo'], $evento['FechaInicio'], $evento['FechaFin'], $evento['MaximoPersonas'], $evento["Banner"], $evento['idEvento']); 
                     }
 
                     $mas = <<<AOD

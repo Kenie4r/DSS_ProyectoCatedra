@@ -54,7 +54,9 @@ $eventos = $query->getEventos();
                 
 if(!($eventos == null)){
     foreach($eventos as $fila => $evento){
-        $cardG->CreateCard($evento['Titulo'], $evento['FechaInicio'], $evento['FechaFin'], $evento['MaximoPersonas'], $evento["Banner"]); 
+
+        
+        $cardG->CreateCard($evento['Titulo'], $evento['FechaInicio'], $evento['FechaFin'], $evento['MaximoPersonas'], $evento["Banner"], $evento['idEvento']);
     }
 }
 ?>

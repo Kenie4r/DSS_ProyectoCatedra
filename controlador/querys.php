@@ -31,6 +31,21 @@
                 
             }
         }
+        public function getEventByID($idEvento){
+            $model = new Conection();
+            $connection  = $model->_getConection();
+            $sql = "SELECT * FROM evento WHERE IdEvento = :id";
+            $sentencia= $connection->prepare($sql);
+            $sentencia->bindParam(":id", $idEvento); 
+            if(!$sentencia){
+                return null;
+            }else{
+                $sentencia->execute();
+                $resultado = $sentencia->fetch(PDO::FETCH_ASSOC);
+                return $resultado;
+                
+            }
+        }
         public function InsertEventUserC($user, $evento, $conf){
             //query para poder aceptar si se va a ir 
             $connection = new Conection(); 
@@ -39,13 +54,26 @@
             $statement = $db->prepare($sql); 
             $statement->bindParam(":IdUsuario", $user); 
             $statement->bindParam(":idEvento", $evento); 
-            $statement->bindParam(":conf", "En espera"); 
+            $statement->bindParam(":conf", $conf); 
             if(!$statement){
                 return null; 
             }else{
                 $statement->execute();
                 return "Se inserto " . $statement->RowCount() . " filas"; 
             }  
+        }
+        public function howManyUserinEvent($idEvento){
+            $cn = new Conection();
+            $db = $cn->_getConection(); 
+            $sql = "SELECT COUNT(idUsuario) FROM detalle_usuarioevento WHERE idEvento = :idEvento"; 
+            $statement = $db->prepare($sql);
+            $statement->bindParam(":idEvento", $idEvento);  
+            if(!$statement){
+                return null; 
+            }else{
+                $statement->execute(); 
+                return $statement->fetch(PDO::FETCH_ASSOC); 
+            }
         }
     }
 
