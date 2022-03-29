@@ -5,5 +5,5 @@
     $idEvento = $_POST['eventID']; 
     $dbHandler = new Query(); 
     echo $dbHandler->InsertEventUserC($idUsuario, $idEvento,"Espera"); 
-
+    header("Location: ../dashboard/index.php"); 
 ?>
