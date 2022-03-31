@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `categoria` (
   `Titulo` varchar(50) NOT NULL,
   `Descripcion` text NOT NULL,
   PRIMARY KEY (`idCategoria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `detalle_eventocategoria` (
   PRIMARY KEY (`idDetalle`),
   KEY `idEvento` (`idEvento`),
   KEY `idCategoria` (`idCategoria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `detalle_usuarioevento` (
   PRIMARY KEY (`idDetalle`),
   KEY `idUsuario` (`idUsuario`),
   KEY `idEvento` (`idEvento`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `evento` (
   `Banner` varchar(50) NOT NULL,
   PRIMARY KEY (`idEvento`),
   KEY `TipoEvento` (`TipoEvento`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `tipoevento` (
   `IdTipo` int(11) NOT NULL AUTO_INCREMENT,
   `Titulo` varchar(20) NOT NULL,
   PRIMARY KEY (`IdTipo`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tipoevento`
@@ -124,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `Genero` char(1) NOT NULL,
   `TipoUsuario` char(1) NOT NULL,
   PRIMARY KEY (`idUsuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Restricciones para tablas volcadas
