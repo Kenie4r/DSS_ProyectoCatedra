@@ -21,15 +21,20 @@
                      <label for="txtNombre" class="form-label">Ingrese su nombre</label>
                     <input type="text"  class="form-control" name="txtNombre" id="txtNombre">
                     </div>
+                   
                     <div class="mb-4" >
                      <label for="txtApellido" class="form-label">Ingrese su Apellido</label>
                     <input type="text"  class="form-control" name="txtApellido" id="txtApellido">
                     </div>
                     <div class="mb-4" >
+                     <label for="txtUsuario" class="form-label">Ingrese su nombre de usuario</label>
+                    <input type="text"  class="form-control" name="txtUsuario" id="txtUsuario">
+                    </div>
+                    <div class="mb-4" >
                     <label for="cmbGenero" class="form-label">Ingrese su Genero</label>
                     <select class="form-control" name="cmbGenero" id="cmbGenero">
-                            <option value="m" >Masculino</option>
-                            <option value="f" >Femenino</option>
+                            <option value="M" >Masculino</option>
+                            <option value="F" >Femenino</option>
                           </select>
                     </div>
 
@@ -42,7 +47,24 @@
                         <input type="password" class="form-control" name="txtContraCon" id="txtContraCon">
                     </div>
                    
-                    <button type="submit" class="btn btn-success w-100">Registrarse</button>
+                    <button type="submit" name="submit" class="btn btn-success w-100">Registrarse</button>
+                    <?php
+                        include '../controlador/queryRegister.php';
+                        
+                        if (isset($_POST['submit'])) {
+                            $query=new QueryRegister;
+                            $nombre=$_POST['txtNombre'];
+                            $user=$_POST['txtUsuario'];
+                            $pass=$_POST['txtContraCon'];
+                            $genero=$_POST['cmbGenero'];
+                            $apellido=$_POST['txtApellido'];
+
+                           $query->InsertUser($user,$pass,$nombre,$apellido,$genero);
+                           header("location:login.php");
+                        }
+
+                       
+                    ?>
                 </form>
                 
                 
@@ -50,6 +72,7 @@
             
         </div>
     </div>
+    
 </body>
     
 </body>

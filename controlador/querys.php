@@ -75,6 +75,22 @@
                 return $statement->fetch(PDO::FETCH_ASSOC); 
             }
         }
+        public function verifyUsario($user,$pass){
+            $connection = new Conection(); 
+            $db = $connection->_getConection(); 
+            $encryptPass=md5($pass);
+            $sql="SELECT Username,Password FROM usuario WHERE Username=:Username AND Password=:Password";
+            $statement=$db->prepare($sql);
+            $statement->bindParam(":Username",$user);
+            $statement->bindParam(":Password",$encryptPass);
+            $statement->execute();
+            $contador= $statement->rowCount();
+            if ($contador>0) {
+                return true;
+            }else {
+                return false;
+            }
+        }
     }
 
 
