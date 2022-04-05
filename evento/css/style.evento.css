@@ -280,3 +280,7 @@ input.input-titulo-rojo{
 .color-rojo{
     color: var(--rojo);
 }
+
+#imgEvento{
+    height: 200px;
+}

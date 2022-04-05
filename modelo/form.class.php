@@ -131,13 +131,23 @@ class Formulario{
 
     //Datetime ---------------------------------------------------------------------------------------
     //Sin funcionar
-    public function datetime($name){
+    public function datetime($name, $label, $tooltip, $required = "", $autofocus = ""){
+        //Required
+        if($required == 1){
+            $required = "required";
+        }
+
+        //Autofocus
+        if($autofocus == 1){
+            $autofocus = "autofocus";
+        }
+
         $input =<<<DFM
         <div class="contenedor-input">
             <div class="contenedor-label">
-                <label for="$name">$name</label>
+                <label for="$name">$label</label>
             </div>
-            <input type="datetime" name="$name" id="$name">
+            <input type="datetime-local" name="$name" id="$name" title="$tooltip" $required $autofocus>
         </div>\n
         DFM;
 
@@ -174,6 +184,35 @@ class Formulario{
                 <option value="">$placeholder</option>
                 $options
             </select>
+        </div>\n
+        DFM;
+
+        return $input;
+    }
+
+    //File ----------------------------------------------------------------------------------------
+    //Propiedades: Nombre e ID, $label, Opciones, Placeholder
+    //Propiedades opcionales(Colocar 1 para activarlo): Required, Autofocus
+    public function file($name, $idImg, $defaultImg, $placeholder, $required = "", $autofocus = ""){
+        //Required
+        if($required == 1){
+            $required = "required";
+        }
+
+        //Autofocus
+        if($autofocus == 1){
+            $autofocus = "autofocus";
+        }
+
+        //Input
+        $input =<<<DFM
+        <div class="contenedor-input-vertical">
+            <div>
+                <input type="file" name="$name" id="$name" accept="image/png, image/gif, image/jpeg">
+            </div>
+            <div>
+                <img src="$defaultImg" alt="Imagen ilustrativa de evento" id="$idImg">
+            </div>
         </div>\n
         DFM;
 

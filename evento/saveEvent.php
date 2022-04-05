@@ -20,7 +20,19 @@ if(isset($_POST["btnSubmit"])){
     $fechaFin = $_POST["dtFechaFin"];
     $tipoEvento = $_POST["sltTipo"];
     $maximoPersonas = $_POST["nmbCantidadPersonas"];
-    $banner = "https://www.esneca.com/wp-content/uploads/eventos-sociales-1200x720.jpg";
+    if(isset($_FILES['fileEvento'])){
+        $banner_tmp_name = $_FILES["fileEvento"]["tmp_name"];
+        $banner_name = $_FILES["fileEvento"]["name"];
+        $banner_size = $_FILES["fileEvento"]["size"];
+        if($banner_size > 2621440){
+            $banner = "https://www.esneca.com/wp-content/uploads/eventos-sociales-1200x720.jpg";
+        }
+        if(move_uploaded_file($banner_tmp_name, "banners/" . utf8_decode($banner_name))){
+            $banner = "../evento/banners/" . $banner_name;
+        }
+    }else{
+        $banner = "https://www.esneca.com/wp-content/uploads/eventos-sociales-1200x720.jpg";
+    }
     $categorias = $_POST["sltCategorias"];
     //Evento
     $evento = new Evento($id, $titulo, $descripcion, $fechaInicio, $fechaFin, $tipoEvento, $maximoPersonas, $banner, $categorias);
@@ -31,7 +43,6 @@ if(isset($_POST["btnSubmit"])){
             $resultado1 = $evento->insert(); //Guardamos el evento
             $evento->recuperarID(); //Recuperamos el id del evento ingresado
             $resultado2 = $evento->insertCategory();
-            //
             if($resultado1 && $resultado2){
                 $mensaje = "<p class=\"resultado-titulo-success\"><span class=\"icon-thumbs-up\"></span> Se creo el evento.</p>";
             }else{
