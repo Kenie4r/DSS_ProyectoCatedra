@@ -38,6 +38,17 @@ $(document).ready(function () {
     });
 
     verificarTituloEvento();
+
+    //Cada que se modifique el input file, nosotros previsualiremos la imagen
+    $("input[type='file']").change(function(e){
+        let filename = e.target.files[0]; //Leemos el primer file
+        let reader = new FileReader(); //Creamos un file reader
+        //Cada que se cargue algo en el reader modificaremos el src de la imagen
+        reader.onload = function(e) {
+            $("#imgEvento").attr('src', e.target.result);
+        }
+        reader.readAsDataURL(filename); //Leemos el primer file y se lo pasamos al file reader
+    })
 });
 
 function actualizarSelectCategory(respuesta) {
@@ -46,9 +57,15 @@ function actualizarSelectCategory(respuesta) {
 }
 
 function verificarTituloEvento(){
+    let idEvento = "";
+    if($("#idEvento").length > 0){
+        idEvento = $("#idEvento").val();
+        console.log(idEvento);
+    }
     $.post("../modelo/getCoincidenciasName.php", 
                 {
-                    "tituloEvento": $("#txtName").val()
+                    "tituloEvento": $("#txtName").val(),
+                    "idEvento": idEvento
                 },
                 function(respuesta){
                     if(respuesta == "Sin coincidencias."){

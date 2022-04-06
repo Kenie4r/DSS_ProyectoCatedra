@@ -29,7 +29,7 @@ $categorias = $query->getCategorias();
         <?php $menu->createMenu(); ?>
     </div>
     <div class="div-contenido">
-        <form action="saveEvent.php" name="frmNewEvent" method="post" class="form">
+        <form action="saveEvent.php" name="frmNewEvent" method="post" class="form" enctype="multipart/form-data">
             <div class="form-header">
                 <?php echo $form->textboxPersonalizado_Titulo("txtName", "¿Cómo se llama tu evento?", "Nuevo evento", 1); ?>
                 <div class="form-header-button">
@@ -38,11 +38,12 @@ $categorias = $query->getCategorias();
                 </div>
             </div>
             <div class="form-input">
-                <?php echo $form->date("dtFechaInicio", "Fecha de inicio:", "¿Cuándo empezará tu evento?", 1); ?>
-                <?php echo $form->date("dtFechaFin", "Fecha de fin:", "¿Cuándo terminará tu evento?", 1); ?>
+                <?php echo $form->datetime("dtFechaInicio", "Fecha de inicio:", "¿Cuándo empezará tu evento?", 1); ?>
+                <?php echo $form->datetime("dtFechaFin", "Fecha de fin:", "¿Cuándo terminará tu evento?", 1); ?>
                 <?php echo $form->select("sltTipo", "Tipo de evento:", $tiposEventos, "¿Qué tipo de evento es?", 1); ?>
                 <?php echo $form->number("nmbCantidadPersonas", "Cantidad de personas:", "¿Cuántas personas asistirán al evento?", 1, 0, 1, "", 1); ?>
                 <?php echo $form->selectPersonalizado_Categoria("sltCategorias", "sltCategorias[]", "Categorías del evento:", $categorias, "¿Cómo es tu evento?", 1); ?>
+                <?php echo $form->file("fileEvento", "imgEvento", "https://www.esneca.com/wp-content/uploads/eventos-sociales-1200x720.jpg", "Banner del evento:", 1); ?>
                 <?php echo $form->textarea("txtDescripcion", "Describe tu evento:", "¡Describe tu evento!"); ?>
             </div>
         </form>

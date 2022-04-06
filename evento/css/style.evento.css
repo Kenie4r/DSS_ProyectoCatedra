@@ -124,7 +124,7 @@ input.input-titulo-rojo{
 
 .form-input{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 2em;
 }
 
@@ -279,4 +279,62 @@ input.input-titulo-rojo{
 
 .color-rojo{
     color: var(--rojo);
+}
+
+#imgEvento{
+    height: 200px;
+}
+
+/*----------------------------------------------------------------------------------------------
+------------------------------------------ TARJETA ---------------------------------------------
+-----------------------------------------------------------------------------------------------*/
+.fondo-opaco{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.tarjeta{
+    background-color: black;
+    margin: 2em;
+    display: flex;
+    border-radius: 10px;
+}
+
+.tarjeta-img{
+    width: 30%;
+    background-size: cover;
+    background-position: center;
+}
+
+.tarjeta-contenido{
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    color: white;
+}
+
+.tarjeta-row-2{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.tarjeta-categorias{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.tarjeta-categoria-p{
+    background-color: white;
+    color: black;
+    padding: 0.5em;
+    border-radius: 5rem;
+}
+
+.tarjeta-botones{
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    justify-content: center;
+    align-items: center;
 }

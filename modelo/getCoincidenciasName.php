@@ -1,10 +1,11 @@
 <?php
 require_once('../controlador/queryEvent.php');
 
-$tituloEvento = $_POST["tituloEvento"];
-
 $query = new QueryEvento();
-$categorias = $query->getEventoByName($tituloEvento);
+$tituloEvento = $_POST["tituloEvento"];
+$idEvento = $_POST["idEvento"];
+
+$categorias = $query->getEventoByNameAndId($tituloEvento, $idEvento);
 
 //Options
 if( $categorias == null ){

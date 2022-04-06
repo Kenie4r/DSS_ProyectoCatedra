@@ -109,6 +109,13 @@ class Evento{
         return $resultado;
     }
 
+    /* Update */
+    public function update(){
+        $resultado = $this->query->updateEvento($this->id, $this->titulo, $this->descripcion, $this->fechaInicio, $this->fechaFin, $this->tipoEvento, $this->maximoPersona, $this->banner);
+
+        return $resultado;
+    }
+
     /* Calcular id */
     public function recuperarID(){
         $lastEvento = $this->query->getEventoByName($this->titulo);
@@ -135,6 +142,63 @@ class Evento{
             }else{
                 return true;
             }
+        }
+    }
+
+    /* Actualizar detalles evento y categoria */
+    public function updateCategory(){
+        $errorresCategoria = 0; //Errores de algun tipo
+        $detalles = $this->query->getEventoAndCategoriaByIDEvento($this->id); //Obtenemos las relaciones previamente creadas
+
+        if( count($detalles) == 0 && count($this->categorias) > 0 ){ //Si no hay detalles previos y hay nuevas categorias, se crean
+            //Recorremos las categorias
+            foreach($this->categorias as $key => $value){
+                $resultC = $this->query->insertEventoAndCategoria($this->id, $value); //Guardamos la relacion
+                //Se verifica si se guardaron
+                if(!$resultC){
+                    $errorresCategoria++;
+                }
+            }
+        }else if( count($this->categorias) > 0 ){ //Entonces si existen detalles previos
+            //Eliminamos los detalles que no aparezcan
+            foreach($detalles as $keyDetalle => $detalle){ //Recorremos los detalles
+                $i = 0;
+                foreach($this->categorias as $key => $value){ //Recorremos las categorias
+                    if( $detalle['idCategoria'] == $value ){ //Verificamos que coincidan
+                        $i++;
+                    }
+                }
+                if( $i <= 0 ){ //Si no coinciden se elimina
+                    $resultC = $this->query->deleteEventoAndCategoria($detalle['idDetalle']); //Guardamos la relacion
+                    //Se verifica si se guardaron
+                    if(!$resultC){
+                       $errorresCategoria++;
+                    }
+                }
+            }
+
+            //Agregamos los nuevos detalles
+            foreach($this->categorias as $key => $value){ //Recorremos las categorias
+                $i = 0;
+                foreach($detalles as $keyDetalle => $detalle){ //Recorremos los detalles
+                    if( $detalle['idCategoria'] == $value ){ //Verificamos que coincidan
+                        $i++;
+                    }
+                }
+                if( $i <= 0 ){ //Si no coinciden se guarda
+                    $resultC = $this->query->insertEventoAndCategoria($this->id, $value); //Guardamos la relacion
+                    //Se verifica si se guardaron
+                    if(!$resultC){
+                       $errorresCategoria++;
+                    }
+                }
+            }
+        }
+
+        if($errorresCategoria > 0){
+            return false;
+        }else{
+            return true;
         }
     }
 }
