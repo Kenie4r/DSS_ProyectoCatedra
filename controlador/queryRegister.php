@@ -15,5 +15,6 @@ class QueryRegister{
             $statement->execute();
 
     }
+    
 }
 ?>

@@ -1,3 +1,17 @@
+<?php
+        if (isset($_COOKIE['username']) ) {
+            
+            
+            
+            session_start();
+            $_SESSION['username']=$_COOKIE['username'];
+            $_SESSION['password']=$_COOKIE['password'];
+            $_SESSION['rol']=$_COOKIE['rol'];
+            header("location:../dashboard/index.php");
+        }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,9 +19,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <title>Log In</title>
     <script src="js\verifyLogin.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     
 </head>
 <body class="bg-info">
@@ -30,7 +44,7 @@
                     <button type="submit" name="submit" id="enviar" class="btn btn-success w-100">Submit</button>
                 
                 </form>
-
+                
                 <p class="mb-0 text-center"> Aún no se ha registrado?<a href="registro.php" class="text-decoration-none">Registrate Aqui!</a> </p>
                 <?php
     include '../controlador/querys.php';
@@ -41,10 +55,15 @@
         $resultado= $query->verifyUsario($nombre,$pass);
         if (isset($_POST['submit'])) {
             if ($resultado==true) {
-                header("location:../dashboard/index.php");
                 session_start();
+                $rol=$query->getUser($nombre,$pass);
                 $_SESSION['username']=$nombre;
                 $_SESSION['password']=$pass;
+                $_SESSION['rol']=$rol;
+                $_COOKIE['username']=$nombre;
+                $_COOKIE['password']=$pass;
+                $_COOKIE['rol']=$rol;
+                header("location:../dashboard/index.php");
             }else {
                 
                 ?>

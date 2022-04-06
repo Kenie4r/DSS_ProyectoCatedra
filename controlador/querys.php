@@ -91,6 +91,36 @@
                 return false;
             }
         }
+        public function getRol($username,$pass)
+    {
+        $connection = new Conection(); 
+        $db = $connection->_getConection(); 
+        $encryptPass=md5($pass);
+        $sql="SELECT Username,Password FROM usuario WHERE Username=:Username AND Password=:Password";
+        $statement=$db->prepare($sql);
+        $statement->bindParam(":Username",$user);
+        $statement->bindParam(":Password",$encryptPass);
+        $statement->execute(); 
+        $resultado=$statement->fetchAll(PDO::FETCH_ASSOC);
+        return $resultado;
+    }
+    public function getUser($username,$pass){
+        $model = new Conection();
+        $connection  = $model->_getConection();
+        $encryptPass=md5($pass);
+        $sql = "SELECT Rolusuario FROM usuario WHERE Username=:Username AND Password=:Password";
+        $sentencia= $connection->prepare($sql);
+        $sentencia->bindParam(":Username",$username);
+        $sentencia->bindParam(":Password",$encryptPass);
+        if(!$sentencia){
+            return null;
+        }else{
+            $sentencia->execute();
+            $resultado = $sentencia->fetch(PDO::FETCH_ASSOC);
+            return $resultado;
+            
+        }
+    }
     }
 
 
