@@ -1,9 +1,9 @@
 <?php
     class eventCard{
-        public function CreateCard($nombre, $fechaIncio, $fechaf, $cantidadM, $banner, $idEvento){
+        public function CreateCard($nombre, $fechaIncio, $fechaf, $cantidadM, $banner, $idEvento, $url="../evento/event.php"){
             $card = <<<AOD
             <div class="evento">
-                <a href="../evento/event.php?idEvento={$idEvento}">
+                <a href="$url?idEvento={$idEvento}">
                     <div class="imagen_event">
                         <img src="$banner" alt="">
                     </div>

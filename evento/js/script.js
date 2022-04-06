@@ -57,9 +57,15 @@ function actualizarSelectCategory(respuesta) {
 }
 
 function verificarTituloEvento(){
+    let idEvento = "";
+    if($("#idEvento").length > 0){
+        idEvento = $("#idEvento").val();
+        console.log(idEvento);
+    }
     $.post("../modelo/getCoincidenciasName.php", 
                 {
-                    "tituloEvento": $("#txtName").val()
+                    "tituloEvento": $("#txtName").val(),
+                    "idEvento": idEvento
                 },
                 function(respuesta){
                     if(respuesta == "Sin coincidencias."){

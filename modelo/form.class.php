@@ -35,7 +35,7 @@ class Formulario{
     //Propiedades: Nombre e ID, Label, Placeholder
     //Propiedades opcionales(Colocar 1 para activarlas): Required, Autofocus
     //Propiedades opcionales(Colocar sus valores en el call): Valor mínimo, Valor máximo, Step 
-    public function number($name, $label, $placeholder, $required = "", $autofocus = "", $min = "", $max = "", $step = ""){
+    public function number($name, $label, $placeholder, $required = "", $autofocus = "", $min = "", $max = "", $step = "", $value){
         //Required
         if($required == 1){
             $required = "required";
@@ -61,13 +61,18 @@ class Formulario{
             $step = "step='$step'";
         }
 
+        //Setp
+        if(is_numeric($value)){
+            $value = "value='" . $value . "'";
+        }
+
         //Input
         $input =<<<DFM
         <div class="contenedor-input">
             <div class="contenedor-label">
                 <label for="$name">$label</label>
             </div>
-            <input type="number" name="$name" id="$name" $min $max $step placeholder="$placeholder" title="$placeholder" $required $autofocus>
+            <input type="number" name="$name" id="$name" $min $max $step $value placeholder="$placeholder" title="$placeholder" $required $autofocus>
         </div>\n
         DFM;
 
@@ -131,7 +136,7 @@ class Formulario{
 
     //Datetime ---------------------------------------------------------------------------------------
     //Sin funcionar
-    public function datetime($name, $label, $tooltip, $required = "", $autofocus = ""){
+    public function datetime($name, $label, $tooltip, $required = "", $autofocus = "", $value = ""){
         //Required
         if($required == 1){
             $required = "required";
@@ -142,12 +147,17 @@ class Formulario{
             $autofocus = "autofocus";
         }
 
+        //Value
+        if($value != ""){
+            $value = "value='" . str_replace(" ", "T", $value) . "'";
+        }
+
         $input =<<<DFM
         <div class="contenedor-input">
             <div class="contenedor-label">
                 <label for="$name">$label</label>
             </div>
-            <input type="datetime-local" name="$name" id="$name" title="$tooltip" $required $autofocus>
+            <input type="datetime-local" name="$name" id="$name" title="$tooltip" $value $required $autofocus>
         </div>\n
         DFM;
 
@@ -157,7 +167,7 @@ class Formulario{
     //Select ----------------------------------------------------------------------------------------
     //Propiedades: Nombre e ID, $label, Opciones, Placeholder
     //Propiedades opcionales(Colocar 1 para activarlo): Required, Autofocus
-    public function select($name, $label, $opciones, $placeholder, $required = "", $autofocus = ""){
+    public function select($name, $label, $opciones, $placeholder, $required = "", $autofocus = "", $default = ""){
         //Required
         if($required == 1){
             $required = "required";
@@ -170,8 +180,18 @@ class Formulario{
 
         //Options
         $options = "";
-        foreach($opciones as $fila => $columna){
-            $options .= "<option value='" . $columna['clave'] . "'>" . $columna['valor'] . "</option>";
+        if( $default != "" ){
+            $options = "<option value='" . $default . "'>" . $opciones[($default - 1)]['valor'] . "</option>\n";
+            foreach($opciones as $fila => $columna){
+                if( $columna['clave'] != $default ){
+                    $options .= "<option value='" . $columna['clave'] . "'>" . $columna['valor'] . "</option>\n";
+                }
+            }
+        }else{
+            $options = "<option value=''>" . $placeholder . "</option>\n";
+            foreach($opciones as $fila => $columna){
+                $options .= "<option value='" . $columna['clave'] . "'>" . $columna['valor'] . "</option>\n";
+            }
         }
 
         //Input
@@ -181,7 +201,6 @@ class Formulario{
                 <label for="$name">$label</label>
             </div>
             <select name="$name" id="$name" title="$placeholder" $required $autofocus>
-                <option value="">$placeholder</option>
                 $options
             </select>
         </div>\n
@@ -219,6 +238,18 @@ class Formulario{
         return $input;
     }
 
+    //Hidden ----------------------------------------------------------------------------------------
+    //Propiedades: Nombre e ID, $label, Opciones, Placeholder
+    //Propiedades opcionales(Colocar 1 para activarlo): Required, Autofocus
+    public function hidden($name, $value){
+        //Input
+        $input =<<<DFM
+        <input type="hidden" name="$name" id="$name" value="$value">\n
+        DFM;
+
+        return $input;
+    }
+
     //Textbox Personalizado: Titulo --------------------------------------------------------------------------------
     //Propiedades: Nombre e ID, Placeholder
     //Propiedades opcionales(Para usarlas, colocar 1 en su parametro): Required, Autofocus 
@@ -250,7 +281,7 @@ class Formulario{
     //Select Personalizado: Chosen -------------------------------------------------------------------------
     //Propiedades: Nombre e ID, $label, Opciones, Placeholder
     //Propiedades opcionales(Colocar 1 para activarlo): Required, Autofocus
-    public function selectPersonalizado_Categoria($id, $name, $label, $opciones, $placeholder, $required = "", $autofocus = ""){
+    public function selectPersonalizado_Categoria($id, $name, $label, $opciones, $placeholder, $required = "", $autofocus = "", $defaults = ""){
         //Required
         if($required == 1){
             $required = "required";
@@ -265,7 +296,15 @@ class Formulario{
         $options = "";
         if(count($opciones) > 0){
             foreach($opciones as $fila => $columna){
-                $options .= "<option value=\"" . $columna['clave'] . "\">" . $columna['valor'] . "</option>";
+                $selected = "";
+                if( is_array($defaults) ){
+                    foreach($defaults as $key => $default){
+                        if( $columna['clave'] == $default['clave'] ){
+                            $selected = "selected='select'";
+                        }
+                    }
+                }
+                $options .= "<option value=\"" . $columna['clave'] . "\" " . $selected . ">" . $columna['valor'] . "</option>";
             }
         }
 

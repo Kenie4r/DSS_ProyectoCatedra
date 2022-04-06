@@ -20,18 +20,24 @@ if(isset($_POST["btnSubmit"])){
     $fechaFin = $_POST["dtFechaFin"];
     $tipoEvento = $_POST["sltTipo"];
     $maximoPersonas = $_POST["nmbCantidadPersonas"];
-    if(isset($_FILES['fileEvento'])){
-        $banner_tmp_name = $_FILES["fileEvento"]["tmp_name"];
-        $banner_name = $_FILES["fileEvento"]["name"];
-        $banner_size = $_FILES["fileEvento"]["size"];
+    //Banner
+    if(isset($_FILES['fileEvento'])){ //Siempre existe
+        //Se traen los datos del file
+        $banner_tmp_name = $_FILES["fileEvento"]["tmp_name"]; //Nombre en memoria
+        $banner_name = $_FILES["fileEvento"]["name"]; //Nombre del archivo
+        $banner_size = $_FILES["fileEvento"]["size"]; //Size del archivo
         if($banner_size > 2621440){
             $banner = "https://www.esneca.com/wp-content/uploads/eventos-sociales-1200x720.jpg";
+        }else if($banner_size == 0){
+            $banner = "";
+        }else{
+            $banner = "si";
         }
-        if(move_uploaded_file($banner_tmp_name, "banners/" . utf8_decode($banner_name))){
-            $banner = "../evento/banners/" . $banner_name;
+        if( $banner != "" && $banner !=  "https://www.esneca.com/wp-content/uploads/eventos-sociales-1200x720.jpg"){
+            if(move_uploaded_file($banner_tmp_name, "banners/" . utf8_decode($banner_name))){
+                $banner = "../evento/banners/" . $banner_name;
+            }
         }
-    }else{
-        $banner = "https://www.esneca.com/wp-content/uploads/eventos-sociales-1200x720.jpg";
     }
     $categorias = $_POST["sltCategorias"];
     //Evento
@@ -40,6 +46,7 @@ if(isset($_POST["btnSubmit"])){
     //Operaciones
     switch($operacion){
         case "crear":
+            $urlBack = "index.php";
             $resultado1 = $evento->insert(); //Guardamos el evento
             $evento->recuperarID(); //Recuperamos el id del evento ingresado
             $resultado2 = $evento->insertCategory();
@@ -47,6 +54,16 @@ if(isset($_POST["btnSubmit"])){
                 $mensaje = "<p class=\"resultado-titulo-success\"><span class=\"icon-thumbs-up\"></span> Se creo el evento.</p>";
             }else{
                 $mensaje = "<p class=\"resultado-titulo-error\"><span class=\"icon-alert-circle\"></span> <span class=\"bold\">ERROR:</span> No se pudo crear el evento.</p>";
+            }
+            break;
+        case "modificar":
+            $urlBack = "evento.php?idEvento=" . $id;
+            $resultado1 = $evento->update(); //Guardamos el evento
+            $resultado2 = $evento->updateCategory();
+            if($resultado1 && $resultado2){
+                $mensaje = "<p class=\"resultado-titulo-success\"><span class=\"icon-thumbs-up\"></span> Se actualizo el evento.</p>";
+            }else{
+                $mensaje = "<p class=\"resultado-titulo-error\"><span class=\"icon-alert-circle\"></span> <span class=\"bold\">ERROR:</span> No se pudo actualizar el evento.</p>";
             }
             break;
     }
@@ -57,7 +74,7 @@ if(isset($_POST["btnSubmit"])){
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -77,7 +94,7 @@ if(isset($_POST["btnSubmit"])){
                 <?php echo $mensaje; ?>
             </div>
             <div class="resultado-boton">
-                <a href="index.php" class="btn btn-azul"><span class="icon-arrow-left-circle"></span> Inicio</a>
+                <a href="<?php echo $urlBack; ?>" class="btn btn-azul"><span class="icon-arrow-left-circle"></span> Inicio</a>
             </div>
         </div>
     </div>

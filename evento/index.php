@@ -56,7 +56,7 @@ if(!($eventos == null)){
     foreach($eventos as $fila => $evento){
 
         
-        $cardG->CreateCard($evento['Titulo'], $evento['FechaInicio'], $evento['FechaFin'], $evento['MaximoPersonas'], $evento["Banner"], $evento['idEvento']);
+        $cardG->CreateCard($evento['Titulo'], $evento['FechaInicio'], $evento['FechaFin'], $evento['MaximoPersonas'], $evento["Banner"], $evento['idEvento'], "evento.php");
     }
 }
 ?>
