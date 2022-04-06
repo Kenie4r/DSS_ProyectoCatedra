@@ -46,7 +46,7 @@ if(isset($_POST["btnSubmit"])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis eventos</title>
     <link rel="stylesheet" href="../css/menu.style.css">
-    <link rel="stylesheet" href="css/style.evento.css">
+    <link rel="stylesheet" href="css/style.categoria.css">
     <link rel="stylesheet" href="../css/icomoon/style.css">
 </head>
 <body>
