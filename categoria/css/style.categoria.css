@@ -1,0 +1,281 @@
+:root{
+    --verde: #0C7F0C;
+    --rojo: #BF2604;
+    --azul: #5E44FC;
+    --titulo: #D9043D;
+    --grisOscuro: #212126;
+    --gris: #96A4A7;
+    --grisClaro: #C6D0D9;
+}
+/*----------------------------------------------------------------------------------------------
+---------------------------------------- CONTENEDOR BASE ---------------------------------------
+-----------------------------------------------------------------------------------------------*/
+.div-contenido *{
+    margin: 0%;
+    padding: 0%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.div-contenido{
+    margin-top: 20vh;
+}
+
+/*----------------------------------------------------------------------------------------------
+----------------------------------------- FORMULARIOS ------------------------------------------
+-----------------------------------------------------------------------------------------------*/
+.form{
+    margin: 2em;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    border: solid 1px rgba(128, 128, 128, 0.205);
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+/*Header*/
+.form-header{
+    display: flex;
+    flex-direction: row;
+}
+
+/*Titulo*/
+.form-header-titulo{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    align-items: flex-end;
+    width: 70%;
+}
+
+.form-header-titulo input{
+    font-size: 2em;
+    border: none;
+    outline: none;
+}
+
+input.input-titulo-verde{
+    border-bottom: 2px solid var(--verde);
+}
+
+input.input-titulo-rojo{
+    border-bottom: 2px solid var(--rojo);
+}
+
+.state-title-input{
+    font-size: 2em;
+}
+
+#btnNewCategory{
+    display: block;
+    background-color: white;
+    border: none;
+    color: var(--azul);
+    cursor: pointer;
+}
+
+#btnNewCategory:hover{
+    text-decoration: underline;
+}
+
+#frmNewCategory{
+    display: flex;
+    gap: 0;
+}
+
+#txtNewCategory{
+    border: var(--grisOscuro) solid 2px;
+    border-radius: 0%;
+}
+
+#saveNewCategory, #cancelNewCategory{
+    height: 100%;
+    padding: 0 0.5em 0 0.5em;
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: var(--grisClaro);
+    border: var(--grisOscuro) solid 2px;
+}
+
+#saveNewCategory:hover, #cancelNewCategory:hover{
+    background-color: var(--gris);
+}
+
+#saveNewCategory{
+    color: var(--verde);
+}
+
+#cancelNewCategory{
+    color: var(--rojo);
+}
+
+/*Botones*/
+.form-header-button{
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    justify-content: end;
+    width: 30%;
+}
+
+.form-input{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+}
+
+.contenedor-input{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    align-items: center;
+}
+
+.contenedor-input-vertical{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.contenedor-input input, .contenedor-input select{
+    padding: 1em;
+}
+
+.contenedor-input-vertical textarea{
+    padding: 1em;
+    resize: none;
+}
+
+/*----------------------------------------------------------------------------------------------
+----------------------------------------- CONTENEDOR -------------------------------------------
+-----------------------------------------------------------------------------------------------*/
+.contenedor-abuelo{
+    margin: 2em;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    border: solid 1px rgba(128, 128, 128, 0.205);
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+/*Header*/
+.contenedor-header{
+    display: flex;
+    flex-direction: row;
+}
+
+.contenedor-titulo{
+    color: var(--titulo);
+    width: 70%;
+}
+
+.contenedor-botones{
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    justify-content: end;
+    width: 30%;
+}
+
+/*----------------------------------------------------------------------------------------------
+------------------------------------------- BOTONES --------------------------------------------
+-----------------------------------------------------------------------------------------------*/
+.btn{
+    display: block;
+    padding: 1em;
+    border: none;
+    font-size: 1em;
+    border-radius: 5em;
+    cursor: pointer;
+}
+
+.btn-green{
+    color: var(--verde);
+    background-color: white;
+    border: var(--verde) solid 2px;
+}
+
+.btn-green:hover{
+    color: white;
+    background-color: var(--verde);
+    border: var(--verde) solid 2px;
+}
+
+.btn-red{
+    color: var(--rojo);
+    background-color: white;
+    border: var(--rojo) solid 2px;
+}
+
+.btn-red:hover{
+    color: white;
+    background-color: var(--rojo);
+    border: var(--rojo) solid 2px;
+}
+
+.btn-azul{
+    color: var(--azul);
+    background-color: white;
+    border: var(--azul) solid 2px;
+}
+
+.btn-azul:hover{
+    color: white;
+    background-color: var(--azul);
+    border: var(--azul) solid 2px;
+}
+
+/*----------------------------------------------------------------------------------------------
+----------------------------------------- RESULTADO ------------------------------------------
+-----------------------------------------------------------------------------------------------*/
+.resultado-titulo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.resultado-titulo-error{
+    font-size: 2em;
+    color: var(--rojo);
+}
+
+.resultado-titulo-success{
+    font-size: 2em;
+    color: var(--verde);
+}
+
+.resultado-boton{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/*----------------------------------------------------------------------------------------------
+----------------------------------------- COMPLEMENTO ------------------------------------------
+-----------------------------------------------------------------------------------------------*/
+.contenedor-card{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2em;
+}
+
+.evento:hover{
+    transform: scale(1.03);
+    transition: 500ms;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.color-verde{
+    color: var(--verde);
+}
+
+.color-rojo{
+    color: var(--rojo);
+}
