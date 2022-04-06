@@ -32,12 +32,7 @@
                 </form>
 
                 <p class="mb-0 text-center"> Aún no se ha registrado?<a href="registro.php" class="text-decoration-none">Registrate Aqui!</a> </p>
-                
-            </div>
-            
-        </div>
-    </div>
-    <?php
+                <?php
     include '../controlador/querys.php';
     include '../controlador/conection.php';
         $nombre= $_POST['txtNombre'];
@@ -52,8 +47,12 @@
                 $_SESSION['password']=$pass;
             }else {
                 
-                echo"Verfique sus credenciales";
-                
+                ?>
+                <div class="alert alert-primary" role="alert">
+                    <strong>Verifique las credenciales</strong>
+                </div>
+            <?php 
+
               
     
             }
@@ -61,5 +60,11 @@
        
 
     ?>
+                
+            </div>
+            
+        </div>
+    </div>
+   
 </body>
 </html>
