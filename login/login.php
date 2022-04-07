@@ -1,21 +1,19 @@
 <?php
 require_once('../vista/menu_vista.php');
 $menu = new HTMLMENU(2);
-        if (isset($_COOKIE['username']) ) {
-            
-            
-            
-            session_start();
-            $_SESSION['username']=$_COOKIE['username'];
-            $_SESSION['password']=$_COOKIE['password'];
-            $_SESSION['rol']=$_COOKIE['rol'];
-            header("location:../dashboard/index.php");
-        }
 
+//Si existen las cookies
+if (isset($_COOKIE['username']) ) {
+    session_start();
+    $_SESSION['username']=$_COOKIE['username'];
+    $_SESSION['password']=$_COOKIE['password'];
+    $_SESSION['rol']=$_COOKIE['rol'];
+    header("location:../dashboard/index.php");
+}
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,9 +51,9 @@ $menu = new HTMLMENU(2);
                 </form>
                 
                 <p class="mb-0 text-center"> Aún no se ha registrado?<a href="registro.php" class="text-decoration-none">Registrate Aqui!</a> </p>
-                <?php
-    include '../controlador/querys.php';
-    include '../controlador/conection.php';
+<?php
+include_once('../controlador/querys.php');
+include_once('../controlador/conection.php');
         if (isset($_POST['submit'])) {
             $nombre= $_POST['txtNombre'];
             $pass= $_POST['txtContra'];
@@ -75,19 +73,14 @@ $menu = new HTMLMENU(2);
                 header("location:../dashboard/index.php");
             }else {
                 
-                ?>
+?>
                 <div class="alert alert-primary" role="alert">
                     <strong>Verifique las credenciales</strong>
                 </div>
-            <?php 
-
-              
-    
+<?php
             }
         }
-       
-
-    ?>
+?>
                 
             </div>
             
