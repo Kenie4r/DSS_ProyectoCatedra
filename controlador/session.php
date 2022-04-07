@@ -35,4 +35,16 @@ function getRolSession(){
   return $rol;
 }
 
+function existsCookies(){
+  //Si existen las cookies
+  if( !isset($_SESSION["username"]) ){
+    if( isset($_COOKIE["username"]) ) { 
+      if( $_COOKIE["username"] != "" ){
+        $_SESSION['username']=$_COOKIE['username'];
+        $_SESSION['rol']=$_COOKIE['rol'];
+      }
+    }
+  }
+}
+
 ?>

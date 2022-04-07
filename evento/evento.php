@@ -39,10 +39,12 @@ $categorias = $query->getCategoriasByIDEvento($idEvento);
 <body class="fondo-opaco">
     <?php $menu->createMenu(); ?>
     <div class="div-contenido">
+        <!-- Hidden -->
         <p style="display:none;" id="idEvento"><?php echo $idEvento; ?></p>
+        <!-- -->
         <div class="tarjeta" style="background-image: url('<?php echo $evento['Banner'] ?>');">
             <div class="tarjeta-img" >
-                <!--<img src="../<?php echo $evento['Banner'] ?>" alt="..." >-->
+                <!--<img src="../<?php echo $evento['Banner'] ?>" id="imgEvento" >-->
             </div>
             <div class="tarjeta-contenido">
                 <div>

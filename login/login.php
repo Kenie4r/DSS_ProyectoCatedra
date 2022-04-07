@@ -2,14 +2,8 @@
 require_once('../vista/menu_vista.php');
 $menu = new HTMLMENU(3);
 
-//Si existen las cookies
-if (isset($_COOKIE['username']) ) {
-    session_start();
-    $_SESSION['username']=$_COOKIE['username'];
-    $_SESSION['password']=$_COOKIE['password'];
-    $_SESSION['rol']=$_COOKIE['rol'];
-    header("location:../dashboard/index.php");
-}
+//Cookies
+
 ?>
 
 <!DOCTYPE html>
@@ -61,15 +55,13 @@ include_once('../controlador/conection.php');
             $resultado= $query->verifyUsario($nombre,$pass);
             if ($resultado==true) {
                 session_start();
-                session_destroy();
-                session_start();
                 $rol=$query->getUser($nombre,$pass);
                 $_SESSION['username']=$nombre;
                 $_SESSION['password']=$pass;
                 $_SESSION['rol']=$rol['Rolusuario'];
-                $_COOKIE['username']=$nombre;
-                $_COOKIE['password']=$pass;
-                $_COOKIE['rol']=$rol['Rolusuario'];
+                //Creamos las cookies
+                setcookie("username", $nombre, time()+3600, "/");
+                setcookie("rol", $rol['Rolusuario'], time()+3600, "/");
                 header("location:../dashboard/index.php");
             }else {
                 
