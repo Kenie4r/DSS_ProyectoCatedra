@@ -3,8 +3,9 @@ require_once('../vista/menu_vista.php');
 require_once('../modelo/evento.class.php');
 require_once('../controlador/session.php');
 onlyAdmin(); //Solo los admins pueden eliminar
+$rol = getRolSession(); //Puede ser vista por todos, pero las opciones especiales solo para admin o creadores
 
-$menu = new HTMLMENU(2);
+$menu = new HTMLMENU(2, $rol);
 if( isset($_GET['idEvento']) ){
     $id = $_GET['idEvento'];
 }
