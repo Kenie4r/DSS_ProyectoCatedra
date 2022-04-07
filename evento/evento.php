@@ -5,6 +5,8 @@ require_once('../vista/menu_vista.php');
 require_once('../modelo/form.class.php');
 require_once('../modelo/table.class.php');
 require_once('../modelo/eventCard_generator.php');
+require_once('../controlador/session.php');
+$rol = getRolSession(); //Todos pueden verlo pero solo algunas opciones estaran para los especiales
 
 $query = new QueryEvento();
 $menu = new HTMLMENU(2);
@@ -14,6 +16,8 @@ $cardG = new eventCard();
 
 if(isset($_GET['idEvento'])){
     $idEvento = $_GET['idEvento']; 
+}else{
+    header("location:../evento/index.php");
 }
 
 $evento = $query->getEventoByID($idEvento);
@@ -21,12 +25,12 @@ $categorias = $query->getCategoriasByIDEvento($idEvento);
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis eventos</title>
+    <title>Evento</title>
     <link rel="stylesheet" href="../css/menu.style.css">
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/icomoon/style.css">
@@ -75,9 +79,11 @@ $categorias = $query->getCategoriasByIDEvento($idEvento);
                 </div>
                 <div class="tarjeta-botones">
                     <a href="index.php" class="btn btn-azul"><span class="icon-arrow-left"></span> Regresar</a>
+                    <?php if( $rol != "u" && $rol != "3" ){ //Solo para creadores y admin ?>
                     <!--<a href="index.php" class="btn btn-azul"><span class="icon-user-plus"></span> Unirme</a>-->
                     <a href="formEventos.php?idEvento=<?php echo $idEvento; ?>" class="btn btn-green"><span class="icon-edit"></span> Modificar</a>
                     <p class="btn btn-red" id="btnDelete"><span class="icon-x"></span> Eliminar</p>
+                    <?php } ?>
                 </div>
             </div>
         </div>

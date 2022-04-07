@@ -1,6 +1,8 @@
 <?php
 require_once('../vista/menu_vista.php');
 require_once('../modelo/evento.class.php');
+require_once('../controlador/session.php');
+onlyAdmin(); //Solo los admins pueden eliminar
 
 $menu = new HTMLMENU(2);
 if( isset($_GET['idEvento']) ){
@@ -34,7 +36,7 @@ if($resultado1 && $resultado2 && $resultado3){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis eventos</title>
+    <title>Eliminar evento</title>
     <link rel="stylesheet" href="../css/menu.style.css">
     <link rel="stylesheet" href="css/style.evento.css">
     <link rel="stylesheet" href="../css/icomoon/style.css">

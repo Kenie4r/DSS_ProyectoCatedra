@@ -4,9 +4,12 @@ require_once('../controlador/queryCategoria.php');
 require_once('../vista/menu_vista.php');
 require_once('../modelo/form.class.php');
 require_once('../modelo/table.class.php');
+require_once('../controlador/session.php');
+onlyCreadores(); //Solo creadores y admins pueden ver esto
+$rol = getRolSession(); //Todos pueden verlo pero solo algunas opciones estaran para los especiales
 
 $query = new QueryEvento();
-$menu = new HTMLMENU(2);
+$menu = new HTMLMENU(2, $rol);
 $form = new Formulario();
 
 

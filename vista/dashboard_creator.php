@@ -22,8 +22,8 @@
                 echo $header; 
             }
 
-            public function createWebView(){
-                $menu = new HTMLMENU(0);
+            public function createWebView($rol){
+                $menu = new HTMLMENU(0, $rol);
 
                 $view  =<<<EOD
                 <body>
@@ -53,7 +53,7 @@
                 if(!($eventosR == null)){
                     foreach($eventosR as $fila => $evento){
 
-                        $cardG->CreateCard($evento['Titulo'], $evento['FechaInicio'], $evento['FechaFin'], $evento['MaximoPersonas'], $evento["Banner"], $evento['idEvento']); 
+                        $cardG->CreateCard($evento['Titulo'], $evento['FechaInicio'], $evento['FechaFin'], $evento['MaximoPersonas'], $evento["Banner"], $evento['idEvento'], "../evento/evento.php"); 
                     }
 
                     $mas = <<<AOD

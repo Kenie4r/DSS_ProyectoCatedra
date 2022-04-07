@@ -3,6 +3,8 @@ require_once('../controlador/queryEvent.php');
 require_once('../vista/menu_vista.php');
 require_once('../modelo/form.class.php');
 require_once('../modelo/table.class.php');
+require_once('../controlador/session.php');
+onlyCreadores(); //Solo los creadores y admin pueden ver esto
 
 $query = new QueryEvento();
 $menu = new HTMLMENU(2);

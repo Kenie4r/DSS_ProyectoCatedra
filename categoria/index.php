@@ -5,9 +5,11 @@ require_once('../vista/menu_vista.php');
 require_once('../modelo/form.class.php');
 require_once('../modelo/table.class.php');
 require_once('../modelo/categCard_generator.php');
+require_once('../controlador/session.php');
+$rol = getRolSession(); //Todos pueden verlo pero solo algunas opciones estaran para los especiales
 
 $query = new QueryEvento();
-$menu = new HTMLMENU(2);
+$menu = new HTMLMENU(2, $rol);
 $form = new Formulario();
 $tabla = new Table();
 $cardG = new eventCard(); 
@@ -40,6 +42,7 @@ $eventos = $query-> getCate();
                 </div>
             </div>
             <div class="contenedor-card">
+                <?php if( $rol == "1" && $rol == "2" ){ //Add ?>
                 <div class="evento">
                     <a href="newCategoria.php">
                         <div class="titulo-mas">
@@ -47,13 +50,14 @@ $eventos = $query-> getCate();
                             <p class="mas-button">CREAR NUEVA CATEGORIA</p></div>
                     </a>
                 </div>
+                <?php } ?>
 <?php
                 
                 
 if(!($eventos == null)){
     foreach($eventos as $fila => $evento){
 
-        $cardG->CreateCard($evento['Titulo'], $evento['Descripcion'], $evento['idCategoria']);
+        $cardG->CreateCard($evento['Titulo'], $evento['Descripcion'], $evento['idCategoria'], $rol);
     }
 }
 ?>

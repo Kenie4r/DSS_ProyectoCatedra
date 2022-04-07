@@ -5,9 +5,11 @@ require_once('../vista/menu_vista.php');
 require_once('../modelo/form.class.php');
 require_once('../modelo/table.class.php');
 require_once('../modelo/eventCard_generator.php');
+require_once('../controlador/session.php');
+$rol = getRolSession(); //Puede ser vista por todos, pero las opciones especiales solo para admin o creadores
 
 $query = new QueryEvento();
-$menu = new HTMLMENU(2);
+$menu = new HTMLMENU(2, $rol);
 $form = new Formulario();
 $tabla = new Table();
 $cardG = new eventCard(); 
@@ -43,10 +45,13 @@ if( isset($_GET['idCategoria']) ){
                     <h1>Mis eventos</h1>
                 </div>
                 <div class="contenedor-botones">
+                    <?php if( $rol != "u" && $rol != "3" ){ //Solo para creadores y admin ?>
                     <a href="formEventos.php" class="btn btn-azul"><span class="icon-plus"></span> Nuevo</a>
+                    <?php } ?>
                 </div>
             </div>
             <div class="contenedor-card">
+                <?php if( $rol != "u" && $rol != "3" ){ //Solo para creadores y admin ?>
                 <div class="evento">
                     <a href="newEvent.php">
                         <div class="titulo-mas">
@@ -54,6 +59,7 @@ if( isset($_GET['idCategoria']) ){
                             <p class="mas-button">CREAR UN NUEVO EVENTO</p></div>
                     </a>
                 </div>
+                <?php } ?>
 <?php
                 
 if(!($eventos == null)){

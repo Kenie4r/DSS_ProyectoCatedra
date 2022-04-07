@@ -5,7 +5,7 @@ class QueryRegister{
         $model = new Conection();
         $connection  = $model->_getConection();
         $encryptPass=md5($pass);
-            $sql = "INSERT INTO usuario(Username,Password,Nombre,Apellido,Genero,Rolusuario) VALUES(:Username,:Password,:Nombre,:Apellido,:Genero,2) "; 
+            $sql = "INSERT INTO usuario(Username,Password,Nombre,Apellido,Genero,Rolusuario) VALUES(:Username,:Password,:Nombre,:Apellido,:Genero,3) "; 
             $statement = $connection->prepare($sql); 
             $statement->bindParam(":Username", $username); 
             $statement->bindParam(":Password", $encryptPass ); 

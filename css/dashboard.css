@@ -52,6 +52,7 @@ body{
     display: grid;
     grid-template-columns: repeat(4,1fr);
     gap: 1em;
+    overflow-x: scroll;
 }
 .evento{
     position: relative;
