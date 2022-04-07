@@ -21,7 +21,7 @@
                           <p>$descripcion</p>
                           <div class="titulo-a">
                             $opciones
-                            <a class="celeste" href='../evento/index.php?id=$idCategoria''>Ver</a>
+                            <a class="celeste" href='../evento/index.php?idCategoria=$idCategoria''>Ver</a>
                           </div>
                         </div>
                     </div>
