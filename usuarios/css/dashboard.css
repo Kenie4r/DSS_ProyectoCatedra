@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    background-color: white;
+}
+.webface{
+    box-sizing: border-box;
+    height: 100vh;
+    width: 100%;
+    background-color: rgb(15, 21, 24);
+    color: white;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.webface .textos-face{
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 4em;
+    font-weight: lighter;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.219);
+    padding: 1em;
+    text-align: center;
+}
+.webface .bg{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+    background-image: url('../imgs/bg-dash.jpg');
+    background-size: cover ;
+    background-repeat: no-repeat;
+    background-blend-mode: lighten;
+    filter: opacity(30%);
+}
+.events-div, .category-div{
+    padding: 1.2em;
+    display: grid;
+    gap: 1.2em;
+}
+.h2T{
+    color: black;
+    text-align: center;
+    font-family: 'Josefin Sans', sans-serif;
+}
+.newEvents, .categorys{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 1em;
+}
+.evento{
+    position: relative;
+    height: 400px;
+    width: 320px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+    margin: 0 auto;
+
+    overflow: hidden ;
+    background-color:rgb(15, 21, 24) ;
+}
+.category{
+    position: relative;
+    height: 200px;
+    width: 300px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+        margin: 0 auto;
+    gap: 1em;
+    overflow: hidden ;
+    background-color:rgb(15, 21, 24) ;
+}
+.category .title-cat{
+    color: white;
+    font-size: 1.2em;
+    font-family: 'Josefin Sans', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.212);
+}
+.category{
+   background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.latimes.com%2Fespanol%2Fentretenimiento%2Farticulo%2F2022-01-06%2Festos-son-los-conciertos-latinos-que-se-realizaran-todavia-y-los-que-han-sido-postergados-debido-a-la-omicron&psig=AOvVaw3DPnbzsq3KuEzDrBlL00xS&ust=1648568990915000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCNCVyKeU6fYCFQAAAAAdAAAAABAP');
+   background-size: contain;
+   background-repeat: no-repeat;
+}
+.evento .imagen_event{
+    width: 100%;
+    position: absolute;
+    object-fit: cover;
+}
+.evento .titulo-e{
+    font-family: 'Josefin Sans', sans-serif;
+    position: absolute;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+    padding: 1.2em;
+    background-color: white;
+    
+}
+.evento .titulo-mas{
+    font-family: 'Josefin Sans', sans-serif;
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    padding: 1.2em;
+    background-color: rgba(255, 255, 255, 0.192);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 2em;
+}
+.mas-button{
+    font-size: 1.3em;
+    color: white;
+}
+.no-events{
+    grid-column: span 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    font-family: 'Josefin Sans', sans-serif;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+    margin: 0 auto;
+
+}
+.no-events a{
+    height: 100%;
+    padding: 3em;
+
+}
+.titulo-e .info ul{
+    list-style: none;
+    color: gray;
+    font-size: 0.8em;
+}
+
+.icon{
+    font-size: 4em;
+    background-color: white;
+    border-radius:50% ;
+    height: 100px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 900px){
+    .newEvents,  .categorys{
+        grid-template-columns: repeat(2,1fr);
+
+    }
+}
+@media (max-width: 650px){
+    .newEvents,  .categorys{
+        grid-template-columns: repeat(1,1fr);
+    }
+}
+
+.custom-shape-divider-bottom-1647922209 {
+    z-index: 1;
+    position: absolute;
+    bottom: 100px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1647922209 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 67px;
+    
+}
+
+.custom-shape-divider-bottom-1647922209 .shape-fill {
+    fill: #FFFFFF;
+}
+.custom-shape-divider-bottom-1648437843 {
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1648437843 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 150px;
+    transform: rotateY(180deg);
+}
+
+.custom-shape-divider-bottom-1648437843 .shape-fill {
+    fill:  rgb(15, 21, 24);
+}
