@@ -38,6 +38,7 @@
 .form-header{
     display: flex;
     flex-direction: row;
+    gap: 2em;
 }
 
 /*Titulo*/
@@ -293,14 +294,18 @@ input.input-titulo-rojo{
 }
 
 .tarjeta{
-    background-color: black;
     margin: 2em;
     display: flex;
     border-radius: 10px;
+    background-size: contain;
+    background-position: left;
+    background-repeat: no-repeat;
+    box-shadow: 0px 0px 71px 32px rgba(0,0,0,0.7);
+    overflow: hidden;
 }
 
 .tarjeta-img{
-    width: 30%;
+    width: 40%;
     background-size: cover;
     background-position: center;
 }
@@ -311,6 +316,7 @@ input.input-titulo-rojo{
     flex-direction: column;
     gap: 2em;
     color: white;
+    width: 60%;
 }
 
 .tarjeta-row-2{
@@ -337,4 +343,36 @@ input.input-titulo-rojo{
     gap: 2em;
     justify-content: center;
     align-items: center;
+}
+
+@media (max-width: 900px ){
+    .contenedor-card{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .form-input{
+        display: flex;
+        flex-direction: column;
+    }
+    .form-header{
+        flex-direction: column;
+    }
+
+    .form-header-button{
+        width: 100%;
+        justify-content: end;
+    }
+    .tarjeta{
+        flex-direction: column;
+        background-position: top;
+    }
+    .tarjeta-img{
+        width: 0%;
+    }
+    .tarjeta-contenido{
+        margin-top: 40%;
+        width: 100%;
+    }
 }

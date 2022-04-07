@@ -94,8 +94,10 @@ body{
 }
 .evento .imagen_event{
     width: 100%;
+    height: 70%;
     position: absolute;
-    object-fit: cover;
+    background-size: cover;
+    background-position: center;
 }
 .evento .titulo-e{
     font-family: 'Josefin Sans', sans-serif;

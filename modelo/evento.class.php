@@ -116,12 +116,17 @@ class Evento{
         return $resultado;
     }
 
+    /* Eliminar evento */
+    public function delete(){
+        return $this->query->deleteEvento( $this->id );
+    }
+
     /* Calcular id */
     public function recuperarID(){
         $lastEvento = $this->query->getEventoByName($this->titulo);
         $this->id = null;
         foreach($lastEvento as $key => $value){
-            $this->id = $value["IdEvento"];
+            $this->id = $value;
         }
     }
 
@@ -199,6 +204,48 @@ class Evento{
             return false;
         }else{
             return true;
+        }
+    }
+
+    /* Eliminar detalle evento y usuario */
+    public function deleteUsuarios(){
+        $resultado = false;
+        $contador = 0;
+        $detallesEC = $this->query->getUsuarioAndEventoByIDEvento( $this->id );
+        foreach ($detallesEC as $key => $fila) {
+            $resultado = $this->query->deleteUsuarioAndEvento($fila['idDetalle']);
+            if($resultado){
+                $contador++;
+            }
+        }
+        if(count($detallesEC) == 0){
+            $contador++;
+        }
+        if($contador>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /* Eliminar detalle evento y categoria */
+    public function deleteCategorias(){
+        $resultado = false;
+        $contador = 0;
+        $detallesEC = $this->query->getEventoAndCategoriaByIDEvento( $this->id );
+        foreach ($detallesEC as $key => $fila) {
+            $resultado = $this->query->deleteCategoriaAndEvento($fila['idDetalle']);
+            if($resultado){
+                $contador++;
+            }
+        }
+        if(count($detallesEC) == 0){
+            $contador++;
+        }
+        if($contador>0){
+            return true;
+        }else{
+            return false;
         }
     }
 }

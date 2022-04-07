@@ -37,8 +37,9 @@ $categorias = $query->getCategoriasByIDEvento($idEvento);
         <?php $menu->createMenu(); ?>
     </div>
     <div class="div-contenido">
-        <div class="tarjeta">
-            <div class="tarjeta-img" style="background-image: url('<?php echo $evento['Banner'] ?>');">
+        <p style="display:none;" id="idEvento"><?php echo $idEvento; ?></p>
+        <div class="tarjeta" style="background-image: url('<?php echo $evento['Banner'] ?>');">
+            <div class="tarjeta-img" >
                 <!--<img src="../<?php echo $evento['Banner'] ?>" alt="..." >-->
             </div>
             <div class="tarjeta-contenido">
@@ -74,9 +75,9 @@ $categorias = $query->getCategoriasByIDEvento($idEvento);
                 </div>
                 <div class="tarjeta-botones">
                     <a href="index.php" class="btn btn-azul"><span class="icon-arrow-left"></span> Regresar</a>
-                    <a href="index.php" class="btn btn-azul"><span class="icon-user-plus"></span> Unirme</a>
+                    <!--<a href="index.php" class="btn btn-azul"><span class="icon-user-plus"></span> Unirme</a>-->
                     <a href="formEventos.php?idEvento=<?php echo $idEvento; ?>" class="btn btn-green"><span class="icon-edit"></span> Modificar</a>
-                    <a href="index.php" class="btn btn-red"><span class="icon-x"></span> Eliminar</a>
+                    <p class="btn btn-red" id="btnDelete"><span class="icon-x"></span> Eliminar</p>
                 </div>
             </div>
         </div>

@@ -13,8 +13,12 @@ $tabla = new Table();
 $cardG = new eventCard(); 
 
 $headers = array("ID", "Titulo", "Descripcion", "Fecha Inicio", "Fecha Fin", "Tipo Evento", "Maximo Personas", "Banner");
-$body = $query->getEventos();
-$eventos = $query->getEventos();
+if( isset($_GET['idCategoria']) ){
+    $eventos = $query->getEventosByCategoria($_GET['idCategoria']);
+}else{
+    $eventos = $query->getEventos();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +43,7 @@ $eventos = $query->getEventos();
                     <h1>Mis eventos</h1>
                 </div>
                 <div class="contenedor-botones">
-                    <a href="newEvent.php" class="btn btn-azul"><span class="icon-plus"></span> Nuevo</a>
+                    <a href="formEventos.php" class="btn btn-azul"><span class="icon-plus"></span> Nuevo</a>
                 </div>
             </div>
             <div class="contenedor-card">

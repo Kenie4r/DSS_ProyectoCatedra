@@ -18,12 +18,47 @@ class QueryEvento{
         }
     }
 
+    public function getEventosByCategoria($idCategoria){
+        $model = new Conection();
+        $connection  = $model->_getConection();
+        $sql = "SELECT * FROM evento ";
+        $sql .= "INNER JOIN detalle_eventocategoria ";
+        $sql .= "ON evento.idEvento = detalle_eventocategoria.idEvento ";
+        $sql .= "WHERE detalle_eventocategoria.idCategoria = :id";
+        $sentencia= $connection->prepare($sql);
+        $sentencia->bindParam(":id", $idCategoria); 
+        if(!$sentencia){
+            return null;
+        }else{
+            $sentencia->execute();
+            $resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+            return $resultado;
+            
+        }
+    }
+
     public function getEventoByID($idEvento){
         $model = new Conection();
         $connection  = $model->_getConection();
         $sql = "SELECT * FROM evento WHERE IdEvento = :id";
         $sentencia= $connection->prepare($sql);
         $sentencia->bindParam(":id", $idEvento); 
+        if(!$sentencia){
+            return null;
+        }else{
+            $sentencia->execute();
+            $resultado = $sentencia->fetch(PDO::FETCH_ASSOC);
+            return $resultado;
+            
+        }
+    }
+
+    public function getEventoByName($nameTitulo){
+        $model = new Conection();
+        $connection  = $model->_getConection();
+        $sql = "SELECT IdEvento FROM evento WHERE Titulo = :nameE";
+        $sentencia= $connection->prepare($sql);
+        $sentencia->bindParam(":nameE", $nameTitulo); 
         if(!$sentencia){
             return null;
         }else{
@@ -106,6 +141,21 @@ class QueryEvento{
         $model = new Conection();
         $connection  = $model->_getConection();
         $sql = "DELETE FROM evento ";
+        $sql .= "WHERE idEvento = :id";
+        $sentencia= $connection->prepare($sql);
+        $sentencia->bindParam(":id", $id);
+        if(!$sentencia){
+            return false;
+        }else{
+            $sentencia->execute();
+            return true;
+        }
+    }
+
+    public function deleteDetalleUsuarioEvento($idEvento){
+        $model = new Conection();
+        $connection  = $model->_getConection();
+        $sql = "DELETE FROM detalle_usuarioevento ";
         $sql .= "WHERE idEvento = :id";
         $sentencia= $connection->prepare($sql);
         $sentencia->bindParam(":id", $id);
@@ -207,6 +257,23 @@ class QueryEvento{
         }
     }
 
+    public function getUsuarioAndEventoByIDEvento($idEvento){
+        $model = new Conection();
+        $connection  = $model->_getConection();
+        $sql = "SELECT * FROM detalle_usuarioevento ";
+        $sql .= "WHERE idEvento = :id";
+        $sentencia= $connection->prepare($sql);
+        $sentencia->bindParam(":id", $idEvento); 
+        if(!$sentencia){
+            return null;
+        }else{
+            $sentencia->execute();
+            $resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+            return $resultado;
+            
+        }
+    }
+
     public function insertEventoAndCategoria($idEvento, $idCategoria){
         $model = new Conection();
         $connection  = $model->_getConection();
@@ -224,7 +291,23 @@ class QueryEvento{
         }
     }
 
-    public function deleteEventoAndCategoria($idDetalle){
+    public function deleteUsuarioAndEvento($idDetalle){
+        $model = new Conection();
+        $connection  = $model->_getConection();
+        $sql = "DELETE FROM detalle_usuarioevento WHERE idDetalle = :id";
+        $sentencia= $connection->prepare($sql);
+        $sentencia->bindParam(":id", $idDetalle);
+
+        if(!$sentencia){
+            return false;
+        }else{
+            $sentencia->execute();
+            return true;
+            
+        }
+    }
+
+    public function deleteCategoriaAndEvento($idDetalle){
         $model = new Conection();
         $connection  = $model->_getConection();
         $sql = "DELETE FROM detalle_eventocategoria WHERE idDetalle = :id";
