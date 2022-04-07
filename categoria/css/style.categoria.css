@@ -279,3 +279,12 @@ input.input-titulo-rojo{
 .color-rojo{
     color: var(--rojo);
 }
+
+@media (max-width: 900px ){
+    .contenedor-card{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}

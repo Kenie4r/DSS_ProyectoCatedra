@@ -3,7 +3,7 @@
         public function CreateCard($titulo, $descripcion,$idCategoria, $rol){
             //Add
             $opciones = "";
-            if( $rol == "1" && $rol == "2" ){
+            if( $rol == "1" || $rol == "2" ){
                 $opciones=<<<AAA
                 <a class="amarillo" href='update.php?id=$idCategoria'>Modificar</a>
                 <a class="rojo" href='delete.php?id=$idCategoria''>Eliminar</a>
