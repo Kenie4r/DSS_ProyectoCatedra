@@ -33,9 +33,7 @@ $tabla = new Table();
 
 
 ?>
-    <div class="div-menu">
     <?php $menu->createMenu(); ?>
-    </div>
 	<br>
 <div class="content">
 	<div class="row">

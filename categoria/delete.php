@@ -4,7 +4,7 @@ require_once('../controlador/session.php');
 onlyCreadores(); //Solo creadores y admins pueden ver esto
 $rol = getRolSession(); //Todos pueden verlo pero solo algunas opciones estaran para los especiales
 
-$menu = new HTMLMENU(2, $rol);
+$menu = new HTMLMENU(1, $rol);
 ?>
 <!DOCTYPE html>
 <html lang="es">

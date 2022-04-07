@@ -9,7 +9,7 @@ onlyCreadores(); //Solo creadores y admins pueden ver esto
 $rol = getRolSession(); //Todos pueden verlo pero solo algunas opciones estaran para los especiales
 
 $query = new QueryEvento();
-$menu = new HTMLMENU(2, $rol);
+$menu = new HTMLMENU(1, $rol);
 $form = new Formulario();
 
 

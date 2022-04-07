@@ -62,7 +62,6 @@ a{
     font-weight: bolder;
     transition: bolder 0.2s;
 }
-
 #line{
     transition: ease-out 0.2s;
     position: absolute;
@@ -71,6 +70,7 @@ a{
     background-color: #30A5BF;
     bottom: 0;
 }
+/* 4 */
 .start-menu{
     left: 0;
 }
@@ -83,25 +83,94 @@ a{
 .start-login{
     left: 75%;
 }
+/* 5 */
+.start-5-menu{
+    left: 0;
+}
+.start-5-eventos{
+    left: 20%;
+}
+.start-5-mis{
+    left: 40%;
+}
+.start-5-login{
+    left: 60%;
+}
+/* 6 */
+.start-6-menu{
+    left: 0;
+}
+.start-6-eventos{
+    left: 16.66%;
+}
+.start-6-mis{
+    left: 33.32%;
+}
+.start-6-login{
+    left: 99.96%;
+}
 .menu-item:hover ~#line{
     height: 100%;
  
 }
-#item-1:hover~#line{
+/* Normal : 4 */
+#item-0:hover~#line{
     left: 0;
 }
-#item-2:hover~#line{
+#item-1:hover~#line{
     left: 25%;
 }
-#item-3:hover~#line{
+#item-2:hover~#line{
     left: 50%;
 }
-#item-4:hover~#line{
+#item-5:hover~#line{
     left: 75%;
 }
-#item-5:hover~#line{
+#item-6:hover~#line{
     left: 100%;
 }
+/* Especial : 5 */
+#item-5-0:hover~#line{
+    left: 0;
+}
+#item-5-1:hover~#line{
+    left: 20%;
+}
+#item-5-2:hover~#line{
+    left: 40%;
+}
+#item-5-4:hover~#line{
+    left: 60%;
+}
+#item-5-5:hover~#line{
+    left: 80%;
+}
+#item-5-6:hover~#line{
+    left: 100%;
+}
+/* Especial : 6 */
+#item-6-0:hover~#line{
+    left: 0;
+}
+#item-6-1:hover~#line{
+    left: 16.66%;
+}
+#item-6-2:hover~#line{
+    left: 33.32%;
+}
+#item-6-3:hover~#line{
+    left: 49.98%;
+}
+#item-6-4:hover~#line{
+    left: 66.64%;
+}
+#item-6-5:hover~#line{
+    left: 84%;
+}
+#item-6-6:hover~#line{
+    left: 100%;
+}
+
 .icon-star{
     font-size: 1.2em;
 }

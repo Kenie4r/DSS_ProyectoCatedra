@@ -1,6 +1,6 @@
 <?php
 require_once('../vista/menu_vista.php');
-$menu = new HTMLMENU(2);
+$menu = new HTMLMENU(3);
 ?>
 <!DOCTYPE html>
 <html lang="en">
