@@ -50,6 +50,7 @@ $categorias = $query->getCategoriasByIDEvento($idEvento);
                 </div>
                 <div class="tarjeta-categorias">
                     <?php foreach($categorias as $key => $categoria){
+                        
                     ?>
                     <div>
                         <p class="tarjeta-categoria-p"><?php echo is_array($categoria)?$categoria['Titulo']:$categoria; ?></p>
@@ -61,26 +62,26 @@ $categorias = $query->getCategoriasByIDEvento($idEvento);
                 </div>
                 <div class="tarjeta-row-2">
                     <div>
-                        <p><span class="bold">Fecha de inicio:</span> <?php echo $evento["FechaInicio"] ?></p>
+                        <p><span class="bold">Fecha de inicio:</span> <?php echo date_format( date_create($evento["FechaInicio"]), 'Y-m-d' ); ?></p>
                     </div>
                     <div>
-                        <p><span class="bold">Fecha de finalización:</span> <?php echo $evento["FechaFin"] ?></p>
+                        <p><span class="bold">Fecha de finalización:</span> <?php echo date_format( date_create($evento["FechaFin"]), 'Y-m-d' ); ?></p>
                     </div>
                 </div>
                 <div class="tarjeta-row-2">
                     <div>
-                        <p><span class="bold">Tipo de evento:</span> <?php echo $evento["TipoEvento"] ?></p>
+                        <p><span class="bold">Tipo de evento:</span> <?php echo $evento["TipoEvento"]==1?"Público":"Privado"; ?></p>
                     </div>
                     <div>
                         <p><span class="bold">Máximo de personas:</span> <?php echo $evento["MaximoPersonas"] ?></p>
                     </div>
                 </div>
                 <div class="tarjeta-botones">
-                    <a href="index.php" class="btn btn-azul"><span class="icon-arrow-left"></span> Regresar</a>
+                    <a href="index.php" class="btn tarjeta-btn"><span class="icon-arrow-left"></span> Regresar</a>
                     <?php if( $rol != "u" && $rol != "3" ){ //Solo para creadores y admin ?>
                     <!--<a href="index.php" class="btn btn-azul"><span class="icon-user-plus"></span> Unirme</a>-->
-                    <a href="formEventos.php?idEvento=<?php echo $idEvento; ?>" class="btn btn-green"><span class="icon-edit"></span> Modificar</a>
-                    <p class="btn btn-red" id="btnDelete"><span class="icon-x"></span> Eliminar</p>
+                    <a href="formEventos.php?idEvento=<?php echo $idEvento; ?>" class="btn tarjeta-btn"><span class="icon-edit"></span> Modificar</a>
+                    <p class="btn tarjeta-btn" id="btnDelete"><span class="icon-x"></span> Eliminar</p>
                     <?php } ?>
                 </div>
             </div>

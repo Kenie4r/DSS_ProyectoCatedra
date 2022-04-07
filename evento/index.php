@@ -62,9 +62,12 @@ if( isset($_GET['idCategoria']) ){
                 
 if(!($eventos == null)){
     foreach($eventos as $fila => $evento){
-
-        
-        $cardG->CreateCard($evento['Titulo'], $evento['FechaInicio'], $evento['FechaFin'], $evento['MaximoPersonas'], $evento["Banner"], $evento['idEvento'], "evento.php");
+        //Solo se muestran eventos privados, si estas registrado
+        if( $rol != "u" ){
+            $cardG->CreateCard($evento['Titulo'], $evento['FechaInicio'], $evento['FechaFin'], $evento['MaximoPersonas'], $evento["Banner"], $evento['idEvento'], "evento.php");
+        }else if( $rol == "u" && $evento["TipoEvento"] != 2 ){
+            $cardG->CreateCard($evento['Titulo'], $evento['FechaInicio'], $evento['FechaFin'], $evento['MaximoPersonas'], $evento["Banner"], $evento['idEvento'], "evento.php");
+        }
     }
 }
 ?>

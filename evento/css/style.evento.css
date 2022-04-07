@@ -330,7 +330,7 @@ input.input-titulo-rojo{
     background-color: white;
     color: black;
     padding: 0.5em;
-    border-radius: 5rem;
+    border-radius: 10px;
 }
 
 .tarjeta-botones{
@@ -339,6 +339,13 @@ input.input-titulo-rojo{
     gap: 2em;
     justify-content: center;
     align-items: center;
+}
+
+.tarjeta-btn{
+    border-radius: 10px;
+    background-color: transparent;
+    color: black;
+    border: black solid 2px;
 }
 
 @media (max-width: 900px ){
