@@ -9,7 +9,7 @@ require_once('../controlador/session.php');
 $rol = getRolSession(); //Todos pueden verlo pero solo algunas opciones estaran para los especiales
 
 $query = new QueryEvento();
-$menu = new HTMLMENU(2);
+$menu = new HTMLMENU(2, $rol);
 $form = new Formulario();
 $tabla = new Table();
 $cardG = new eventCard(); 
