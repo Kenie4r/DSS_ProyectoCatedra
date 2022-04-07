@@ -35,9 +35,7 @@ if( isset($_GET['idCategoria']) ){
     <link rel="stylesheet" href="css/style.evento.css">
 </head>
 <body>
-    <div class="div-menu">
-        <?php $menu->createMenu(); ?>
-    </div>
+    <?php $menu->createMenu(); ?>
     <div class="div-contenido">
         <div class="contenedor-abuelo">
             <div class="contenedor-header">

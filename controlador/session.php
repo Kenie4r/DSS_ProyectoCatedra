@@ -1,7 +1,7 @@
 <?php
+session_start();
 
 function onlyAdmin(){
-  session_start();
   if(!isset($_SESSION['username'])){
     header("location:../dashboard/index.php");
   }else{
@@ -12,7 +12,6 @@ function onlyAdmin(){
 }
 
 function onlyCreadores(){
-  session_start();
   if(!isset($_SESSION['username'])){
     header("location:../dashboard/index.php");
   }else{
@@ -23,14 +22,12 @@ function onlyCreadores(){
 }
 
 function existsSession(){
-  session_start();
   if(!isset($_SESSION['username'])){
     header("location:../dashboard/index.php");
   }
 }
 
 function getRolSession(){
-  session_start();
   $rol = "u";
   if(isset($_SESSION['username'])){
     $rol = $_SESSION['rol'];

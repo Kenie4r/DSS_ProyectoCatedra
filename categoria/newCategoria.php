@@ -27,9 +27,7 @@ $form = new Formulario();
     <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
-    <div class="div-menu">
-        <?php $menu->createMenu(); ?>
-    </div>
+    <?php $menu->createMenu(); ?>
     <div class="div-contenido">
         <form action="saveCategoria.php" name="frmNewEvent" method="post" class="form">
             <div class="form-header">

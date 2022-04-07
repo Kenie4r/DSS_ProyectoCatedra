@@ -57,9 +57,7 @@ if( isset($_GET['idEvento']) ){
     <link rel="stylesheet" href="css/style.evento.css">
 </head>
 <body>
-    <div class="div-menu">
-        <?php $menu->createMenu(); ?>
-    </div>
+    <?php $menu->createMenu(); ?>
     <div class="div-contenido">
         <form action="saveEvent.php" name="frmNewEvent" method="post" class="form" enctype="multipart/form-data">
             <div class="form-header">

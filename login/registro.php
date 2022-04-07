@@ -19,7 +19,7 @@ $menu = new HTMLMENU(2);
     <div class="div-menu">
         <?php $menu->createMenu(); ?>
     </div>
-    <div class="container" style="margin-top:10%;">
+    <div class="container">
         <div class="row vh-100 align-items-center justify-content-center">
             <div class="col-xs-1-12 col-md-6 col-lg-4 bg-white rounded p-4 shadow">
                 <div class="row">

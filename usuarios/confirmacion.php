@@ -1,3 +1,10 @@
+<?php
+
+require_once('../controlador/session.php');
+onlyCreadores(); //Solo el admin puede ver esto
+$rol = getRolSession(); //Puede ser vista por todos, pero las opciones especiales solo para admin o creadores
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -18,7 +25,7 @@ require_once('../modelo/form.class.php');
 require_once('../modelo/table.class.php');
 
 
-$menu = new HTMLMENU(2);
+$menu = new HTMLMENU(2, $rol);
 $form = new Formulario();
 $tabla = new Table();
 

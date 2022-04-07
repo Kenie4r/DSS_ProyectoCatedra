@@ -37,9 +37,7 @@ $categorias = $query->getCategoriasByIDEvento($idEvento);
     <link rel="stylesheet" href="css/style.evento.css">
 </head>
 <body class="fondo-opaco">
-    <div class="div-menu">
-        <?php $menu->createMenu(); ?>
-    </div>
+    <?php $menu->createMenu(); ?>
     <div class="div-contenido">
         <p style="display:none;" id="idEvento"><?php echo $idEvento; ?></p>
         <div class="tarjeta" style="background-image: url('<?php echo $evento['Banner'] ?>');">

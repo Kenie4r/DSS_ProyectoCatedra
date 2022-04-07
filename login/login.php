@@ -30,7 +30,7 @@ if (isset($_COOKIE['username']) ) {
     <div class="div-menu">
         <?php $menu->createMenu(); ?>
     </div>
-    <div class="container" style="margin-top:2em;">
+    <div class="container">
         <div class="row vh-100 align-items-center justify-content-center">
             <div class="col-xs-1-12 col-md-6 col-lg-4 bg-white rounded p-4 shadow">
                 <div class="row">

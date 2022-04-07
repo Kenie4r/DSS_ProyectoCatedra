@@ -31,9 +31,7 @@ $eventos = $query-> getCate();
     <link rel="stylesheet" href="css/style.categoria.css">
 </head>
 <body>
-    <div class="div-menu">
     <?php $menu->createMenu(); ?>
-    </div>
     <div class="div-contenido">
         <div class="contenedor-abuelo">
             <div class="contenedor-header">

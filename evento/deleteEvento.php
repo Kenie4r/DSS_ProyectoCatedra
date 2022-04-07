@@ -43,9 +43,7 @@ if($resultado1 && $resultado2 && $resultado3){
     <link rel="stylesheet" href="../css/icomoon/style.css">
 </head>
 <body>
-    <div class="div-menu">
-        <?php $menu->createMenu(); ?>
-    </div>
+    <?php $menu->createMenu(); ?>
     <div class="div-contenido">
         <div class="contenedor-abuelo">
             <div class="resultado-titulo">

@@ -3,6 +3,7 @@
         private $menuClass = '';
         private $opciones = array("INICIO", "CATEGORÍAS", "EVENTOS", "LOG IN");
         private $links = array("../login/login.php");
+        private $adminOptions = "";
         public function __construct($typeMenu, $session = 'u'){
             //Tipo de menu
             switch($typeMenu){
@@ -35,6 +36,9 @@
                     $this->opciones[2] =  "MIS EVENTOS";
                     $this->opciones[3] =  "LOG OUT";
                     $this->links[0] = "../login/logout.php";
+                    $this->adminOptions =<<<DFM
+                    <a href='../usuarios/index.php' class='menu-item' id='item-4'>USUARIOS</a>
+                    DFM;
                 break;
                 case 2:
                     $this->opciones[0] =  "INICIO";
@@ -61,6 +65,7 @@
             <a href='../dashboard/index.php' class='menu-item' id='item-1'>{$this->opciones[0]}</a>
             <a href='../categoria/index.php' class='menu-item' id='item-2'>{$this->opciones[1]}</a>
             <a href='../evento/index.php' class='menu-item' id='item-3'>{$this->opciones[2]}</a>
+            {$this->adminOptions}
             <a href='{$this->links[0]}' class='menu-item' id='item-4'>{$this->opciones[3]}</a>
             <div id='line' class='{$this->menuClass}'>
             </div>
