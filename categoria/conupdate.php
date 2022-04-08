@@ -1,9 +1,9 @@
 <?php
 class Database {
-    private static $dbName = 'b1k1eq92tfle9dvefsn9' ;
-    private static $dbHost = 'b1k1eq92tfle9dvefsn9-mysql.services.clever-cloud.com:3306' ;
-    private static $dbUsername = 'ur0llambwrybi3we';
-    private static $dbUserPassword = 'oUf6NbAmrwwBC6hCawRu';     
+    private static $dbName = 'agendaproyectocatedra' ;
+    private static $dbHost = 'localhost' ;
+    private static $dbUsername = 'root';
+    private static $dbUserPassword = '';     
     private static $cont  = null;
      
     //Constructor de la clase

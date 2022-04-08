@@ -7,7 +7,6 @@ $cn =  Database::connect();
 $cn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 $query = $cn->prepare("DELETE FROM usuario where idUsuario = ?");
 $query->execute(array($_GET['id']));
-$data = $query->fetch(PDO::FETCH_ASSOC);
 header("Location: index.php");
 }
 

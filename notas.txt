@@ -1,0 +1,15 @@
+PERFILES DE PRUEBA
+-- Adminitrador:
+Username: admin
+Password: 123456
+
+-- Creador
+Username: creador
+Password: 123456
+
+-- Visitante
+Username: visitante
+Password: 123456
+
+BASE DE DATOS
+-- bdd/agendaproyectocatedra.sql

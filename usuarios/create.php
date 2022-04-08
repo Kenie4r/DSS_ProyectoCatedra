@@ -77,12 +77,17 @@ $tabla = new Table();
                 <label for="genero">Género</label>
                 <select name="genero" id="genero" class="form-control">
                     <option value="M">Masculino</option>
-                    <option value="F">Feminino</option>
+                    <option value="F">Femenino</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="edad">Tipo De Usuario</label>
-                <input type="text" class="form-control" placeholder="Tipo" name="tipo" id="tipo" />
+                <select class="form-control" name="tipo" id="tipo" required>
+                    <option value="">Elige un rol</option>
+                    <option value="1">Administrador</option>
+                    <option value="2">Creador</option>
+                    <option value="3">Visitante</option>
+                </select>
             </div>
             <button type="submit" class="btn btn-success">Enviar</button>
 		</form>

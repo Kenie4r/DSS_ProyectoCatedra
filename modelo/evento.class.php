@@ -174,7 +174,7 @@ class Evento{
                     }
                 }
                 if( $i <= 0 ){ //Si no coinciden se elimina
-                    $resultC = $this->query->deleteEventoAndCategoria($detalle['idDetalle']); //Guardamos la relacion
+                    $resultC = $this->query->deleteCategoriaAndEvento($detalle['idDetalle']); //Guardamos la relacion
                     //Se verifica si se guardaron
                     if(!$resultC){
                        $errorresCategoria++;

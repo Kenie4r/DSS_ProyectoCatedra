@@ -9,7 +9,7 @@ $(document).ready(function () {
     let colorFont1 = "white";
     let colorFont2 = "black";
     //Si hay una imagen
-    if(img != null){
+    if(img[0] != null){
         console.log("Se ha cargado correctamente la imagen.");
         //Variables especiales
         let colorMain = colorThief.getColor(img); //Traemos el color dominante
@@ -40,6 +40,8 @@ $(document).ready(function () {
         //Mostramos el color dominante
         console.log("Color:");
         console.log(colorBase1);
+    }else{
+        console.log("No se ha cargado correctamente la imagen.");
     }
     //Cambiamos los colores
     //Fondo

@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: b1k1eq92tfle9dvefsn9-mysql.services.clever-cloud.com:3306
--- Tiempo de generación: 07-04-2022 a las 18:17:00
--- Versión del servidor: 8.0.15-5
--- Versión de PHP: 7.3.33-1+ubuntu18.04.1+deb.sury.org+1
+-- Servidor: 127.0.0.1:3306
+-- Tiempo de generación: 08-04-2022 a las 02:46:34
+-- Versión del servidor: 8.0.18
+-- Versión de PHP: 7.4.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -29,18 +30,20 @@ USE `agendaproyectocatedra`;
 -- Estructura de tabla para la tabla `categoria`
 --
 
-CREATE TABLE `categoria` (
-  `idCategoria` int(11) NOT NULL,
+DROP TABLE IF EXISTS `categoria`;
+CREATE TABLE IF NOT EXISTS `categoria` (
+  `idCategoria` int(11) NOT NULL AUTO_INCREMENT,
   `Titulo` varchar(50) NOT NULL,
-  `Descripcion` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `Descripcion` text NOT NULL,
+  PRIMARY KEY (`idCategoria`)
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `categoria`
 --
 
 INSERT INTO `categoria` (`idCategoria`, `Titulo`, `Descripcion`) VALUES
-(1, 'Concierto', 'Para definir un concierto ya sea publico o privado y que tipo de musica en el concierto'),
+(1, 'Concierto musical', 'Para definir un concierto ya sea publico o privado y que tipo de musica en el concierto'),
 (2, 'E-Torneo', 'Torneo de E-Sports, es decir torneos profesionales o puede ser de novato, puede ser público o privado '),
 (3, 'Cumpleaños', '...'),
 (4, 'Graduación', '...'),
@@ -49,7 +52,8 @@ INSERT INTO `categoria` (`idCategoria`, `Titulo`, `Descripcion`) VALUES
 (23, 'Despedida de soltero', '...'),
 (33, 'Iglesia', 'Tipo de iglesia y las ubicaciones exactas de ellas'),
 (45, 'Futbol', 'Torneos cortos de 16 equipos para reunirse sobre futbol'),
-(47, 'prueba8', 'prueba8');
+(55, 'Boda', '...'),
+(58, 'nueva categoria', '...');
 
 -- --------------------------------------------------------
 
@@ -57,11 +61,15 @@ INSERT INTO `categoria` (`idCategoria`, `Titulo`, `Descripcion`) VALUES
 -- Estructura de tabla para la tabla `detalle_eventocategoria`
 --
 
-CREATE TABLE `detalle_eventocategoria` (
-  `idDetalle` int(11) NOT NULL,
+DROP TABLE IF EXISTS `detalle_eventocategoria`;
+CREATE TABLE IF NOT EXISTS `detalle_eventocategoria` (
+  `idDetalle` int(11) NOT NULL AUTO_INCREMENT,
   `idEvento` int(11) NOT NULL,
-  `idCategoria` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `idCategoria` int(11) NOT NULL,
+  PRIMARY KEY (`idDetalle`),
+  KEY `idEvento` (`idEvento`),
+  KEY `idCategoria` (`idCategoria`)
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `detalle_eventocategoria`
@@ -76,7 +84,10 @@ INSERT INTO `detalle_eventocategoria` (`idDetalle`, `idEvento`, `idCategoria`) V
 (26, 15, 4),
 (27, 6, 2),
 (28, 6, 12),
-(34, 25, 45);
+(34, 25, 45),
+(36, 27, 55),
+(37, 23, 3),
+(44, 31, 4);
 
 -- --------------------------------------------------------
 
@@ -84,12 +95,16 @@ INSERT INTO `detalle_eventocategoria` (`idDetalle`, `idEvento`, `idCategoria`) V
 -- Estructura de tabla para la tabla `detalle_usuarioevento`
 --
 
-CREATE TABLE `detalle_usuarioevento` (
-  `idDetalle` int(11) NOT NULL,
+DROP TABLE IF EXISTS `detalle_usuarioevento`;
+CREATE TABLE IF NOT EXISTS `detalle_usuarioevento` (
+  `idDetalle` int(11) NOT NULL AUTO_INCREMENT,
   `idUsuario` int(11) NOT NULL,
   `idEvento` int(11) NOT NULL,
-  `Confirmacion` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `Confirmacion` varchar(10) NOT NULL,
+  PRIMARY KEY (`idDetalle`),
+  KEY `idUsuario` (`idUsuario`),
+  KEY `idEvento` (`idEvento`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `detalle_usuarioevento`
@@ -109,16 +124,19 @@ INSERT INTO `detalle_usuarioevento` (`idDetalle`, `idUsuario`, `idEvento`, `Conf
 -- Estructura de tabla para la tabla `evento`
 --
 
-CREATE TABLE `evento` (
-  `idEvento` int(11) NOT NULL,
+DROP TABLE IF EXISTS `evento`;
+CREATE TABLE IF NOT EXISTS `evento` (
+  `idEvento` int(11) NOT NULL AUTO_INCREMENT,
   `Titulo` varchar(50) NOT NULL,
   `Descripcion` text NOT NULL,
   `FechaInicio` datetime NOT NULL,
   `FechaFin` datetime NOT NULL,
   `TipoEvento` int(11) NOT NULL,
   `MaximoPersonas` int(11) NOT NULL,
-  `Banner` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `Banner` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  PRIMARY KEY (`idEvento`),
+  KEY `TipoEvento` (`TipoEvento`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `evento`
@@ -130,25 +148,30 @@ INSERT INTO `evento` (`idEvento`, `Titulo`, `Descripcion`, `FechaInicio`, `Fecha
 (15, 'Torneo TCG Pokémon', 'grande blaziken', '2022-04-01 00:00:00', '2022-04-01 00:00:00', 2, 200, '../evento/banners/wp1944119.jpg'),
 (16, 'Torneo Programacion', 'torneo donde podras enviar tu programa y enviarlo para calificarlo', '2022-09-07 00:00:00', '2022-09-07 00:00:00', 2, 50, '../evento/banners/PROGRAMACION.jpg'),
 (18, 'Via Crusis', '¡Describe tu evento!', '2022-03-30 08:36:00', '2022-03-30 08:36:00', 1, 130, '../evento/banners/viacrusis.jpg'),
-(23, 'Feliz cumpleaños jaimito', '¡Describe tu evento!', '2022-04-23 15:35:00', '2022-04-21 15:35:00', 1, 12, '../evento/banners/wp1944119.jpg'),
-(25, 'Torneo de futbol: Iglesia', 'Ven y muestra de que estas hecho.', '2022-04-24 02:57:00', '2022-04-14 01:57:00', 1, 200, '../evento/banners/5f4000cb02b629a887356252c9d9bb61.png');
+(23, 'Feliz cumpleaños jaimito', '¡Describe tu evento!', '2022-04-23 15:35:00', '2022-04-23 15:35:00', 1, 12, '../evento/banners/wp1944119.jpg'),
+(25, 'Torneo de futbol: Iglesia', 'Ven y muestra de que estas hecho.', '2022-04-24 02:57:00', '2022-04-14 01:57:00', 1, 200, '../evento/banners/5f4000cb02b629a887356252c9d9bb61.png'),
+(27, 'Boda Suárez', 'Y vivieron felices por siempre.', '2022-04-17 12:31:00', '2022-04-17 15:32:00', 2, 234, '../evento/banners/4_bodafeliz.jpg'),
+(31, 'Nuevo Evento', '¡Describe tu evento!', '2022-04-23 20:30:00', '2022-04-20 20:30:00', 2, 1212, 'https://www.esneca.com/wp-content/uploads/eventos-sociales-1200x720.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Rol`
+-- Estructura de tabla para la tabla `rol`
 --
 
-CREATE TABLE `Rol` (
-  `idRol` int(11) NOT NULL,
-  `Titulo` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `rol`;
+CREATE TABLE IF NOT EXISTS `rol` (
+  `idRol` int(11) NOT NULL AUTO_INCREMENT,
+  `Titulo` varchar(20) NOT NULL,
+  PRIMARY KEY (`idRol`),
+  UNIQUE KEY `Titulo` (`Titulo`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `Rol`
+-- Volcado de datos para la tabla `rol`
 --
 
-INSERT INTO `Rol` (`idRol`, `Titulo`) VALUES
+INSERT INTO `rol` (`idRol`, `Titulo`) VALUES
 (1, 'Administrador'),
 (3, 'Asistente'),
 (2, 'Creador');
@@ -159,10 +182,12 @@ INSERT INTO `Rol` (`idRol`, `Titulo`) VALUES
 -- Estructura de tabla para la tabla `tipoevento`
 --
 
-CREATE TABLE `tipoevento` (
-  `IdTipo` int(11) NOT NULL,
-  `Titulo` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+DROP TABLE IF EXISTS `tipoevento`;
+CREATE TABLE IF NOT EXISTS `tipoevento` (
+  `IdTipo` int(11) NOT NULL AUTO_INCREMENT,
+  `Titulo` varchar(20) NOT NULL,
+  PRIMARY KEY (`IdTipo`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `tipoevento`
@@ -178,15 +203,19 @@ INSERT INTO `tipoevento` (`IdTipo`, `Titulo`) VALUES
 -- Estructura de tabla para la tabla `usuario`
 --
 
-CREATE TABLE `usuario` (
-  `idUsuario` int(11) NOT NULL,
+DROP TABLE IF EXISTS `usuario`;
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `idUsuario` int(11) NOT NULL AUTO_INCREMENT,
   `Username` varchar(20) NOT NULL,
   `Password` varchar(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `Nombre` varchar(50) NOT NULL,
   `Apellido` varchar(50) NOT NULL,
   `Genero` char(1) NOT NULL,
-  `Rolusuario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `Rolusuario` int(11) NOT NULL,
+  PRIMARY KEY (`idUsuario`),
+  UNIQUE KEY `user_nameforUser` (`Username`),
+  KEY `User_ROLuser` (`Rolusuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
@@ -194,109 +223,11 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`idUsuario`, `Username`, `Password`, `Nombre`, `Apellido`, `Genero`, `Rolusuario`) VALUES
 (1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'admin', 'eventos', 'M', 1),
-(2, 'creador', '202cb962ac59075b964b07152d234b70', 'creador', 'de eventos', 'M', 2),
 (5, 'diegosan', 'e10adc3949ba59abbe56e057f20f883e', 'Diego', 'Mancía', 'M', 2),
-(6, 'dmancia', 'e10adc3949ba59abbe56e057f20f883e', 'Diego', 'Mancía', 'M', 3);
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `categoria`
---
-ALTER TABLE `categoria`
-  ADD PRIMARY KEY (`idCategoria`);
-
---
--- Indices de la tabla `detalle_eventocategoria`
---
-ALTER TABLE `detalle_eventocategoria`
-  ADD PRIMARY KEY (`idDetalle`),
-  ADD KEY `idEvento` (`idEvento`),
-  ADD KEY `idCategoria` (`idCategoria`);
-
---
--- Indices de la tabla `detalle_usuarioevento`
---
-ALTER TABLE `detalle_usuarioevento`
-  ADD PRIMARY KEY (`idDetalle`),
-  ADD KEY `idUsuario` (`idUsuario`),
-  ADD KEY `idEvento` (`idEvento`);
-
---
--- Indices de la tabla `evento`
---
-ALTER TABLE `evento`
-  ADD PRIMARY KEY (`idEvento`),
-  ADD KEY `TipoEvento` (`TipoEvento`);
-
---
--- Indices de la tabla `Rol`
---
-ALTER TABLE `Rol`
-  ADD PRIMARY KEY (`idRol`),
-  ADD UNIQUE KEY `Titulo` (`Titulo`);
-
---
--- Indices de la tabla `tipoevento`
---
-ALTER TABLE `tipoevento`
-  ADD PRIMARY KEY (`IdTipo`);
-
---
--- Indices de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`idUsuario`),
-  ADD UNIQUE KEY `user_nameforUser` (`Username`),
-  ADD KEY `User_ROLuser` (`Rolusuario`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `categoria`
---
-ALTER TABLE `categoria`
-  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
-
---
--- AUTO_INCREMENT de la tabla `detalle_eventocategoria`
---
-ALTER TABLE `detalle_eventocategoria`
-  MODIFY `idDetalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
-
---
--- AUTO_INCREMENT de la tabla `detalle_usuarioevento`
---
-ALTER TABLE `detalle_usuarioevento`
-  MODIFY `idDetalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT de la tabla `evento`
---
-ALTER TABLE `evento`
-  MODIFY `idEvento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
-
---
--- AUTO_INCREMENT de la tabla `Rol`
---
-ALTER TABLE `Rol`
-  MODIFY `idRol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT de la tabla `tipoevento`
---
-ALTER TABLE `tipoevento`
-  MODIFY `IdTipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+(9, 'lemus', 'd41d8cd98f00b204e9800998ecf8427e', 'Fernando', 'Lemus', 'M', 3),
+(14, 'diegomancia', 'd41d8cd98f00b204e9800998ecf8427e', 'Diego', 'Mancía', 'M', 3),
+(15, 'creador', 'e10adc3949ba59abbe56e057f20f883e', 'Creador', 'de eventos', 'M', 2),
+(16, 'visitante', 'e10adc3949ba59abbe56e057f20f883e', 'Usuario', 'Comun', 'M', 3);
 
 --
 -- Restricciones para tablas volcadas
@@ -326,7 +257,7 @@ ALTER TABLE `evento`
 -- Filtros para la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`Rolusuario`) REFERENCES `Rol` (`idRol`);
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`Rolusuario`) REFERENCES `rol` (`idRol`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

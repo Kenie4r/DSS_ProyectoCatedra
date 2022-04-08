@@ -59,10 +59,11 @@ $tabla = new Table();
 			<table class="table table-bordered">
 				<thead >
 					<tr>
-						<th class="text-center">#ID</th>
+						<th class="text-center">ID</th>
 						<th class="text-center">Usuario</th>
 						<th class="text-center">Nombre</th>
 						<th class="text-center">Apellido</th>
+						<th class="text-center">Rol</th>
 						<th class="text-center">Operaciones</th>
 					</tr>
 				</thead>
@@ -74,11 +75,25 @@ $tabla = new Table();
 						$pdocn = Database::connect();
 						$sql = ('SELECT * FROM usuario ORDER BY idUsuario ASC');
 						foreach ($pdocn->query($sql) as $row) {
+						//Elegimos rol
+						switch ($row['Rolusuario']) {
+							case 1:
+								$rolU = "Administrador";
+								break;
+							case 2:
+								$rolU = "Creador";
+								break;
+							case 3:
+								$rolU = "Visitante";
+								break;
+						}
+						//
 						echo 	'<tr>
 									<td class="text-center">'.$row["idUsuario"].'</td>
 									<td class="text-center">'.$row["Username"].'</td>
 									<td class="text-center">'.$row["Nombre"].'</td>
 									<td class="text-center">'.$row["Apellido"].'</td>
+									<td class="text-center">'.$rolU.'</td>
 									<td class="text-center">
 										<a href="read.php?id='.$row["idUsuario"].'" class="btn btn-default">Obtener</a>											
 										<a href="update.php?id='.$row["idUsuario"].'" class="btn btn-success">Modificar</a>

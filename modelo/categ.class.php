@@ -1,5 +1,5 @@
 <?php
-require_once('../controlador/queryEvent.php');
+require_once('../controlador/queryCategoria.php');
 
 class Categoria{
     // Atributos

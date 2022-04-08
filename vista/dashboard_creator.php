@@ -88,7 +88,7 @@
                foreach($tablaCat as $campo =>$categoria){
                 $card2 = <<<CAR
                 <div class="category">
-                    <a href="">   
+                    <a href="../evento/index.php?idCategoria={$categoria['idCategoria']}">   
                         <div>
                             <span class="icon-"></span>
                         </div>
@@ -101,7 +101,7 @@
                     echo $card2; 
                }
                echo "   <div class='category'>
-               <a href=''>
+               <a href='../categoria/index.php'>
                    <div>
                        <span class='icon-plus'></span>
                    </div>

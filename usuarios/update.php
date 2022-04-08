@@ -68,28 +68,28 @@ $query->execute(array($_GET['id']));
 $data = $query->fetch(PDO::FETCH_ASSOC);	
 echo '
 	<div>
-		<label for="-">-</label>
+		<label for="-">ID - </label>
 		<input type="text" value="'.$data["idUsuario"].'" class="cod" readonly="readonly" name="idUsuario">
 	</div>
 	<div>
-		<label for="-">-</label>
+		<label for="-">Nombre - </label>
 		<input type="text" value="'.$data["Nombre"].'" placeholder="Nombre" name="nombre">
 	</div>
 	<div>
-		<label for="-">-</label>
+		<label for="-">Apellido - </label>
 		<input type="text" value="'.$data["Apellido"].'" placeholder="Apellido"  name="apellido">
 	</div>
-	<div>
-		<label for="-">-</label>
+	<!--<div>
+		<label for="-">Password - </label>
 		<input type="text" value="'.$data["Password"].'" placeholder="Passwordseña"  name="Password">
+	</div>-->
+	<div>
+		<label for="-">Genero - </label>
+		<input type="text" value="'.$data["Genero"].'" placeholder="Genero"  name="genero" readonly="readonly">
 	</div>
 	<div>
-		<label for="-">-</label>
-		<input type="text" value="'.$data["Genero"].'" placeholder="Genero"  name="genero">
-	</div>
-	<div>
-		<label for="-">-</label>
-		<input type="text" value="'.$data["Rolusuario"].'" placeholder="Tipo Usuario"  name="Tipo">
+		<label for="-">Rol - </label>
+		<input type="text" value="'.$data["Rolusuario"].'" placeholder="Tipo Usuario"  name="Tipo" readonly="readonly">
 	</div>
 ';
 Database::disconnect();

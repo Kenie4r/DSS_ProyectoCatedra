@@ -40,7 +40,9 @@ if( isset($_GET['idCategoria']) ){
         <div class="contenedor-abuelo">
             <div class="contenedor-header">
                 <div class="contenedor-titulo">
+                <?php if( $rol != "u" && $rol != "3" ){ //Solo para creadores y admin ?>
                     <h1>Mis eventos</h1>
+                    <?php } ?>
                 </div>
                 <div class="contenedor-botones">
                     <?php if( $rol != "u" && $rol != "3" ){ //Solo para creadores y admin ?>
@@ -51,7 +53,7 @@ if( isset($_GET['idCategoria']) ){
             <div class="contenedor-card">
                 <?php if( $rol != "u" && $rol != "3" ){ //Solo para creadores y admin ?>
                 <div class="evento">
-                    <a href="newEvent.php">
+                    <a href="formEventos.php">
                         <div class="titulo-mas">
                             <div class="icon"><span class="icon-plus"></span></div> 
                             <p class="mas-button">CREAR UN NUEVO EVENTO</p></div>
