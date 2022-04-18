@@ -313,11 +313,25 @@ input.input-titulo-rojo{
     gap: 2em;
     color: white;
     width: 60%;
+    align-items: center;
+}
+
+.tarjeta-contenido-descripcion{
+    width: 100%;
+    text-align: justify;
+    padding: 0 2em 0 2em;
 }
 
 .tarjeta-row-2{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    width: 100%;
+}
+
+.tarjeta-row-2>div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .tarjeta-categorias{

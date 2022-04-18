@@ -59,16 +59,33 @@ $categorias = $query->getCategoriasByIDEvento($idEvento);
                     </div>
                     <?php } ?>
                 </div>
-                <div>
+                <div class="<?php echo strlen($evento["Descripcion"])>100?"tarjeta-contenido-descripcion":"" ?>">
                     <p><?php echo $evento["Descripcion"] ?></p>
                 </div>
+                <?php
+                    $fechaInicio = date_format( date_create($evento["FechaInicio"]), 'Y-m-d' );
+                    $fechaFin = date_format( date_create($evento["FechaFin"]), 'Y-m-d' );
+                    $horaInicio = date_format( date_create($evento["FechaInicio"]), 'H:i' );
+                    $horaFin = date_format( date_create($evento["FechaFin"]), 'H:i' );
+                ?>
                 <div class="tarjeta-row-2">
+                    <?php if( $fechaInicio != $fechaFin ){ ?>
+                    <div style="display:flex; flex-direction:column;">
+                        <p><span class="bold">Fecha de inicio:</span> <?php echo $fechaInicio; ?></p>
+                        <p><span class="bold">Hora:</span> <?php echo $horaInicio; ?></p>
+                    </div>
+                    <div style="display:flex; flex-direction:column;">
+                        <p><span class="bold">Fecha de finalización:</span> <?php echo $fechaFin; ?></p>
+                        <p><span class="bold">Hora:</span> <?php echo $horaFin; ?></p>
+                    </div>
+                    <?php }else{ ?>
                     <div>
-                        <p><span class="bold">Fecha de inicio:</span> <?php echo date_format( date_create($evento["FechaInicio"]), 'Y-m-d' ); ?></p>
+                        <p><span class="bold">Fecha:</span> <?php echo $fechaInicio; ?></p>
                     </div>
                     <div>
-                        <p><span class="bold">Fecha de finalización:</span> <?php echo date_format( date_create($evento["FechaFin"]), 'Y-m-d' ); ?></p>
+                        <p><span class="bold">Hora:</span> <?php echo $horaInicio; ?> - <?php echo $horaFin; ?></p>
                     </div>
+                    <?php } ?>
                 </div>
                 <div class="tarjeta-row-2">
                     <div>

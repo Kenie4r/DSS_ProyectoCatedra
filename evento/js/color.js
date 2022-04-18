@@ -8,8 +8,9 @@ $(document).ready(function () {
     let colorRGBA = "rgba(0, 0, 0, 0.9)";
     let colorFont1 = "white";
     let colorFont2 = "black";
+    
     //Si hay una imagen
-    if(img[0] != null){
+    try{
         console.log("Se ha cargado correctamente la imagen.");
         //Variables especiales
         let colorMain = colorThief.getColor(img); //Traemos el color dominante
@@ -38,56 +39,84 @@ $(document).ready(function () {
             console.log("rgb(" + color[0] + ", " + color[1] + ", " + color[2] + ")");
         });
         //Mostramos el color dominante
-        console.log("Color:");
+        console.log("Color dominante:");
         console.log(colorBase1);
-    }else{
+    }catch (error) {
         console.log("No se ha cargado correctamente la imagen.");
+        console.log(error);   
     }
+
     //Cambiamos los colores
     //Fondo
     $(".tarjeta").css({
         "background-color": colorBase1
     });
+
     //Fondo del contenido
     $(".tarjeta-contenido").css({
-        "background-color": colorRGBA,
+        "background-color": colorBase1,
         "box-shadow": "-40px -40px 100px 100px " + colorRGBA,
         "color": colorFont1
     });
+    changeOrientationLinear(colorBase1, colorRGBA);
+
     //Categorias
     $(".tarjeta-categoria-p").css({
         "background-color": colorBase2,
         "color": colorFont2
     });
+
     //Botones
     $(".tarjeta-btn").css({
         "color": colorFont1,
         "border": colorBase2 + " solid 2px"
     });
+
+    //Configurar el hover de los botones de la tarjeta
     $(".tarjeta-btn").on('mouseover',function(){
-  
         $(this).css({
             "background-color": colorBase2,
             "color": colorFont2
         });
-      
     });
     $(".tarjeta-btn").on('mouseout',function(){
-  
         $(this).css({
             "background-color": "transparent",
             "color": colorFont1
         });
-      
     });
 
-    //Validar el delete
+    //Validar el boton delete
     $("#btnDelete").on("click", function(){
-        let confirmacion = confirm("¿Seguro que quieres eliminar este evento? Eliminaras todo lo que posee, puedes dejar a personas sin que hacer.");
-        if(confirmacion){
-            console.log($("#idEvento").html());
-            window.location.href = "deleteEvento.php?idEvento=" + $("#idEvento").html();
-        }
+        validateDelete();
+    });
+
+    //Configurar que va a hacer la ventana al modificar la ventana
+    $(window).resize(function(){
+        changeOrientationLinear(colorBase1, colorRGBA);
     });
 });
-//formEventos.php?idEvento=<?php echo $idEvento; ?>
+
+//Modificar la orientacion (x, y) del degradado de la tarjeta de evento
+function changeOrientationLinear(rgb, rgba){
+    //Forma de la pantalla
+    let widthWindow = $(window).width();
+    console.log("Tamaño actual de la pantalla: " + widthWindow);
+    if(widthWindow < 900){
+        $(".tarjeta-contenido").css({
+            "background": "linear-gradient(0deg, " + rgb + " 68%, " + rgba + " 99%)"
+        });
+    }else{
+        $(".tarjeta-contenido").css({
+            "background": "linear-gradient(90deg, " + rgba + " 0%, " + rgb + " 20%)"
+        });
+    }
+}
+
+//Mandar un mensaje de confirmacion para eliminar un evento
+function validateDelete(){
+    let confirmacion = confirm("¿Seguro que quieres eliminar este evento? Eliminaras todo lo que posee, puedes dejar a personas sin que hacer.");
+    if(confirmacion){
+        window.location.href = "deleteEvento.php?idEvento=" + $("#idEvento").html();
+    }
+}
