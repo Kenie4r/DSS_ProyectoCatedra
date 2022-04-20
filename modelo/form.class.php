@@ -96,7 +96,7 @@ class Formulario{
 
         //Input
         $input =<<<DFM
-        <div class="contenedor-input-vertical">
+        <div class="contenedor-input">
             <div class="contenedor-label">
                 <label for="$name">$label</label>
             </div>
@@ -209,10 +209,10 @@ class Formulario{
         return $input;
     }
 
-    //File ----------------------------------------------------------------------------------------
+    //File IMG ----------------------------------------------------------------------------------------
     //Propiedades: Nombre e ID, $label, Opciones, Placeholder
     //Propiedades opcionales(Colocar 1 para activarlo): Required, Autofocus
-    public function file($name, $idImg, $defaultImg, $placeholder, $required = "", $autofocus = ""){
+    public function fileIMG($name, $idImg, $defaultImg, $placeholder, $required = "", $autofocus = ""){
         //Required
         if($required == 1){
             $required = "required";
@@ -225,13 +225,18 @@ class Formulario{
 
         //Input
         $input =<<<DFM
-        <div class="contenedor-input-vertical">
+        <div class="contenedor-input">
             <div>
-                <input type="file" name="$name" id="$name" accept="image/png, image/gif, image/jpeg">
+                <label for="$name">Banner para tu evento:</label>
             </div>
-            <div>
+            <input type="file" name="$name" id="$name" accept="image/png, image/jpeg" class="file-img">
+            <label for="$name" class="file-label">
                 <img src="$defaultImg" alt="Imagen ilustrativa de evento" id="$idImg">
-            </div>
+                <div class="file-label-btn">
+                    <span class="icon-image"></span>
+                    <p>¿Qué imagen describe a tu evento?</p>
+                </div>
+            </label>
         </div>\n
         DFM;
 
@@ -310,7 +315,7 @@ class Formulario{
 
         //Input
         $input =<<<DFM
-        <div class="contenedor-input-vertical">
+        <div class="contenedor-input">
             <div class="contenedor-label">
                 <label for="$name">$label</label>
             </div>

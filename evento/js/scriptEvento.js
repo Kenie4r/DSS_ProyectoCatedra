@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    changeBackgroundBody();
     //Activamos el chosen, es decir, el select de las categorias
     $(".chosen-select").chosen({no_results_text: "No hay categorías con el nombre: ", max_selected_options: 10});
 
@@ -54,6 +55,7 @@ $(document).ready(function () {
         //Cada que se cargue algo en el reader modificaremos el src de la imagen
         reader.onload = function(e) {
             $("#imgEvento").attr('src', e.target.result);
+            changeBackgroundBody(e.target.result);
         }
         reader.readAsDataURL(filename); //Leemos el primer file y se lo pasamos al file reader
     })
@@ -64,8 +66,21 @@ $(document).ready(function () {
     $("#btnSubmit").on("click", function(){
         alert("Recuerda llenar todos los campos correctamente.");
     });
+
+    $(".file-label-btn").hide();
+
+    $(".file-label").on("mouseover", function(){
+        $(".file-label-btn").css({
+            "display":"flex"
+        });
+    });
+
+    $(".file-label").on("mouseout", function(){
+        $(".file-label-btn").hide();
+    });
 });
 
+//FUNCIONES  ------------------------------------------------------------------------------------
 //Funcion para actualizar la categoria
 function actualizarSelectCategory(respuesta) {
     $("#sltCategorias").html(respuesta);
@@ -103,4 +118,11 @@ function verificarTituloEvento(){
                 },
                 "html"
             );
+}
+
+//Funcion para dar la imagen de fondo del formulario
+function changeBackgroundBody(urlImg = "https://www.esneca.com/wp-content/uploads/eventos-sociales-1200x720.jpg"){
+    $(".form-body").css({
+        "background-image": "url(" + urlImg + ")"
+    });
 }

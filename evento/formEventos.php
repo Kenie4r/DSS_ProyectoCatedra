@@ -64,6 +64,7 @@ if( isset($_GET['idEvento']) ){
                 <?php echo $form->textboxPersonalizado_Titulo("txtName", "¿Cómo se llama tu evento?", $nameEvento, 1); ?>
                 <div class="form-header-button">
                     <?php echo $form->buttonSubmit("btnSubmit", $operacion); ?>
+                    <a href="#" class="btn btn-azul"><span class="icon-image"></span> Previsualizar</a>
                     <?php echo $form->buttonCancel($urlBack); ?>
                 </div>
             </div>
@@ -71,9 +72,11 @@ if( isset($_GET['idEvento']) ){
                 <?php echo $form->datetime("dtFechaInicio", "Fecha de inicio:", "¿Cuándo empezará tu evento?", 1, "", $fechaInicio); ?>
                 <?php echo $form->datetime("dtFechaFin", "Fecha de fin:", "¿Cuándo terminará tu evento?", 1, "", $fechaFin); ?>
                 <?php echo $form->select("sltTipo", "Tipo de evento:", $tiposEventos, "¿Qué tipo de evento es?", 1, "", $tipoEvento); ?>
-                <?php echo $form->number("nmbCantidadPersonas", "Cantidad de personas:", "¿Cuántas personas asistirán al evento?", 1, 0, 1, "", 1, $maxPersonas); ?>
-                <?php echo $form->selectPersonalizado_Categoria("sltCategorias", "sltCategorias[]", "Categorías del evento:", $categorias, "¿Cómo es tu evento?", 1, "", $categoriasEvento); ?>
-                <?php echo $form->file("fileEvento", "imgEvento", $bannerEvento, "Banner del evento:", 1); ?>
+                <div class="contenedor-input-doble">
+                    <?php echo $form->number("nmbCantidadPersonas", "Cantidad de personas:", "¿Cuántas personas asistirán al evento?", 1, 0, 1, "", 1, $maxPersonas); ?>
+                    <?php echo $form->selectPersonalizado_Categoria("sltCategorias", "sltCategorias[]", "Categorías del evento:", $categorias, "¿Cómo es tu evento?", 1, "", $categoriasEvento); ?>
+                </div>
+                <?php echo $form->fileIMG("fileEvento", "imgEvento", $bannerEvento, "Banner del evento:", 1); ?>
                 <?php echo $form->textarea("txtDescripcion", "Describe tu evento:", $descripcionEvento); ?>
                 <?php if($update) { echo $form->hidden("idEvento", $idEvento); } ?>
             </div>
@@ -83,6 +86,6 @@ if( isset($_GET['idEvento']) ){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" integrity="sha512-yVvxUQV0QESBt1SyZbNJMAwyKvFTLMyXSyBHDO4BG5t7k/Lw34tyqlSDlKIrIENIzCl+RVUNjmCPG+V/GMesRw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="js/script.js"></script>
+    <script src="js/scriptEvento.js"></script>
 </body>
 </html>
