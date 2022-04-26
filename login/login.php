@@ -22,7 +22,7 @@ $menu = new HTMLMENU(3);
 </head>
 <body class="bg-info">
     <div class="div-menu">
-        <?php $menu->createMenu(); ?>
+       
     </div>
     <div class="container">
         <div class="row vh-100 align-items-center justify-content-center">

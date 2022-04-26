@@ -13,12 +13,11 @@ $menu = new HTMLMENU(3);
     <link rel="stylesheet" href="../css/menu.style.css">
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/icomoon/style.css">
+    
 </head>
 <body>
 <body class="bg-info">
-    <div class="div-menu">
-        <?php $menu->createMenu(); ?>
-    </div>
+   
     <div class="container">
         <div class="row vh-100 align-items-center justify-content-center">
             <div class="col-xs-1-12 col-md-6 col-lg-4 bg-white rounded p-4 shadow">
@@ -55,8 +54,11 @@ $menu = new HTMLMENU(3);
                     <label for="txtContraCon" class="form-label">Confirme su Contraseña</label>
                         <input type="password" class="form-control" name="txtContraCon" id="txtContraCon">
                     </div>
-                   
-                    <button type="submit" name="submit" class="btn btn-success w-100">Registrarse</button>
+                    <div id="alerta">
+
+                    </div>
+                    
+                    <button type="submit" name="submit" id="enviar" class="btn btn-success w-100">Registrarse</button>
                     <?php
                         include '../controlador/queryRegister.php';
                         
@@ -81,6 +83,9 @@ $menu = new HTMLMENU(3);
             
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js\verificarUsuario.js"></script>
+    <script src="js\ajaxUsuario.js"></script>
     
 </body>
     

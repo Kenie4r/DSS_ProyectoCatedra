@@ -16,7 +16,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de datos: `agendaproyectocatedra`
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `categoria` (
   `Titulo` varchar(50) NOT NULL,
   `Descripcion` text NOT NULL,
   PRIMARY KEY (`idCategoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `categoria`
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `detalle_eventocategoria` (
   PRIMARY KEY (`idDetalle`),
   KEY `idEvento` (`idEvento`),
   KEY `idCategoria` (`idCategoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `detalle_eventocategoria`
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `detalle_usuarioevento` (
   PRIMARY KEY (`idDetalle`),
   KEY `idUsuario` (`idUsuario`),
   KEY `idEvento` (`idEvento`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `detalle_usuarioevento`
@@ -133,10 +133,10 @@ CREATE TABLE IF NOT EXISTS `evento` (
   `FechaFin` datetime NOT NULL,
   `TipoEvento` int(11) NOT NULL,
   `MaximoPersonas` int(11) NOT NULL,
-  `Banner` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `Banner` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`idEvento`),
   KEY `TipoEvento` (`TipoEvento`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `evento`
@@ -187,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `tipoevento` (
   `IdTipo` int(11) NOT NULL AUTO_INCREMENT,
   `Titulo` varchar(20) NOT NULL,
   PRIMARY KEY (`IdTipo`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `tipoevento`
@@ -207,7 +207,7 @@ DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE IF NOT EXISTS `usuario` (
   `idUsuario` int(11) NOT NULL AUTO_INCREMENT,
   `Username` varchar(20) NOT NULL,
-  `Password` varchar(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `Password` varchar(35) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `Nombre` varchar(50) NOT NULL,
   `Apellido` varchar(50) NOT NULL,
   `Genero` char(1) NOT NULL,
@@ -215,7 +215,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   PRIMARY KEY (`idUsuario`),
   UNIQUE KEY `user_nameforUser` (`Username`),
   KEY `User_ROLuser` (`Rolusuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`

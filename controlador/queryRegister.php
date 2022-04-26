@@ -15,6 +15,24 @@ class QueryRegister{
             $statement->execute();
 
     }
+    public function contarUsuarios($username)
+    {
+        
+            $connection = new Conection(); 
+            $db = $connection->_getConection(); 
+            
+            $sql="SELECT Username usuario WHERE Username=:Username";
+            $statement=$db->prepare($sql);
+            $statement->bindParam(":Username",$username);
+            $statement->execute();
+            $contador= $statement->rowCount();
+            if ($contador>0) {
+                return true;
+            }else {
+                return false;
+            }
+        
+    }
     
 }
 ?>
