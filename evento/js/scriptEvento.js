@@ -1,11 +1,14 @@
 $(document).ready(function () {
-    changeBackgroundBody();
+    //Chosen ----------------------------------------------------------------------------------
     //Activamos el chosen, es decir, el select de las categorias
-    $(".chosen-select").chosen({no_results_text: "No hay categorías con el nombre: ", max_selected_options: 10});
+    $(".chosen-select").chosen({
+        no_results_text: "No hay categorías con el nombre: ",
+        max_selected_options: 10
+    });
 
     //New Category ----------------------------------------------------------------------------
     //Ocultamos el form para la nueva categoria
-    $("#frmNewCategory").hide();
+    hideFormNewCategoria();
 
     //Configuramos este boton para que aparezca el formulario
     $("#btnNewCategory").click(function(){
@@ -14,40 +17,15 @@ $(document).ready(function () {
 
     //Ocultamos el formulario
     $("#cancelNewCategory").click(function(){
-        $("#frmNewCategory").hide();
+        hideFormNewCategoria();
     });
 
     //Guardamos la nueva categoria
     $("#saveNewCategory").click(function(){
-        let categoria = $("#txtNewCategory").val();
-        if(categoria != null && categoria != ""){
-            $.post("../modelo/saveCategory.rapid.php", 
-                {
-                    "titulo": categoria
-                },
-                function(respuesta){
-                    if(respuesta != null){
-                        alert("Se ha agregado la categoría correctamente.");
-                        $("#txtNewCategory").val("")
-                        actualizarSelectCategory(respuesta);
-                    }else{
-                        alert("ERROR: No se pudo agregar la categoría.");
-                    }
-                },
-                "html"
-            );
-        }
-        
+        saveNewCategory();
     });
 
-    //Verificamos el titulo, al escribir en el input
-    $("#txtName").on("input", function(){
-        verificarTituloEvento();
-    });
-
-    //Verificamos el titulo, al iniciar la pagina
-    verificarTituloEvento();
-
+    //Banner ----------------------------------------------------------------------------------
     //Cada que se modifique el input file, nosotros previsualiremos la imagen
     $("input[type='file']").change(function(e){
         let filename = e.target.files[0]; //Leemos el primer file
@@ -55,19 +33,12 @@ $(document).ready(function () {
         //Cada que se cargue algo en el reader modificaremos el src de la imagen
         reader.onload = function(e) {
             $("#imgEvento").attr('src', e.target.result);
-            changeBackgroundBody(e.target.result);
         }
         reader.readAsDataURL(filename); //Leemos el primer file y se lo pasamos al file reader
     })
 
-    //Si el boton submit esta habilitado, le ponemos un mensaje para decir que se deben de llenar las cosas bien
-    //porque los input no se validan con codigo sino que con los atributos de los input en HTML
-    //por ejemplo, required 
-    $("#btnSubmit").on("click", function(){
-        alert("Recuerda llenar todos los campos correctamente.");
-    });
-
-    $(".file-label-btn").hide();
+    //Ocultamos el "Nuevo banner"
+    hideLabelBanner();
 
     $(".file-label").on("mouseover", function(){
         $(".file-label-btn").css({
@@ -76,15 +47,73 @@ $(document).ready(function () {
     });
 
     $(".file-label").on("mouseout", function(){
-        $(".file-label-btn").hide();
+        hideLabelBanner();
+    });
+
+    //Validaciones ----------------------------------------------------------------------------
+    //Verificamos el titulo, al iniciar la pagina
+    verificarTituloEvento();
+
+    //Verificamos el titulo, al escribir en el input
+    $("#txtName").on("input", function(){
+        verificarTituloEvento();
+    });
+
+    //Verificamos la cantidad de personas, cada que se modifique
+    $("#nmbCantidadPersonas").on("input", function(){
+        verificarMaximoPersonas();
+    });
+
+    //Verificamos la cantidad de personas, cada que se modifique
+    $("#sltTipo").on("input", function(){
+        verificarTipoEvento();
+    });
+
+    //Si el boton submit esta habilitado, le ponemos un mensaje para decir que se deben de llenar las cosas bien
+    //porque los input no se validan con codigo sino que con los atributos de los input en HTML
+    //por ejemplo, required 
+    $("#btnSubmit").on("click", function(){
+        alert("Recuerda llenar todos los campos correctamente.");
     });
 });
 
 //FUNCIONES  ------------------------------------------------------------------------------------
+//Funcion para ocultar el formulario de nueva categoria
+function hideFormNewCategoria(){
+    $("#frmNewCategory").hide();
+}
+
+//Funcion para guardar la categoria en la BDD
+function saveNewCategory(){
+    let categoria = $("#txtNewCategory").val();
+    if(categoria != null && categoria != ""){
+        $.post("../modelo/saveCategory.rapid.php", 
+            {
+                "titulo": categoria
+            },
+            function(respuesta){
+                if(respuesta != null){
+                    alert("Se ha agregado la categoría correctamente.");
+                    $("#txtNewCategory").val("")
+                    actualizarSelectCategory(respuesta);
+                }else{
+                    alert("ERROR: No se pudo agregar la categoría.");
+                }
+            },
+            "html"
+        );
+    }
+}
+
 //Funcion para actualizar la categoria
 function actualizarSelectCategory(respuesta) {
     $("#sltCategorias").html(respuesta);
     $(".chosen-select").chosen().trigger("chosen:updated");
+}
+
+//Funcion para ocultar el "Nuevo banner"
+function hideLabelBanner(){
+    $(".file-label-btn").hide();
 }
 
 //Funcion para verificar el titulo con ajax
@@ -95,34 +124,39 @@ function verificarTituloEvento(){
         console.log(idEvento);
     }
     $.post("../modelo/getCoincidenciasName.php", 
-                {
-                    "tituloEvento": $("#txtName").val(),
-                    "idEvento": idEvento
-                },
-                function(respuesta){
-                    if(respuesta == "Sin coincidencias."){
-                        $("#txtName").removeClass("input-titulo-rojo");
-                        $("#txtName").addClass("input-titulo-verde");
-                        $("#goodTitulo").show();
-                        $("#badTitulo").hide();
-                        console.log(respuesta);
-                        $("#btnSubmit").attr("disabled", false);
-                    }else{
-                        $("#txtName").removeClass("input-titulo-verde");
-                        $("#txtName").addClass("input-titulo-rojo");
-                        $("#goodTitulo").hide();
-                        $("#badTitulo").show();
-                        console.log(respuesta);
-                        $("#btnSubmit").attr("disabled", true);
-                    }
-                },
-                "html"
-            );
+        {
+            "tituloEvento": $("#txtName").val(),
+            "idEvento": idEvento
+        },
+        function(respuesta){
+            if(respuesta == "Sin coincidencias."){
+                $("#txtName").removeClass("input-titulo-rojo");
+                $("#txtName").addClass("input-titulo-verde");
+                $("#goodTitulo").show();
+                $("#badTitulo").hide();
+                console.log(respuesta);
+                $("#btnSubmit").attr("disabled", false);
+            }else{
+                $("#txtName").removeClass("input-titulo-verde");
+                $("#txtName").addClass("input-titulo-rojo");
+                $("#goodTitulo").hide();
+                $("#badTitulo").show();
+                console.log(respuesta);
+                $("#btnSubmit").attr("disabled", true);
+            }
+        },
+        "html"
+    );
 }
 
-//Funcion para dar la imagen de fondo del formulario
-function changeBackgroundBody(urlImg = "https://www.esneca.com/wp-content/uploads/eventos-sociales-1200x720.jpg"){
-    $(".form-body").css({
-        "background-image": "url(" + urlImg + ")"
-    });
+//Funcion para verificar la cantidad de personas que asistiran al evento
+function verificarMaximoPersonas(){
+    let maxPersonas = $("#nmbCantidadPersonas").val();
+    console.log(maxPersonas);
+}
+
+//Funcion para verificar el tipo de evento
+function verificarTipoEvento(){
+    let tipoEvento = $("#sltTipo").val();
+    console.log(tipoEvento);
 }
