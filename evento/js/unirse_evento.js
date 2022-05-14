@@ -8,7 +8,7 @@ let btnUnirme = document.getElementById('btn-enter');
 if(btnUnirme!=null){
     btnUnirme.addEventListener("click", (e)=>{
         Swal.fire({
-            title: '¿Te quiéres unir a este evento',
+            title: '¿Te quiéres unir a este evento?',
             showDenyButton: true, 
             icon: 'question', 
             denyButtonText: 'No quiero unirme', 

@@ -71,7 +71,6 @@ body{
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
         margin: 0 auto;
-    gap: 1em;
     overflow: hidden ;
     background-color:rgb(15, 21, 24) ;
 }
@@ -87,11 +86,7 @@ body{
     height: 100%;
     background-color: rgba(0, 0, 0, 0.212);
 }
-.category{
-   background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.latimes.com%2Fespanol%2Fentretenimiento%2Farticulo%2F2022-01-06%2Festos-son-los-conciertos-latinos-que-se-realizaran-todavia-y-los-que-han-sido-postergados-debido-a-la-omicron&psig=AOvVaw3DPnbzsq3KuEzDrBlL00xS&ust=1648568990915000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCNCVyKeU6fYCFQAAAAAdAAAAABAP');
-   background-size: contain;
-   background-repeat: no-repeat;
-}
+
 .evento .imagen_event{
     width: 100%;
     position: absolute;
@@ -252,4 +247,66 @@ body{
 
 .custom-shape-divider-bottom-1648437843 .shape-fill {
     fill:  rgb(15, 21, 24);
+}
+
+.category .titulo-e{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.titulo-e div{
+    width: 100%;
+}
+.category .t{
+    text-align: center;
+    font-size: 1.2em;
+    padding: 1.2em;
+}
+.category .info{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+.category .info p{
+    padding: 0 1.2em;
+    flex: 1;
+}
+.category .titulo-a{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    gap: 1.2em;
+    padding: 0.5em;
+
+}
+.category .titulo-a a{
+    padding:0.5em;
+    flex: 1; 
+    background-color: #30A5BF;
+    cursor: pointer;
+
+}
+.contenedor-card .category{
+   display: block;
+   margin: 0 auto;
+}
+.titulo-mas{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: .5em;
+}
+.category img{
+    position: absolute;
+    height: 100%;
+    filter: opacity(0.1);
+}
+
+.category .titulo-e *{
+    background-color: transparent;
+    z-index: 2;
 }

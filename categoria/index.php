@@ -41,7 +41,7 @@ $eventos = $query-> getCate();
             </div>
             <div class="contenedor-card">
                 <?php if( $rol == "1" || $rol == "2" ){ //Add ?>
-                <div class="evento">
+                <div class="category">
                     <a href="newCategoria.php">
                         <div class="titulo-mas">
                             <div class="icon"><span class="icon-plus"></span></div> 

@@ -221,3 +221,9 @@ body{
 .custom-shape-divider-bottom-1648437843 .shape-fill {
     fill:  rgb(15, 21, 24);
 }
+
+.category img{
+    position: absolute;
+    height: 100%;
+    filter: opacity(0.1);
+}

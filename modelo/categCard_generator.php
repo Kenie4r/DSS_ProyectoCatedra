@@ -12,7 +12,8 @@
             //Add
             
             $card = <<<AOD
-            <div class="evento">
+            <div class="category">
+                <img src="../imgs/bg-category.jpg" alt="">
                     <div class="titulo-e">
                         <div class="t">
                             $titulo
