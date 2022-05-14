@@ -88,10 +88,8 @@
                foreach($tablaCat as $campo =>$categoria){
                 $card2 = <<<CAR
                 <div class="category">
-
                     <a href="../evento/index.php?idCategoria={$categoria['idCategoria']}">   
                     <img src="../imgs/bg-category.jpg" alt="">
-
                         <div>
                             <span class="icon-"></span>
                         </div>

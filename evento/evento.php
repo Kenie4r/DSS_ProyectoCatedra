@@ -8,7 +8,7 @@ require_once('../modelo/table.class.php');
 require_once('../modelo/eventCard_generator.php');
 require_once('../controlador/session.php');
 $rol = getRolSession(); //Todos pueden verlo pero solo algunas opciones estaran para los especiales
-$userID = $_SESSION['iduser']; 
+$userID = isset($_SESSION['iduser'])?$_SESSION['iduser']:"u"; 
 $aQ = new Query(); 
 $query = new QueryEvento();
 $menu = new HTMLMENU(2, $rol);

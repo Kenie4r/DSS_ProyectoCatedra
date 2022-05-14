@@ -71,7 +71,7 @@ $tabla = new Table();
             </div>
             <div class="form-group">
                 <label for="password">Contraseña</label>
-                <input type="password" class="form-control" id="Password" placeholder="contraseña" name="password" id="password" />
+                <input type="password" class="form-control" placeholder="contraseña" name="password" id="password" />
             </div>
             <div class="form-group">
                 <label for="genero">Género</label>
