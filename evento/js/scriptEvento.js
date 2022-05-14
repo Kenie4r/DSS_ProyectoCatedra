@@ -1,4 +1,10 @@
-let isValid = false; 
+let isValidTitulo = false;
+let isValidFechaI = false;
+let isValidFechaF = false;
+let isValidTipo = false;
+let isValidMax = false;
+let isValidDescr = false;
+
 $(document).ready(function () {
     //Chosen ----------------------------------------------------------------------------------
     //Activamos el chosen, es decir, el select de las categorias
@@ -52,12 +58,20 @@ $(document).ready(function () {
     });
 
     //Validaciones ----------------------------------------------------------------------------
-    //Verificamos el titulo, al iniciar la pagina
-    verificarTituloEvento();
+    //Verificamos todo nuestro formulario, aunque nos cueste rendimiento xD
+    verificarAll();
 
     //Verificamos el titulo, al escribir en el input
     $("#txtName").on("input", function(){
         verificarTituloEvento();
+    });
+
+    $("#dtFechaInicio").on("input", function(){
+        verificarFechaInicio();
+    });
+
+    $("#dtFechaFin").on("input", function(){
+        verificarFechaFin();
     });
 
     //Verificamos la cantidad de personas, cada que se modifique
@@ -70,14 +84,18 @@ $(document).ready(function () {
         verificarTipoEvento();
     });
 
+    $("#txtDescripcion").on("input", function(){
+        verificarDescripcionEvento();
+    });
+
     //Si el boton submit esta habilitado, le ponemos un mensaje para decir que se deben de llenar las cosas bien
     //porque los input no se validan con codigo sino que con los atributos de los input en HTML
     //por ejemplo, required 
-    $("#btnSubmit").on("click", function(){
-        if(isValid){
+    $("#btnSubmit").on("click", function(e){
+        if(!isValidTipo || !isValidFechaI || !isValidFechaF || !isValidTipo || !isValidMax || !isValidDescr){
             Swal.fire("Recuerda llenar todos los campos correctamente.");
-        }else{
-            Swal.fire("Por favor seleccione un nombre correcto")
+            console.log("wrong");
+            e.preventDefault();
         }
     });
 });
@@ -121,6 +139,17 @@ function hideLabelBanner(){
     $(".file-label-btn").hide();
 }
 
+//VERIFICAR --------------------------------------------------------------------------------
+//Funcion para verificar por defecto
+function verificarAll(){
+    verificarTituloEvento();
+    verificarFechaInicio();
+    verificarFechaFin();
+    verificarTipoEvento();
+    verificarMaximoPersonas();
+    verificarDescripcionEvento();
+}
+
 //Funcion para verificar el titulo con ajax
 function verificarTituloEvento(){
     let idEvento = "";
@@ -134,36 +163,87 @@ function verificarTituloEvento(){
             "idEvento": idEvento
         },
         function(respuesta){
+            console.log(respuesta);
             if(respuesta == "Sin coincidencias."){
                 $("#txtName").removeClass("input-titulo-rojo");
                 $("#txtName").addClass("input-titulo-verde");
                 $("#goodTitulo").show();
                 $("#badTitulo").hide();
-                console.log(respuesta);
                 //$("#btnSubmit").attr("disabled", false);
-                isValid = false; 
+                isValidTitulo = true; //Nombre correcto
             }else{
                 $("#txtName").removeClass("input-titulo-verde");
                 $("#txtName").addClass("input-titulo-rojo");
                 $("#goodTitulo").hide();
                 $("#badTitulo").show();
-                console.log(respuesta);
                 //$("#btnSubmit").attr("disabled", true);
-                isValid = true; 
+                isValidTitulo = false; //Nombre incorrecto
             }
         },
         "html"
     );
 }
 
+//Funcion para verificar la fecha de inicio del evento
+function verificarFechaInicio(){
+    let fechaInicio = $("#dtFechaInicio").val();
+    let fechaI = new Date(fechaInicio); //fechaI = Date.parse(fechaInicio);
+    console.log("Fecha inicio: " + fechaInicio);
+    console.log("Fecha inicio: " + fechaI);
+    if(fechaInicio == null || fechaInicio == undefined){
+        isValidFechaI = false;
+    }else{
+        isValidFechaI = true;
+    }
+}
+
+function verificarFechaFin(){
+    let fechaFinal = $("#dtFechaFin").val();
+    let fechaF = new Date(fechaFinal); //fechaF = Date.parse(fechaFinal);
+    let fechaI = new Date($("#dtFechaInicio").val());
+    console.log("Fecha fin: " + fechaFinal);
+    console.log("Fecha fin: " + fechaF);
+    if(fechaFinal == null || fechaFinal == undefined){
+        isValidFechaF = false;
+    }else{
+        if(fechaF > fechaI){
+            isValidFechaF = true;
+            console.log("Fecha final correcta");
+        }
+    }
+}
+
 //Funcion para verificar la cantidad de personas que asistiran al evento
 function verificarMaximoPersonas(){
     let maxPersonas = $("#nmbCantidadPersonas").val();
-    console.log(maxPersonas);
+    console.log("Personas: " + maxPersonas);
+    if(maxPersonas > 0){
+        isValidMax = true;
+    }else if(maxPersonas <= 0){
+        isValidMax = false;
+    }else{
+        isValidMax = false;
+    }
 }
 
 //Funcion para verificar el tipo de evento
 function verificarTipoEvento(){
     let tipoEvento = $("#sltTipo").val();
-    console.log(tipoEvento);
+    console.log("Tipo: " + tipoEvento);
+    if(tipoEvento == null || tipoEvento == undefined){
+        isValidTipo = false;
+    }else{
+        isValidTipo = true;
+    }
+}
+
+//Funcion para verificar la descripcion
+function verificarDescripcionEvento(){
+    let descripEvento = $("#txtDescripcion").val();
+    console.log("Descripcion: " + descripEvento);
+    if(descripEvento == null || descripEvento == undefined || descripEvento == "" || descripEvento == " "){
+        isValidDescr = false;
+    }else{
+        isValidDescr = true;
+    }
 }

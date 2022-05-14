@@ -115,7 +115,7 @@ class QueryEvento{
         $bannersql = $banner!=""?", Banner = :banner ":$banner;
         $model = new Conection();
         $connection  = $model->_getConection();
-        $sql = "UPDATE evento SET Titulo = :titulo, Descripcion = :d, FechaInicio = :fechaI, FechaFin = :fechaI, TipoEvento = :tipo, MaximoPersonas = :maximoP ";
+        $sql = "UPDATE evento SET Titulo = :titulo, Descripcion = :d, FechaInicio = :fechaI, FechaFin = :fechaF, TipoEvento = :tipo, MaximoPersonas = :maximoP ";
         $sql .= $bannersql;
         $sql .= "WHERE idEvento = :id";
         $sentencia= $connection->prepare($sql);
