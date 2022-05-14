@@ -171,6 +171,23 @@
             return true;             
         }
     }
+
+    public function SetEventAndUserConfirmed($user, $event){
+        $model = new Conection();
+        $connection  = $model->_getConection();
+        $state = "Confirmado"; 
+        $sql = "INSERT INTO detalle_usuarioevento (idUsuario, idEvento, Confirmacion) VALUES (:usuario, :evento, :conf )";
+        $sentencia= $connection->prepare($sql);
+        $sentencia->bindParam(":usuario",$user);
+        $sentencia->bindParam(":evento",$event);
+        $sentencia->bindParam(":conf", $state); 
+        if(!$sentencia){
+            return false;
+        }else{
+            $sentencia->execute();
+            return true;             
+        }
+    }
     }
 
 

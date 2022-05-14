@@ -23,7 +23,15 @@
                     echo "Ha sucedido algo, vuelve a intentarlo más tarde"; 
 
                 }
-                break; 
+                break;
+            case 'c2': 
+                if($dbHandler->SetEventAndUserConfirmed($idUsuario, $idEvento)){
+                    echo "Has confirmado  de manera correcta tu asistencia"; 
+                }else{
+                    echo "Ha sucedido algo, vuelve a intentarlo más tarde"; 
+
+                }
+                break;  
             case 'e': 
                 if($dbHandler->deleteEventAndUserC($idUsuario, $idEvento)){
                     echo "Has cancelado de manera correcta tu asistencia"; 

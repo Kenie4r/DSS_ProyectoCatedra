@@ -102,12 +102,12 @@ $conf = $aQ->getUserStatusEvent($userID, $idEvento);
                 </div>
                 <div class="tarjeta-botones">
                     <?php
-                        if($rol == "3" && $conf!="Espera"){
-                            echo "<div id='btn-enter' class='btn tarjeta-btn'><span class='icon-plus'></span> Unirme</div>"; 
+                        if($rol == "3" && $conf!="Espera" && $conf!="Confirmado"){
+                            echo "<div id='btn-enter' class='btn tarjeta-btn'><span class='icon-plus'></span> Sucribirse</div>"; 
                         }else if($rol == "3" && $conf=="Espera"){
                             echo "<div id='btn-conf' class='btn tarjeta-btn'><span class='icon-plus'></span> Confirmar asistencia</div>"; 
                         }else if($rol == "3" && $conf=="Confirmado"){
-                            echo "<div id='btn-conf' class='btn tarjeta-btn'><span class='icon-plus'></span> Ya se ha inscrito a este evento</div>"; 
+                            echo "<div id='btn-del' class='btn tarjeta-btn'><span class='icon-minus'></span>Cancelar suscripción</div>"; 
                         }
                     ?>
                     <a href="index.php" class="btn tarjeta-btn"><span class="icon-arrow-left"></span> Regresar</a>
@@ -131,7 +131,7 @@ $conf = $aQ->getUserStatusEvent($userID, $idEvento);
     <?//hacer if?>
     <input type='hidden' id='user' value='<?=$userID?>'>
     <input type='hidden' id='event' value='<?=$idEvento?>'>
-
+    <input type='hidden' id='type' value='<?=$evento["TipoEvento"]?>'>
 
 
     <script src="js/unirse_evento.js"></script>

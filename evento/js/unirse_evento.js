@@ -1,5 +1,6 @@
 let idEvento = $("#event").val(); 
 let idUsuario = $("#user").val(); 
+let tipo = document.getElementById('type').value; 
 
 console.log(idEvento + " | " + idUsuario)
 
@@ -12,13 +13,14 @@ if(btnUnirme!=null){
             denyButtonText: 'No quiero unirme', 
             confirmButtonText: 'Sí quiero unirme' 
         }).then((result)=>{
+            let url = "";   
+            if(tipo ==2){
+              url = '../modelo/saveConfirmation.php?option=s'; 
+            }else{
+              url = '../modelo/saveConfirmation.php?option=c2'; 
+            }
             if(result.isConfirmed){
-              $.post('../modelo/saveConfirmation.php?option=s', 
-              {
-                  'user': idUsuario, 
-                  'event': idEvento
-              }
-              ,
+              $.post(url, {'user': idUsuario, 'event': idEvento},
               function (result){
                 Swal.fire(result).then((result)=>{location.reload()}) 
                 }
@@ -63,4 +65,30 @@ if(btnConf!=null){
             }
         })
     })
+}
+
+let btnDel = document.getElementById("btn-del"); 
+if(btnDel!=null){
+  btnDel.addEventListener("click", (e)=>{
+    Swal.fire({
+      title: '¿Quiéres cancelar la asistencia?', 
+      showCancelButton : true, 
+      confirmButtonText: 'Sí, cancelar la asistencia'
+    }).then((result)=>{
+      if(result.isConfirmed){
+            $.post('../modelo/saveConfirmation.php?option=e', 
+            {
+                'user': idUsuario, 
+                'event': idEvento
+            }
+        ,
+          function (result){
+            Swal.fire(result).then((result)=>{location.reload()}) 
+          }
+        )
+      }
+      
+    })
+  })
+  
 }
