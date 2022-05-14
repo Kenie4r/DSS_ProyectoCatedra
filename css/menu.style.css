@@ -218,3 +218,7 @@ a{
     border-radius: 20px;
     border: 7px solid #30A5BF;
   }
+  .swal2-popup * {
+    font-family:  'Josefin Sans', sans-serif;
+  }
+  

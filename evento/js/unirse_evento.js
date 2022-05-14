@@ -10,6 +10,7 @@ if(btnUnirme!=null){
         Swal.fire({
             title: '¿Te quiéres unir a este evento',
             showDenyButton: true, 
+            icon: 'question', 
             denyButtonText: 'No quiero unirme', 
             confirmButtonText: 'Sí quiero unirme' 
         }).then((result)=>{
