@@ -147,6 +147,8 @@ class Evento{
             }else{
                 return true;
             }
+        }else{
+            return false;
         }
     }
 

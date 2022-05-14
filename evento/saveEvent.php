@@ -27,23 +27,29 @@ if(isset($_POST["btnSubmit"])){
     if(isset($_FILES['fileEvento'])){ //Siempre existe
         $randon = rand(1,20);
         //Se traen los datos del file
+        $banner = "https://www.esneca.com/wp-content/uploads/eventos-sociales-1200x720.jpg"; //Default
         $banner_tmp_name = $_FILES["fileEvento"]["tmp_name"]; //Nombre en memoria
         $banner_name = $_FILES["fileEvento"]["name"]; //Nombre del archivo
         $banner_size = $_FILES["fileEvento"]["size"]; //Size del archivo
+        //Tamaño
         if($banner_size > 2621440){
-            $banner = "https://www.esneca.com/wp-content/uploads/eventos-sociales-1200x720.jpg";
-        }else if($banner_size == 0 && $operacion == "modificar"){
-            $banner = "";
-        }else{
+            $bannerErrorSize = true;
             $banner = "https://www.esneca.com/wp-content/uploads/eventos-sociales-1200x720.jpg";
         }
-        if( $banner != "" && $banner !=  "https://www.esneca.com/wp-content/uploads/eventos-sociales-1200x720.jpg"){
+        //No modificar
+        if($banner_size == 0 && $operacion == "modificar"){
+            $banner = ""; //No se trae el banner porque no se desea modificar
+        }
+        if($banner_size == 0 && $operacion == "crear"){
+            $banner = ""; //No se trae el banner porque no se desea modificar
+        }
+        if( $banner != ""){
             if(move_uploaded_file($banner_tmp_name, "banners/" . $randon . "_" .  utf8_decode($banner_name))){
                 $banner = "../evento/banners/" . $randon . "_" . $banner_name;
             }
         }
     }
-    $categorias = $_POST["sltCategorias"];
+    $categorias = isset($_POST["sltCategorias"])?$_POST["sltCategorias"]:array();
     //Evento
     $evento = new Evento($id, $titulo, $descripcion, $fechaInicio, $fechaFin, $tipoEvento, $maximoPersonas, $banner, $categorias);
 
@@ -53,7 +59,7 @@ if(isset($_POST["btnSubmit"])){
             $urlBack = "index.php";
             $resultado1 = $evento->insert(); //Guardamos el evento
             $evento->recuperarID(); //Recuperamos el id del evento ingresado
-            $resultado2 = $evento->insertCategory();
+            $resultado2 = is_array($categorias)?$evento->insertCategory():true;
             if($resultado1 && $resultado2){
                 $mensaje = "<p class=\"resultado-titulo-success\"><span class=\"icon-thumbs-up\"></span> Se creo el evento.</p>";
             }else{
@@ -68,6 +74,9 @@ if(isset($_POST["btnSubmit"])){
                 $mensaje = "<p class=\"resultado-titulo-success\"><span class=\"icon-thumbs-up\"></span> Se actualizo el evento.</p>";
             }else{
                 $mensaje = "<p class=\"resultado-titulo-error\"><span class=\"icon-alert-circle\"></span> <span class=\"bold\">ERROR:</span> No se pudo actualizar el evento.</p>";
+            }
+            if(isset($bannerErrorSize)){
+                $mensaje .= "Nota: El banner sobrepaso el tama;o del server.";
             }
             break;
     }

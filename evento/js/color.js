@@ -115,8 +115,14 @@ function changeOrientationLinear(rgb, rgba){
 
 //Mandar un mensaje de confirmacion para eliminar un evento
 function validateDelete(){
-    let confirmacion = confirm("¿Seguro que quieres eliminar este evento? Eliminaras todo lo que posee, puedes dejar a personas sin que hacer.");
-    if(confirmacion){
-        window.location.href = "deleteEvento.php?idEvento=" + $("#idEvento").html();
-    }
+    Swal.fire({
+        title: "¿Seguro que quieres eliminar este evento? Eliminaras todo lo que posee, puedes dejar a personas sin que hacer.",
+        showDenyButton: true, 
+        denyButtonText: 'Cancelar', 
+        confirmButtonText: 'Eliminar' 
+    }).then((result)=>{
+        if(result.isConfirmed){
+            window.location.href = "deleteEvento.php?idEvento=" + $("#idEvento").html();
+        }
+    })
 }
