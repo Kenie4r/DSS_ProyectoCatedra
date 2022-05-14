@@ -401,6 +401,15 @@ input.input-titulo-rojo{
     border: black solid 2px;
 }
 
+/*EXTRA*/
+.caja-filtro{
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    align-items: center;
+}
+
+
 @media (max-width: 900px ){
     .contenedor-card{
         display: flex;
@@ -435,5 +444,8 @@ input.input-titulo-rojo{
     .tarjeta-contenido{
         margin-top: 40%;
         width: 100%;
+    }
+    .caja-filtro{
+        flex-direction: column;
     }
 }
