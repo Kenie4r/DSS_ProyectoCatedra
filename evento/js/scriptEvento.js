@@ -93,7 +93,8 @@ $(document).ready(function () {
     //por ejemplo, required 
     $("#btnSubmit").on("click", function(e){
         if(!isValidTipo || !isValidFechaI || !isValidFechaF || !isValidTipo || !isValidMax || !isValidDescr){
-            Swal.fire("Recuerda llenar todos los campos correctamente.");
+            Swal.fire({title: "Recuerda llenar todos los campos correctamente.",
+            icon: 'info'});
             console.log("wrong");
             e.preventDefault();
         }
