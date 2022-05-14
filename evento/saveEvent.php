@@ -27,7 +27,7 @@ if(isset($_POST["btnSubmit"])){
     if(isset($_FILES['fileEvento'])){ //Siempre existe
         $randon = rand(1,20);
         //Se traen los datos del file
-        $banner = "https://www.esneca.com/wp-content/uploads/eventos-sociales-1200x720.jpg"; //Default
+        $banner = ""; //Default
         $banner_tmp_name = $_FILES["fileEvento"]["tmp_name"]; //Nombre en memoria
         $banner_name = $_FILES["fileEvento"]["name"]; //Nombre del archivo
         $banner_size = $_FILES["fileEvento"]["size"]; //Size del archivo
@@ -36,14 +36,15 @@ if(isset($_POST["btnSubmit"])){
             $bannerErrorSize = true;
             $banner = "https://www.esneca.com/wp-content/uploads/eventos-sociales-1200x720.jpg";
         }
-        //No modificar
+        //No modificar al actualizar
         if($banner_size == 0 && $operacion == "modificar"){
             $banner = ""; //No se trae el banner porque no se desea modificar
         }
+        //No modificar al crear
         if($banner_size == 0 && $operacion == "crear"){
-            $banner = ""; //No se trae el banner porque no se desea modificar
+            $banner = "https://www.esneca.com/wp-content/uploads/eventos-sociales-1200x720.jpg"; //No se trae el banner porque no se desea modificar
         }
-        if( $banner != ""){
+        if( $banner != "" && $banner != "https://www.esneca.com/wp-content/uploads/eventos-sociales-1200x720.jpg"){
             if(move_uploaded_file($banner_tmp_name, "banners/" . $randon . "_" .  utf8_decode($banner_name))){
                 $banner = "../evento/banners/" . $randon . "_" . $banner_name;
             }
