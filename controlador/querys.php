@@ -158,12 +158,12 @@
     public function UpdateEventAndUserC($user, $event){
         $model = new Conection();
         $connection  = $model->_getConection();
-
-        $sql = "UPDATE FROM  detalle_usuarioevento SET Confirmacion = :conf WHERE idEvento = :evento AND idUsuario = :usuario";
+        $state = "Confirmado"; 
+        $sql = "UPDATE detalle_usuarioevento SET Confirmacion = :conf WHERE idEvento = :evento AND idUsuario = :usuario";
         $sentencia= $connection->prepare($sql);
         $sentencia->bindParam(":usuario",$user);
         $sentencia->bindParam(":evento",$event);
-        $sentencia->bindParam(":conf", "Confirmado"); 
+        $sentencia->bindParam(":conf", $state); 
         if(!$sentencia){
             return false;
         }else{
