@@ -117,7 +117,8 @@ function changeOrientationLinear(rgb, rgba){
 function validateDelete(){
     Swal.fire({
         title: "¿Seguro que quieres eliminar este evento? Eliminaras todo lo que posee, puedes dejar a personas sin que hacer.",
-        showDenyButton: true, 
+        showDenyButton: true,
+        icon: 'warning',
         denyButtonText: 'Cancelar', 
         confirmButtonText: 'Eliminar' 
     }).then((result)=>{

@@ -21,6 +21,9 @@ if( isset($_GET['idCategoria']) ){
     $eventos = $query->getEventos();
 }
 
+//Nueva funcionalidad
+$categorias = $query->getCategorias();
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -50,6 +53,19 @@ if( isset($_GET['idCategoria']) ){
                     <?php } ?>
                 </div>
             </div>
+            <div class="caja-filtro">
+                        <select name="filtroCategorias" id="filtroCategorias">
+                            <option value="">Selecciona una categoría</option>
+                            <?php
+                                foreach($categorias as $key => $categoria){
+                            ?>
+                            <option value="<?= $categoria["clave"] ?>"><?= $categoria["valor"] ?></option>
+                            <?php
+                                }
+                            ?>
+                        </select>
+                        <p id="btnFiltro" class="btn btn-azul">Filtrar</p>
+            </div>
             <div class="contenedor-card">
                 <?php if( $rol != "u" && $rol != "3" ){ //Solo para creadores y admin ?>
                 <div class="evento">
@@ -76,5 +92,9 @@ if(!($eventos == null)){
             </div>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" integrity="sha512-yVvxUQV0QESBt1SyZbNJMAwyKvFTLMyXSyBHDO4BG5t7k/Lw34tyqlSDlKIrIENIzCl+RVUNjmCPG+V/GMesRw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="js/scriptFiltro.js"></script>
 </body>
 </html>
