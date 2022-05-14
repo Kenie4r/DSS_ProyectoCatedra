@@ -20,7 +20,7 @@ if(btnUnirme!=null){
               }
               ,
               function (result){
-                Swal.fire(result).then(location.reload()) 
+                Swal.fire(result).then((result)=>{location.reload()}) 
                 }
               )
             }
@@ -46,7 +46,7 @@ if(btnConf!=null){
               }
               ,
               function (result){
-                    Swal.fire(result).then(location.reload()) 
+                Swal.fire(result).then((result)=>{location.reload()}) 
                 }
               )
             }else if(result.isDenied){
@@ -57,7 +57,7 @@ if(btnConf!=null){
               }
               ,
               function (result){
-                Swal.fire(result).then(location.reload()) 
+                Swal.fire(result).then((result)=>{location.reload()}) 
             }
               )
             }
