@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 08-04-2022 a las 02:46:34
+-- Tiempo de generación: 14-05-2022 a las 14:45:10
 -- Versión del servidor: 8.0.18
 -- Versión de PHP: 7.4.0
 
@@ -16,7 +16,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de datos: `agendaproyectocatedra`
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `categoria` (
   `Titulo` varchar(50) NOT NULL,
   `Descripcion` text NOT NULL,
   PRIMARY KEY (`idCategoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `categoria`
@@ -47,13 +47,13 @@ INSERT INTO `categoria` (`idCategoria`, `Titulo`, `Descripcion`) VALUES
 (2, 'E-Torneo', 'Torneo de E-Sports, es decir torneos profesionales o puede ser de novato, puede ser público o privado '),
 (3, 'Cumpleaños', '...'),
 (4, 'Graduación', '...'),
-(12, 'Gamer', '...'),
+(12, 'Gamer', 'Para todos los amantes de los videojuegos y del gaming, amantes de la leyenda de los videojuegos.'),
 (16, '15 años', '...'),
-(23, 'Despedida de soltero', '...'),
 (33, 'Iglesia', 'Tipo de iglesia y las ubicaciones exactas de ellas'),
 (45, 'Futbol', 'Torneos cortos de 16 equipos para reunirse sobre futbol'),
 (55, 'Boda', '...'),
-(58, 'nueva categoria', '...');
+(59, 'Parciales universitarios', 'Muchos examenes'),
+(60, 'Testeando', '...');
 
 -- --------------------------------------------------------
 
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `detalle_eventocategoria` (
   PRIMARY KEY (`idDetalle`),
   KEY `idEvento` (`idEvento`),
   KEY `idCategoria` (`idCategoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `detalle_eventocategoria`
@@ -85,9 +85,11 @@ INSERT INTO `detalle_eventocategoria` (`idDetalle`, `idEvento`, `idCategoria`) V
 (27, 6, 2),
 (28, 6, 12),
 (34, 25, 45),
-(36, 27, 55),
 (37, 23, 3),
-(44, 31, 4);
+(44, 31, 4),
+(45, 36, 2),
+(46, 39, 59),
+(48, 36, 3);
 
 -- --------------------------------------------------------
 
@@ -104,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `detalle_usuarioevento` (
   PRIMARY KEY (`idDetalle`),
   KEY `idUsuario` (`idUsuario`),
   KEY `idEvento` (`idEvento`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `detalle_usuarioevento`
@@ -116,7 +118,11 @@ INSERT INTO `detalle_usuarioevento` (`idDetalle`, `idUsuario`, `idEvento`, `Conf
 (8, 1, 10, 'Espera'),
 (9, 1, 15, 'Espera'),
 (11, 1, 16, 'Espera'),
-(12, 1, 16, 'Espera');
+(12, 1, 16, 'Espera'),
+(13, 16, 10, 'Confirmado'),
+(14, 16, 15, 'Espera'),
+(15, 16, 6, 'Confirmado'),
+(17, 19, 10, 'Confirmado');
 
 -- --------------------------------------------------------
 
@@ -133,25 +139,26 @@ CREATE TABLE IF NOT EXISTS `evento` (
   `FechaFin` datetime NOT NULL,
   `TipoEvento` int(11) NOT NULL,
   `MaximoPersonas` int(11) NOT NULL,
-  `Banner` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Banner` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`idEvento`),
   KEY `TipoEvento` (`TipoEvento`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `evento`
 --
 
 INSERT INTO `evento` (`idEvento`, `Titulo`, `Descripcion`, `FechaInicio`, `FechaFin`, `TipoEvento`, `MaximoPersonas`, `Banner`) VALUES
-(6, 'Torneo Duel Links ', 'Torneo para un juego de YGo', '2022-03-17 00:00:00', '2022-03-17 00:00:00', 1, 123, '../evento/banners/untitled-c308d.jpg'),
-(10, 'Reunión de poketuber', '¡Describe tu evento!', '2022-03-02 00:00:00', '2022-03-02 00:00:00', 2, 12, '../evento/banners/1366_2000.jpeg'),
+(6, 'Torneo Duel Links ', 'Torneo para un juego de YGo', '2022-05-23 00:00:00', '2022-05-29 00:00:00', 1, 123, '../evento/banners/untitled-c308d.jpg'),
+(10, 'Reunión de poketuber', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', '2022-06-05 00:00:00', '2022-06-05 23:00:00', 2, 12, '../evento/banners/1366_2000.jpeg'),
 (15, 'Torneo TCG Pokémon', 'grande blaziken', '2022-04-01 00:00:00', '2022-04-01 00:00:00', 2, 200, '../evento/banners/wp1944119.jpg'),
 (16, 'Torneo Programacion', 'torneo donde podras enviar tu programa y enviarlo para calificarlo', '2022-09-07 00:00:00', '2022-09-07 00:00:00', 2, 50, '../evento/banners/PROGRAMACION.jpg'),
 (18, 'Via Crusis', '¡Describe tu evento!', '2022-03-30 08:36:00', '2022-03-30 08:36:00', 1, 130, '../evento/banners/viacrusis.jpg'),
 (23, 'Feliz cumpleaños jaimito', '¡Describe tu evento!', '2022-04-23 15:35:00', '2022-04-23 15:35:00', 1, 12, '../evento/banners/wp1944119.jpg'),
 (25, 'Torneo de futbol: Iglesia', 'Ven y muestra de que estas hecho.', '2022-04-24 02:57:00', '2022-04-14 01:57:00', 1, 200, '../evento/banners/5f4000cb02b629a887356252c9d9bb61.png'),
-(27, 'Boda Suárez', 'Y vivieron felices por siempre.', '2022-04-17 12:31:00', '2022-04-17 15:32:00', 2, 234, '../evento/banners/4_bodafeliz.jpg'),
-(31, 'Nuevo Evento', '¡Describe tu evento!', '2022-04-23 20:30:00', '2022-04-20 20:30:00', 2, 1212, 'https://www.esneca.com/wp-content/uploads/eventos-sociales-1200x720.jpg');
+(31, 'Nuevo Evento', '¡Describe tu evento!', '2022-04-23 20:30:00', '2022-04-20 20:30:00', 2, 1212, 'https://www.esneca.com/wp-content/uploads/eventos-sociales-1200x720.jpg'),
+(36, 'Probando eventos 2', '¡Describe tu evento!', '2022-04-30 23:05:00', '2022-05-01 23:05:00', 1, 12121, '../evento/banners/16_test.jpg'),
+(39, 'Defensa de ADS', 'Ya no quiero hacer diagramas UML', '2022-05-16 09:13:00', '2022-05-17 16:13:00', 2, 50, '../evento/banners/9_parcial.jpg');
 
 -- --------------------------------------------------------
 
@@ -187,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `tipoevento` (
   `IdTipo` int(11) NOT NULL AUTO_INCREMENT,
   `Titulo` varchar(20) NOT NULL,
   PRIMARY KEY (`IdTipo`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `tipoevento`
@@ -207,7 +214,7 @@ DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE IF NOT EXISTS `usuario` (
   `idUsuario` int(11) NOT NULL AUTO_INCREMENT,
   `Username` varchar(20) NOT NULL,
-  `Password` varchar(35) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Password` varchar(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `Nombre` varchar(50) NOT NULL,
   `Apellido` varchar(50) NOT NULL,
   `Genero` char(1) NOT NULL,
@@ -215,7 +222,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   PRIMARY KEY (`idUsuario`),
   UNIQUE KEY `user_nameforUser` (`Username`),
   KEY `User_ROLuser` (`Rolusuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
@@ -224,10 +231,11 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 INSERT INTO `usuario` (`idUsuario`, `Username`, `Password`, `Nombre`, `Apellido`, `Genero`, `Rolusuario`) VALUES
 (1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'admin', 'eventos', 'M', 1),
 (5, 'diegosan', 'e10adc3949ba59abbe56e057f20f883e', 'Diego', 'Mancía', 'M', 2),
-(9, 'lemus', 'd41d8cd98f00b204e9800998ecf8427e', 'Fernando', 'Lemus', 'M', 3),
 (14, 'diegomancia', 'd41d8cd98f00b204e9800998ecf8427e', 'Diego', 'Mancía', 'M', 3),
 (15, 'creador', 'e10adc3949ba59abbe56e057f20f883e', 'Creador', 'de eventos', 'M', 2),
-(16, 'visitante', 'e10adc3949ba59abbe56e057f20f883e', 'Usuario', 'Comun', 'M', 3);
+(16, 'visitante', 'e10adc3949ba59abbe56e057f20f883e', 'Usuario', 'Comun', 'M', 3),
+(18, 'a', '0cc175b9c0f1b6a831c399e269772661', 'a', 'a', 'M', 3),
+(19, 'pepe', 'e10adc3949ba59abbe56e057f20f883e', 'pepe', 'pepe', 'M', 3);
 
 --
 -- Restricciones para tablas volcadas
