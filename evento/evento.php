@@ -1,13 +1,15 @@
 <?php
 
 require_once('../controlador/queryEvent.php');
+require_once('../controlador/querys.php');
 require_once('../vista/menu_vista.php');
 require_once('../modelo/form.class.php');
 require_once('../modelo/table.class.php');
 require_once('../modelo/eventCard_generator.php');
 require_once('../controlador/session.php');
 $rol = getRolSession(); //Todos pueden verlo pero solo algunas opciones estaran para los especiales
-
+$userID = $_SESSION['iduser']; 
+$aQ = new Query(); 
 $query = new QueryEvento();
 $menu = new HTMLMENU(2, $rol);
 $form = new Formulario();
@@ -22,7 +24,8 @@ if(isset($_GET['idEvento'])){
 
 $evento = $query->getEventoByID($idEvento);
 $categorias = $query->getCategoriasByIDEvento($idEvento);
-
+$personas = $aQ->howManyUserinEvent($idEvento); 
+$conf = $aQ->getUserStatusEvent($userID, $idEvento); 
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -35,6 +38,8 @@ $categorias = $query->getCategoriasByIDEvento($idEvento);
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/icomoon/style.css">
     <link rel="stylesheet" href="css/style.evento.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body class="fondo-opaco">
     <?php $menu->createMenu(); ?>
@@ -92,13 +97,24 @@ $categorias = $query->getCategoriasByIDEvento($idEvento);
                         <p><span class="bold">Tipo de evento:</span> <?php echo $evento["TipoEvento"]==1?"Público":"Privado"; ?></p>
                     </div>
                     <div>
-                        <p><span class="bold">Máximo de personas:</span> <?php echo $evento["MaximoPersonas"] ?></p>
+                        <p><span class="bold">Máximo de personas: </span><?=$personas['COUNT(idUsuario)']?> |<?php echo $evento["MaximoPersonas"] ?></p>
                     </div>
                 </div>
                 <div class="tarjeta-botones">
+                    <?php
+                        if($rol == "3" && $conf!="Espera"){
+                            echo "<div id='btn-enter' class='btn tarjeta-btn'><span class='icon-plus'></span> Unirme</div>"; 
+                        }else if($rol == "3" && $conf=="Espera"){
+                            echo "<div id='btn-conf' class='btn tarjeta-btn'><span class='icon-plus'></span> Confirmar asistencia</div>"; 
+                        }else if($rol == "3" && $conf=="Confirmado"){
+                            echo "<div id='btn-conf' class='btn tarjeta-btn'><span class='icon-plus'></span> Ya se ha inscrito a este evento</div>"; 
+                        }
+                    ?>
                     <a href="index.php" class="btn tarjeta-btn"><span class="icon-arrow-left"></span> Regresar</a>
                     <?php if( $rol != "u" && $rol != "3" ){ //Solo para creadores y admin ?>
-                    <!--<a href="index.php" class="btn btn-azul"><span class="icon-user-plus"></span> Unirme</a>-->
+
+                 
+            
                     <a href="formEventos.php?idEvento=<?php echo $idEvento; ?>" class="btn tarjeta-btn"><span class="icon-edit"></span> Modificar</a>
                     <p class="btn tarjeta-btn" id="btnDelete"><span class="icon-x"></span> Eliminar</p>
                     <?php } ?>
@@ -109,6 +125,15 @@ $categorias = $query->getCategoriasByIDEvento($idEvento);
     <img src="<?php echo $evento['Banner'] ?>" alt="" style="display:none;">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+    
     <script src="js/color.js"></script>
+
+    <?//hacer if?>
+    <input type='hidden' id='user' value='<?=$userID?>'>
+    <input type='hidden' id='event' value='<?=$idEvento?>'>
+
+
+
+    <script src="js/unirse_evento.js"></script>
 </body>
 </html>

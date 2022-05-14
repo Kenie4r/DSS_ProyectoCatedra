@@ -39,9 +39,9 @@ body{
     filter: opacity(30%);
 }
 .events-div, .category-div{
-    padding: 1.2em;
+    padding: 1em;
     display: grid;
-    gap: 1.2em;
+    gap: 1em;
 }
 .h2T{
     color: black;
@@ -52,12 +52,11 @@ body{
     display: grid;
     grid-template-columns: repeat(4,1fr);
     gap: 1em;
-    overflow-x: scroll;
 }
 .evento{
     position: relative;
-    height: 400px;
-    width: 320px;
+    height: 360px;
+    width: 280px;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
     margin: 0 auto;
@@ -162,7 +161,11 @@ body{
     justify-content: center;
     align-items: center;
 }
-
+@media (max-width: 1150px){
+    .newEvents, .categorys{
+        overflow-x: scroll;
+    }
+}
 @media (max-width: 900px){
     .newEvents,  .categorys{
         grid-template-columns: repeat(2,1fr);

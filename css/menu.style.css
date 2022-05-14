@@ -194,3 +194,27 @@ a{
         width: 25%;
     }
 }
+
+
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  body {
+    scrollbar-width: thin;
+    scrollbar-color: #7cbbfe #ffffff;
+  }
+
+  /* Chrome, Edge, and Safari */
+  body::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  body::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background-color: #30A5BF;
+    border-radius: 20px;
+    border: 7px solid #30A5BF;
+  }

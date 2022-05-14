@@ -59,6 +59,7 @@ include_once('../controlador/conection.php');
                 $_SESSION['username']=$nombre;
                 $_SESSION['password']=$pass;
                 $_SESSION['rol']=$rol['Rolusuario'];
+                $_SESSION['iduser']= $rol['idUsuario']; 
                 //Creamos las cookies
                 setcookie("username", $nombre, time()+3600, "/");
                 setcookie("rol", $rol['Rolusuario'], time()+3600, "/");

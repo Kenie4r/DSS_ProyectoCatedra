@@ -56,10 +56,10 @@
             $statement->bindParam(":idEvento", $evento); 
             $statement->bindParam(":conf", $conf); 
             if(!$statement){
-                return null; 
+                return false; 
             }else{
                 $statement->execute();
-                return "Se inserto " . $statement->RowCount() . " filas"; 
+                return true; 
             }  
         }
         public function howManyUserinEvent($idEvento){
@@ -108,7 +108,7 @@
         $model = new Conection();
         $connection  = $model->_getConection();
         $encryptPass=md5($pass);
-        $sql = "SELECT Rolusuario FROM usuario WHERE Username=:Username AND Password=:Password";
+        $sql = "SELECT Rolusuario, idUsuario FROM usuario WHERE Username=:Username AND Password=:Password";
         $sentencia= $connection->prepare($sql);
         $sentencia->bindParam(":Username",$username);
         $sentencia->bindParam(":Password",$encryptPass);
@@ -121,8 +121,57 @@
             
         }
     }
+    public function getUserStatusEvent($user, $event){
+        $model = new Conection();
+        $connection  = $model->_getConection();
+        $sql = "SELECT Confirmacion FROM detalle_usuarioevento WHERE idEvento = :evento AND idUsuario = :usuario";
+        $sentencia= $connection->prepare($sql);
+        $sentencia->bindParam(":usuario",$user);
+        $sentencia->bindParam(":evento",$event);
+        if(!$sentencia){
+            return null;
+        }else{
+            $sentencia->execute();
+            $resultado = $sentencia->fetch(PDO::FETCH_ASSOC);
+            if($resultado!=null){
+                return $resultado['Confirmacion']; 
+            }else{
+                return ["no hay nada"]; 
+            }
+          
+        }
     }
+    public function deleteEventAndUserC($user, $event){
+        $model = new Conection();
+        $connection  = $model->_getConection();
+        $sql = "DELETE FROM  detalle_usuarioevento WHERE idEvento = :evento AND idUsuario = :usuario";
+        $sentencia= $connection->prepare($sql);
+        $sentencia->bindParam(":usuario",$user);
+        $sentencia->bindParam(":evento",$event);
+        if(!$sentencia){
+            return false;
+        }else{
+            $sentencia->execute();
+            return true;             
+        }
+    }
+    public function UpdateEventAndUserC($user, $event){
+        $model = new Conection();
+        $connection  = $model->_getConection();
 
+        $sql = "UPDATE FROM  detalle_usuarioevento SET Confirmacion = :conf WHERE idEvento = :evento AND idUsuario = :usuario";
+        $sentencia= $connection->prepare($sql);
+        $sentencia->bindParam(":usuario",$user);
+        $sentencia->bindParam(":evento",$event);
+        $sentencia->bindParam(":conf", "Confirmado"); 
+        if(!$sentencia){
+            return false;
+        }else{
+            $sentencia->execute();
+            return true;             
+        }
+    }
+    }
 
 
 ?>
