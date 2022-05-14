@@ -1,3 +1,4 @@
+let isValid = false; 
 $(document).ready(function () {
     //Chosen ----------------------------------------------------------------------------------
     //Activamos el chosen, es decir, el select de las categorias
@@ -73,7 +74,11 @@ $(document).ready(function () {
     //porque los input no se validan con codigo sino que con los atributos de los input en HTML
     //por ejemplo, required 
     $("#btnSubmit").on("click", function(){
-        alert("Recuerda llenar todos los campos correctamente.");
+        if(isValid){
+            Swal.fire("Recuerda llenar todos los campos correctamente.");
+        }else{
+            Swal.fire("Por favor seleccione un nombre correcto")
+        }
     });
 });
 
@@ -135,14 +140,16 @@ function verificarTituloEvento(){
                 $("#goodTitulo").show();
                 $("#badTitulo").hide();
                 console.log(respuesta);
-                $("#btnSubmit").attr("disabled", false);
+                //$("#btnSubmit").attr("disabled", false);
+                isValid = false; 
             }else{
                 $("#txtName").removeClass("input-titulo-verde");
                 $("#txtName").addClass("input-titulo-rojo");
                 $("#goodTitulo").hide();
                 $("#badTitulo").show();
                 console.log(respuesta);
-                $("#btnSubmit").attr("disabled", true);
+                //$("#btnSubmit").attr("disabled", true);
+                isValid = true; 
             }
         },
         "html"

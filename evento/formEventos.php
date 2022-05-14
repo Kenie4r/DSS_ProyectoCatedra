@@ -55,6 +55,8 @@ if( isset($_GET['idEvento']) ){
     <link rel="stylesheet" href="../css/menu.style.css">
     <link rel="stylesheet" href="../css/icomoon/style.css">
     <link rel="stylesheet" href="css/style.evento.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
     <?php $menu->createMenu(); ?>
